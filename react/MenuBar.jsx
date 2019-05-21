@@ -6,12 +6,23 @@ class MenuBar extends React.Component {
 		super(props);
 		this.state = {
 			openNav: false,
+			headerClass: null,
+			lastScrollPos: 0
 		}
 		this.handleToggleNav = this.handleToggleNav.bind(this);
 		this.handleKeyUp = this.handleKeyUp.bind(this);
 		this.handleHamburgerBlur = this.handleHamburgerBlur.bind(this);
 		this.getMenuNav = this.getMenuNav.bind(this);
 		this.getBodyCover = this.getBodyCover.bind(this);
+		this.handleScroll = this.handleScroll.bind(this);
+	}
+
+	componentDidMount(){
+		window.addEventListener('scroll', this.handleScroll);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.handleScroll);
 	}
 
 	handleToggleNav() {
@@ -64,6 +75,34 @@ class MenuBar extends React.Component {
 		return bodyCover;
 	}
 
+	handleScroll() {
+		const el = document.scrollingElement || document.documentElement;
+		const newScrollPos = el.scrollTop;
+		if ((newScrollPos < 100 && newScrollPos > this.state.lastScrollPos) ||
+			newScrollPos <= 0){
+			this.setState({
+				headerClass: null,
+			});
+			return;
+		}
+
+		// scrolling down - default
+		let newHeaderClass = null;
+
+		// if mobile
+		if (this.props.windowWidth < 650){
+
+			// scrolling up
+			if (newScrollPos < this.state.lastScrollPos)
+				newHeaderClass = 'fixedHeader';
+		}
+		// update state to match new scroll position
+		this.setState({
+			headerClass: newHeaderClass,
+			lastScrollPos: newScrollPos
+		});
+	}
+
 	render() {
 
 		const nav = this.getMenuNav();
@@ -74,7 +113,7 @@ class MenuBar extends React.Component {
 		}
 
 		return (
-			<header>
+			<header className={this.state.headerClass}>
 				<div id="titleLink">
 					<a href="index.html" id="homelink" tabIndex="1">
 						<img src="./static/img/MalcMaturenCrop.png" alt="Malcolm Maturen Logo"/>

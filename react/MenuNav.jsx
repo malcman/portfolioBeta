@@ -35,15 +35,15 @@ class MenuNav extends React.Component {
 				handler = this.props.toggleHandler;
 			}
 			const newLink = (<Link
-													key={tabIndex}
-													tabIndex={tabIndex}
-													className_={className_}
-													liID={navID}
-													htmlPage={fileName}
-													toggleHandler={handler}
-													name={pageName}
-													handlePageChange={this.props.handlePageChange}
-												/>);
+								key={tabIndex}
+								tabIndex={tabIndex}
+								className_={className_}
+								liID={navID}
+								htmlPage={fileName}
+								toggleHandler={handler}
+								name={pageName}
+								handlePageChange={this.props.handlePageChange}
+							/>);
 			newLinks.push(newLink);
 			++tabIndex;
 		});

@@ -23,7 +23,10 @@ header {
   z-index: 5;
   top: 0;
   width: 100vw;
-  box-shadow: 0px 3px 10px #d3d3d3; }
+  position: absolute;
+  background-color: white;
+  -webkit-transition: all 400ms;
+  transition: all 400ms; }
 
 h3 {
   color: #434B63;
@@ -45,6 +48,30 @@ h5 {
 ul {
   list-style-type: none; }
 
+@keyframes headerFadeIn {
+  from {
+    background-color: white;
+    top: -200px; }
+  to {
+    position: fixed;
+    top: 0px;
+    z-index: 5; } }
+@-webkit-keyframes webKitHeaderFadeIn {
+  0% {
+    background-color: white;
+    top: -200px; }
+  100% {
+    position: fixed;
+    top: 0px;
+    z-index: 5; } }
+.fixedHeader {
+  animation: headerFadeIn 500ms forwards;
+  position: fixed;
+  z-index: 5;
+  -webkit-transition: all 400ms;
+  transition: all 400ms;
+  box-shadow: 0px 3px 10px #d3d3d3; }
+
 #toggle {
   display: inline-block;
   float: right;
@@ -65,12 +92,14 @@ ul {
     transform: skew(-50deg);
     top: 3px; }
   #close .lineOver#toggleLine4 {
+    -webkit-animation: rotateNegativeFortyFive 1.5s forwards;
     animation: rotateNegativeFortyFive 1.5s forwards; }
   #close #toggleLine5 {
     position: relative;
     top: -5px;
     transform: skew(-50deg); }
   #close .lineOver#toggleLine5 {
+    -webkit-animation: rotateFortyFive 1.5s forwards;
     animation: rotateFortyFive 1.5s forwards; }
 
 #titleLink {
@@ -89,11 +118,20 @@ ul {
   #titleLink img {
     height: 70px;
     margin: auto;
-    padding: 10px;
-    padding-bottom: 0; }
+    padding: 10px 10px 0 15px; }
   #titleLink #toggleSVG {
     width: 50px;
     height: 20px; }
+  #titleLink #skewBlock {
+    background-color: white;
+    transform: skew(-50deg);
+    width: 100px;
+    height: 100px;
+    clear: right;
+    position: relative;
+    top: 100px;
+    left: -50px;
+    box-shadow: 0px 3px 10px #d3d3d3; }
 
 .singleToggleLine {
   width: 50px;
@@ -108,16 +146,19 @@ ul {
 
 .lineUnder#toggleLine1 {
   top: 7px;
+  -webkit-animation: rotateNegativeFortyFive 600ms forwards;
   animation: rotateNegativeFortyFive 600ms forwards; }
 
 #toggleLine2 {
   transform: skew(-50deg); }
 
 .lineUnder#toggleLine2 {
+  -webkit-animation: rotateFortyFive 600ms forwards;
   animation: rotateFortyFive 600ms forwards; }
 
 .lineUnder#toggleLine3 {
   top: -7px;
+  -webkit-animation: rotateNegativeFortyFive 600ms forwards;
   animation: rotateNegativeFortyFive 600ms forwards; }
 
 .lineOver {
@@ -126,9 +167,11 @@ ul {
 
 @keyframes rotateNegativeFortyFive {
   to {
+    -webkit-transform: rotate(-45deg) skew(-50deg);
     transform: rotate(-45deg) skew(-50deg); } }
 @keyframes rotateFortyFive {
   to {
+    -webkit-transform: rotate(45deg) skew(-50deg);
     transform: rotate(45deg) skew(-50deg); } }
 #resume {
   height: 70vh;
@@ -216,7 +259,7 @@ ul {
 
 #menu-container {
   display: inline-block;
-  position: absolute;
+  position: fixed;
   top: 0px;
   width: 50vw;
   height: 100vh;
@@ -244,7 +287,7 @@ ul {
 
 .bodyCover {
   display: inline-block;
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   z-index: 7;

@@ -9,12 +9,12 @@ function getPage(){
 	let page;
 
 	if ((matches = regex.exec(document.title)) !== null) {
-	    // The result can be accessed through the `m`-variable.
-	    matches.forEach((match, groupIndex) => {
-	    	if (groupIndex === 1) {
-		        page = match;
-	    	}
-	    });
+		// The result can be accessed through the `m`-variable.
+		matches.forEach((match, groupIndex) => {
+			if (groupIndex === 1) {
+				page = match;
+			}
+		});
 	}
 	return page;
 }
@@ -24,3 +24,8 @@ ReactDOM.render(
   <App page={getPage()}/>,
   document.getElementById('reactEntry'),
 );
+
+const projectEntry = document.getElementById('projectEntry')
+if (projectEntry) {
+	ReactDOM.render(<ProjectPage/>, projectEntry);
+}

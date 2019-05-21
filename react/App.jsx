@@ -41,12 +41,10 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<MenuBar
-					windowWidth={this.state.width}
-					currentPage={this.state.currentPage}
-					handlePageChange={this.handlePageChange}/>
-			</div>
+			<MenuBar
+				windowWidth={this.state.width}
+				currentPage={this.state.currentPage}
+				handlePageChange={this.handlePageChange}/>
 		)
 	}
 }
