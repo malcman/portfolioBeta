@@ -90,12 +90,12 @@ class MenuBar extends React.Component {
 		let newHeaderClass = null;
 
 		// if mobile
-		if (this.props.windowWidth < 650){
+		// if (this.props.windowWidth < 650){
 
-			// scrolling up
-			if (newScrollPos < this.state.lastScrollPos)
-				newHeaderClass = 'fixedHeader';
-		}
+		// scrolling up
+		if (newScrollPos < this.state.lastScrollPos)
+			newHeaderClass = 'fixedHeader';
+		// }
 		// update state to match new scroll position
 		this.setState({
 			headerClass: newHeaderClass,

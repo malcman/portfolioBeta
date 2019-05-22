@@ -22,7 +22,7 @@ function getPage(){
 
 ReactDOM.render(
   <App page={getPage()}/>,
-  document.getElementById('reactEntry'),
+  document.getElementById('menuEntry'),
 );
 
 const projectEntry = document.getElementById('projectEntry')
