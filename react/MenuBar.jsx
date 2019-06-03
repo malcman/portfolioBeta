@@ -68,9 +68,9 @@ class MenuBar extends React.Component {
 			var hidden = this.state.openNav ? "":"hidden";
 			var coverClasses = `bodyCover ${hidden}`;
 			var bodyCover = (<div
-													className={coverClasses}
-													onClick={this.handleToggleNav}>
-												</div>);
+								className={coverClasses}
+								onClick={this.handleToggleNav}>
+							</div>);
 		}
 		return bodyCover;
 	}
@@ -89,13 +89,13 @@ class MenuBar extends React.Component {
 		// scrolling down - default
 		let newHeaderClass = null;
 
-		// if mobile
-		// if (this.props.windowWidth < 650){
+		// if not desktop
+		if (this.props.windowWidth < 1000){
 
-		// scrolling up
-		if (newScrollPos < this.state.lastScrollPos)
-			newHeaderClass = 'fixedHeader';
-		// }
+			// scrolling up
+			if (newScrollPos < this.state.lastScrollPos)
+				newHeaderClass = 'fixedHeader';
+		}
 		// update state to match new scroll position
 		this.setState({
 			headerClass: newHeaderClass,
@@ -111,12 +111,18 @@ class MenuBar extends React.Component {
 		if (this.state.openNav) {
 			toggleLineClass = "singleToggleLine lineUnder"
 		}
+		// change homelink src if wide enough screen
+		let imgSRC = "./static/img/MalcMaturenCrop.png"
+		if (this.props.windowWidth > 1000) {
+			imgSRC = "./static/img/MalcMaturenFull.png"
+		}
 
 		return (
 			<header className={this.state.headerClass}>
 				<div id="titleLink">
 					<a href="index.html" id="homelink" tabIndex="1">
-						<img src="./static/img/MalcMaturenCrop.png" alt="Malcolm Maturen Logo"/>
+						<img src={imgSRC}
+							alt="Malcolm Maturen Logo"/>
 					</a>
 					<div id="toggle"
 						onClick={this.handleToggleNav}

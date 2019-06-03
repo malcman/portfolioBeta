@@ -42,7 +42,7 @@ $mainLight: #B3BBC5;
 	}
 
 	.content{
-		top: 60px;
+		// top: 90px;
 	}
 
 	#homelink{
@@ -112,7 +112,7 @@ $mainLight: #B3BBC5;
 @media only screen and (min-width: 1000px){
 
 	.content{
-		top: 60px;
+		// top: 160px;
 		margin-bottom: 5%;
 	}
 
@@ -159,6 +159,11 @@ $mainLight: #B3BBC5;
 	// #homelink{
 	// 	left: 0px;
 	// }
+	#homelink{
+		img{
+			width: 70%;
+		}
+	}
 
 	#titleLink{
 		width: 20%;

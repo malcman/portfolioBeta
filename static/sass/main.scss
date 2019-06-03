@@ -1,6 +1,10 @@
 $midGray: #696969;
 $mainDark: #434B63;
 $mainLight: #B3BBC5;
+$darkerWhite: darken(#FFF, 1%);
+
+// bad name ik but not actually the shadow of the header TODO change
+$headerShadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 
 *{
 	margin: 0;
@@ -352,7 +356,7 @@ ul {
 	height: 100vh;
 	z-index: 10;
 	transition: all 600ms;
-	background-color: $mainDark;
+	background-color: darken($mainDark, 10%);
 	font-family: 'Montserrat', 'Lato', sans-serif;
 	color: #FFF;
 	a {
@@ -415,9 +419,9 @@ ul {
 	transition: all 400ms;
 	width: 80%;
 	position: relative;
-	top: 90px;
-	margin: 0 10%;
-	margin-bottom: 10%;
+	// top: 90px;
+	margin: 15% 10%;
+	// margin-bottom: 10%;
 	#profpic{
 		position: relative;
 		float: right;
@@ -432,6 +436,60 @@ ul {
 	p{
 		width: 100%;
 		text-indent: 5%;
+	}
+}
+
+@media only screen and (max-width: 400px){
+	.content {
+		margin-top: 90px;
+	}
+}
+
+#ProjectComponent {
+	width: 100%;
+}
+
+#FilterManager {
+	width: 100%;
+}
+
+#searchBar {
+	width: 100%;
+    max-height: 100px;
+    min-height: 70px;
+	background-color: lighten($mainLight, 20%);
+	margin: 3% auto;
+	position: relative;
+	// box-shadow: $headerShadow;
+    transform: skew(20deg);
+}
+
+#searchForm {
+	// display: inline-block;
+	// width: 90%;
+	// height: 100%;
+	// border: 1px solid red;
+	// position: absolute;
+	// bottom: 0px;
+	// left: 0px;
+
+	#query {
+		width: 90%;
+		font-size: 170%;
+		position: absolute;
+		bottom: 15px;
+		left: 20px;
+	    transform: skew(-20deg);
+		border: none;
+		background-color: lighten($mainLight, 20%);
+		padding-top: 10px;
+		font-family: 'Montserrat', 'Lato', sans-serif;
+		font-weight: 300;
+		color: $mainDark;
+	}
+	::placeholder {
+		color: $mainDark;
+		opacity: 0.75;
 	}
 }
 

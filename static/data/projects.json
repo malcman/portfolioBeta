@@ -1,0 +1,29 @@
+{
+  "head":
+  {
+    "last_update": "06/03/19"
+  },
+
+  "projects":
+  [
+    {
+      "title": "ember",
+      "coverIMG": "./static/img/filename",
+      "description": "Lorem ipsum boopity bopily",
+      "role": "did most of it",
+      "result": "It rocked",
+      "future": "implement",
+      "imgs":
+        [
+          {
+            "src": "./static/img/filename",
+            "description": "stuff"
+          },
+          {
+            "src": "./static/img/filename2",
+            "description": "stuff2"
+          }
+        ]
+    }
+  ]
+}

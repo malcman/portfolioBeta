@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.jsx'
+import ProjectPage from './ProjectPage.jsx'
 
 
 function getPage(){
@@ -25,7 +26,7 @@ ReactDOM.render(
   document.getElementById('menuEntry'),
 );
 
-const projectEntry = document.getElementById('projectEntry')
-if (projectEntry) {
-	ReactDOM.render(<ProjectPage/>, projectEntry);
+const projectsEntry = document.getElementById('projectsEntry')
+if (projectsEntry) {
+	ReactDOM.render(<ProjectPage/>, projectsEntry);
 }
