@@ -1,3 +1,12 @@
+@media only screen and (max-width: 400px) {
+  .content {
+    margin-top: 90px; }
+
+  #searchForm #query {
+    font-size: 110%; }
+
+  #searchBar {
+    min-height: 50px; } }
 @media only screen and (min-width: 650px) {
   #menu-container {
     width: 80%;

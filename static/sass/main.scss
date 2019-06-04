@@ -439,11 +439,6 @@ ul {
 	}
 }
 
-@media only screen and (max-width: 400px){
-	.content {
-		margin-top: 90px;
-	}
-}
 
 #ProjectComponent {
 	width: 100%;
@@ -455,8 +450,7 @@ ul {
 
 #searchBar {
 	width: 100%;
-    max-height: 100px;
-    min-height: 70px;
+    height: 50px;
 	background-color: lighten($mainLight, 20%);
 	margin: 3% auto;
 	position: relative;
@@ -464,33 +458,22 @@ ul {
     transform: skew(20deg);
 }
 
-#searchForm {
-	// display: inline-block;
-	// width: 90%;
-	// height: 100%;
-	// border: 1px solid red;
-	// position: absolute;
-	// bottom: 0px;
-	// left: 0px;
-
-	#query {
-		width: 90%;
-		font-size: 170%;
-		position: absolute;
-		bottom: 15px;
-		left: 20px;
-	    transform: skew(-20deg);
-		border: none;
-		background-color: lighten($mainLight, 20%);
-		padding-top: 10px;
-		font-family: 'Montserrat', 'Lato', sans-serif;
-		font-weight: 300;
-		color: $mainDark;
-	}
-	::placeholder {
-		color: $mainDark;
-		opacity: 0.75;
-	}
+#query {
+	width: 90%;
+	font-size: 130%;
+	position: absolute;
+	left: 20px;
+	transform: skew(-20deg);
+	border: none;
+	background-color: lighten($mainLight, 20%);
+	padding: 10px 0;
+	font-family: 'Montserrat', 'Lato', sans-serif;
+	font-weight: 300;
+	color: $mainDark;
+}
+::placeholder {
+	color: $mainDark;
+	opacity: 0.75;
 }
 
 .disp-grid{
