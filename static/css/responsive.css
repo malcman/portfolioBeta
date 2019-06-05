@@ -3,7 +3,9 @@
     margin-top: 90px; }
 
   #searchForm #query {
-    font-size: 110%; }
+    font-size: 110%;
+    width: 80%;
+    padding-bottom: 12px; }
 
   #searchBar {
     min-height: 50px; } }
@@ -41,6 +43,9 @@
   #homelink img {
     width: 40%;
     height: auto; }
+
+  #filterGrid {
+    grid-template-columns: repeat(2, 1fr); }
 
   #toggle {
     display: none; }
@@ -80,10 +85,17 @@
     width: 20%; }
 
   .titleBar {
-    position: relative; } }
+    position: relative; }
+
+  #query {
+    width: 90%; } }
 @media only screen and (min-width: 1000px) {
   .content {
     margin-bottom: 5%; }
+
+  #filterGrid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 6px; }
 
   #skills-grid {
     grid-template-rows: 1fr 1fr;

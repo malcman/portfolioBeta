@@ -1,5 +1,6 @@
 import React from 'react';
-import SearchBar from './SearchBar'
+import SearchBar from './SearchBar.jsx'
+import FilterForm from './FilterForm.jsx'
 
 class FilterManager extends React.Component {
 
@@ -8,7 +9,7 @@ class FilterManager extends React.Component {
 		this.state = {
 			filterText: '',
 		};
-	    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+		this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
 	}
 
 	handleFilterTextChange(filterText) {
@@ -26,6 +27,7 @@ class FilterManager extends React.Component {
 						onFilterTextChange={this.handleFilterTextChange}/>
 
 				</div>
+				<FilterForm/>
 			</div>
 		);
 	}

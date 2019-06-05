@@ -31,6 +31,79 @@ a{
 	}
 }
 
+.labelSkewer{
+	transform: skew(20deg);
+	padding: 7px 0 7px 50px;
+}
+
+.FilterLabel {
+	border: 1px solid $mainDark;
+	transform: skew(-20deg);
+	width: 100%;
+	position: relative;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#filterGrid {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-row-gap: 2px;
+	grid-column-gap: 4px;
+}
+
+/* Hide the browser's default checkbox */
+.FilterLabel input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 35px;
+	transform: skew(-20deg);
+	background-color: #FFF;
+
+	/* Create the checkmark/indicator (hidden when not checked) */
+	&:before {
+		content: "";
+		position: absolute;
+		display: none;
+		left: 12px;
+		top: 7px;
+		width: 6px;
+		height: 12px;
+		border: solid white;
+		border-width: 0 3px 3px 0;
+		-webkit-transform: rotate(50deg) skew(20deg);
+		-ms-transform: rotate(50deg) skew(20deg);
+		transform: rotate(50deg) skew(20deg);
+	}
+}
+
+
+/* When the checkbox is checked, add a blue background */
+.labelSkewer input:checked {
+	~ .checkmark {
+		background-color: $mainDark;
+	}
+}
+
+/* Show the checkmark when checked */
+.labelSkewer input:checked ~ .checkmark:before {
+	display: block;
+}
+
 p, b, div{
 	font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
 	font-weight: 300;
@@ -450,29 +523,44 @@ ul {
 
 #searchBar {
 	width: 100%;
-    height: 50px;
-	background-color: lighten($mainLight, 20%);
+	height: 50px;
+	background-color: lighten($mainLight, 10%);
 	margin: 3% auto;
 	position: relative;
 	// box-shadow: $headerShadow;
-    transform: skew(20deg);
+	transform: skew(20deg);
 }
 
 #query {
-	width: 90%;
+	width: 80%;
 	font-size: 130%;
 	position: absolute;
 	left: 20px;
-	transform: skew(-20deg);
+	transform: skew(-30deg);
 	border: none;
-	background-color: lighten($mainLight, 20%);
-	padding: 10px 0;
+	background-color: lighten($mainLight, 10%);
+	padding: 10px 0 10px 5px;
 	font-family: 'Montserrat', 'Lato', sans-serif;
 	font-weight: 300;
 	color: $mainDark;
+	margin-top: 2px;
 }
+
+#query:hover {
+	background-color: lighten($mainLight, 20%);
+}
+
+#query:focus {
+	background-color: #FFF;
+}
+
+
+#searchBar:hover {
+	background-color: lighten($mainLight, 15%);
+}
+
 ::placeholder {
-	color: $mainDark;
+	color: darken($mainDark, 10%);
 	opacity: 0.75;
 }
 
