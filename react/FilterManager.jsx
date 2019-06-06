@@ -19,6 +19,7 @@ class FilterManager extends React.Component {
   }
 
 	render() {
+		const categories = ['Web Development', 'Optimization', 'Graphic Design', 'Interaction Design']
 		return (
 			<div id='FilterManager'>
 				<div id='searchBar'>
@@ -27,7 +28,7 @@ class FilterManager extends React.Component {
 						onFilterTextChange={this.handleFilterTextChange}/>
 
 				</div>
-				<FilterForm/>
+				<FilterForm categories={categories}/>
 			</div>
 		);
 	}

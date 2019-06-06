@@ -4,6 +4,30 @@ class FilterForm extends React.Component {
 	constructor(props){
 		super(props);
 		this.handleFormChange = this.handleFormChange.bind(this);
+		this.createCategoryChecklist = this.createCategoryChecklist.bind(this);
+		this.categories = [];
+		this.createCategoryChecklist();
+	}
+
+	createCategoryChecklist() {
+		this.props.categories.forEach((category) => {
+			const catNoWhitespace = category.replace(/\s/g,'');
+			const newCategory = (
+				<label
+					className="FilterLabel"
+					key={catNoWhitespace}>
+							<input
+								className="filterCheckbox"
+								type="checkbox"
+								value={category}
+								id={catNoWhitespace}/>
+							<div className="FilterBKG">
+								<span className="checkmark"></span>
+							</div>
+							<p>{category}</p>
+					</label>);
+			this.categories.push(newCategory)
+		});
 	}
 
 	handleFormChange(e) {
@@ -15,42 +39,7 @@ class FilterForm extends React.Component {
 		return (
 			<form id='filterForm'>
 				<div id="filterGrid">
-					<label className="FilterLabel">
-						<div className="labelSkewer">
-							Web Development
-							<input
-								type="checkbox"
-								value="Web Development"/>
-							<span className="checkmark"></span>
-						</div>
-					</label>
-					<label className="FilterLabel">
-						<div className="labelSkewer">
-							Optimization
-							<input
-								type="checkbox"
-								value="Optimization"/>
-							<span className="checkmark"></span>
-						</div>
-					</label>
-					<label className="FilterLabel">
-						<div className="labelSkewer">
-							Interaction Design
-							<input
-								type="checkbox"
-								value="Interaction Design"/>
-							<span className="checkmark"></span>
-						</div>
-					</label>
-					<label className="FilterLabel">
-						<div className="labelSkewer">
-							Graphic Design
-							<input
-								type="checkbox"
-								value="Graphic Design"/>
-							<span className="checkmark"></span>
-						</div>
-					</label>
+					{this.categories}
 				</div>
 			</form>
 		);

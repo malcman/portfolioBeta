@@ -3,17 +3,9 @@ $mainDark: #434B63;
 $mainLight: #B3BBC5;
 $darkerWhite: darken(#FFF, 1%);
 
-// bad name ik but not actually the shadow of the header TODO change
-$headerShadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-
 *{
 	margin: 0;
 	padding: 0;
-	// border: 1px solid #000;
-}
-
-html {
-	// overflow-x: hidden;
 }
 
 body {
@@ -31,14 +23,17 @@ a{
 	}
 }
 
-.labelSkewer{
-	transform: skew(20deg);
-	padding: 7px 0 7px 50px;
+
+// grid that holds filtering options
+#filterGrid {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-column-gap: 4px;
+	transform: skew(-20deg);
 }
 
+// label surrounding filter options
 .FilterLabel {
-	border: 1px solid $mainDark;
-	transform: skew(-20deg);
 	width: 100%;
 	position: relative;
 	cursor: pointer;
@@ -46,25 +41,42 @@ a{
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	margin: 10px auto;
+	box-sizing: border-box;
+	color: $mainDark;
+	transform: skew(20deg);
+  box-sizing: border-box;
+  padding-left: 50px;
+  padding-bottom: 7px;
 }
 
-#filterGrid {
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-row-gap: 2px;
-	grid-column-gap: 4px;
-}
-
-/* Hide the browser's default checkbox */
-.FilterLabel input {
+// Hide the browser's default checkbox
+.filterCheckbox {
 	position: absolute;
 	opacity: 0;
 	cursor: pointer;
-	height: 0;
-	width: 0;
 }
 
-/* Create a custom checkbox */
+// When the checkbox is checked, add a blue background
+.filterCheckbox:checked + .FilterBKG {
+	background-position: -100% 0;
+	.checkmark {
+		background-color: $mainDark;
+		border: 1px solid $mainDark;
+
+		// Show the checkmark when checked
+		&:before {
+			display: block;
+		}
+	}
+	// recolor the label white
+	+ p {
+		color: white;
+	}
+}
+
+
+// Create a custom checkbox
 .checkmark {
 	position: absolute;
 	top: 0;
@@ -73,8 +85,12 @@ a{
 	width: 35px;
 	transform: skew(-20deg);
 	background-color: #FFF;
+	box-sizing: border-box;
+	border: 1px solid lighten($mainLight, 15%);
+	transform: skew(0);
+	transition: background-color .5s;
 
-	/* Create the checkmark/indicator (hidden when not checked) */
+	// Create the checkmark/indicator (hidden when not checked)
 	&:before {
 		content: "";
 		position: absolute;
@@ -92,17 +108,26 @@ a{
 }
 
 
-/* When the checkbox is checked, add a blue background */
-.labelSkewer input:checked {
-	~ .checkmark {
-		background-color: $mainDark;
-	}
+// div to change color on sibling input with pure CSS
+.FilterBKG {
+	width: 100%;
+	background-color: lighten($mainLight, 15%);
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 32px;
+	transform: skew(-20deg);
+	z-index: -1;
+  box-sizing: border-box;
+
+	// sliding grey to blue bkg on click
+  background-size: 200% 100%;
+	background-image: linear-gradient(to right, lighten($mainLight, 15%) 50%, $mainDark 50%);
+	transition: background-position .5s ease-out;
+	-webkit-transition: background-position .5s ease-out;
+	-moz-transition: background-position .5s ease-out;
 }
 
-/* Show the checkmark when checked */
-.labelSkewer input:checked ~ .checkmark:before {
-	display: block;
-}
 
 p, b, div{
 	font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
@@ -527,7 +552,6 @@ ul {
 	background-color: lighten($mainLight, 10%);
 	margin: 3% auto;
 	position: relative;
-	// box-shadow: $headerShadow;
 	transform: skew(20deg);
 }
 

@@ -13,36 +13,43 @@ a {
   a :hover {
     text-decoration: underline; }
 
-.labelSkewer {
-  transform: skew(20deg);
-  padding: 7px 0 7px 50px; }
+#filterGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column-gap: 4px;
+  transform: skew(-20deg); }
 
 .FilterLabel {
-  border: 1px solid #434B63;
-  transform: skew(-20deg);
   width: 100%;
   position: relative;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; }
+  user-select: none;
+  margin: 10px auto;
+  box-sizing: border-box;
+  color: #434B63;
+  transform: skew(20deg);
+  box-sizing: border-box;
+  padding-left: 50px;
+  padding-bottom: 7px; }
 
-#filterGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-row-gap: 2px;
-  grid-column-gap: 4px; }
-
-/* Hide the browser's default checkbox */
-.FilterLabel input {
+.filterCheckbox {
   position: absolute;
   opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0; }
+  cursor: pointer; }
 
-/* Create a custom checkbox */
+.filterCheckbox:checked + .FilterBKG {
+  background-position: -100% 0; }
+  .filterCheckbox:checked + .FilterBKG .checkmark {
+    background-color: #434B63;
+    border: 1px solid #434B63; }
+    .filterCheckbox:checked + .FilterBKG .checkmark:before {
+      display: block; }
+  .filterCheckbox:checked + .FilterBKG + p {
+    color: white; }
+
 .checkmark {
   position: absolute;
   top: 0;
@@ -51,7 +58,10 @@ a {
   width: 35px;
   transform: skew(-20deg);
   background-color: #FFF;
-  /* Create the checkmark/indicator (hidden when not checked) */ }
+  box-sizing: border-box;
+  border: 1px solid #dee2e6;
+  transform: skew(0);
+  transition: background-color .5s; }
   .checkmark:before {
     content: "";
     position: absolute;
@@ -66,13 +76,21 @@ a {
     -ms-transform: rotate(50deg) skew(20deg);
     transform: rotate(50deg) skew(20deg); }
 
-/* When the checkbox is checked, add a blue background */
-.labelSkewer input:checked ~ .checkmark {
-  background-color: #434B63; }
-
-/* Show the checkmark when checked */
-.labelSkewer input:checked ~ .checkmark:before {
-  display: block; }
+.FilterBKG {
+  width: 100%;
+  background-color: #dee2e6;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 32px;
+  transform: skew(-20deg);
+  z-index: -1;
+  box-sizing: border-box;
+  background-size: 200% 100%;
+  background-image: linear-gradient(to right, #dee2e6 50%, #434B63 50%);
+  transition: background-position .5s ease-out;
+  -webkit-transition: background-position .5s ease-out;
+  -moz-transition: background-position .5s ease-out; }
 
 p, b, div {
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
