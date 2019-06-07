@@ -15,6 +15,9 @@ $mainLight: #B3BBC5;
 	#searchBar {
 		min-height: 50px;
 	}
+	.FilterBKG + p {
+		font-size: 80%;
+	}
 }
 
 @media only screen and (min-width: 650px){
@@ -70,6 +73,15 @@ $mainLight: #B3BBC5;
 
 	#filterGrid {
 		grid-template-columns: repeat(2, 1fr);
+		width: 100%;
+	}
+
+	.FilterLabel {
+		width: 100%;
+	}
+
+	.FilterBKG{
+		width: 95%;
 	}
 
 	#toggle{
@@ -129,6 +141,9 @@ $mainLight: #B3BBC5;
 	}
 	#query {
 		width: 90%;
+	}
+	.shrinkToHide#FilterContainer {
+		transform: translate(0, -45px) scale(1, 0) skew(0deg);
 	}
 }
 
@@ -201,6 +216,10 @@ $mainLight: #B3BBC5;
 
 	#footer-logo{
 		top: 15px;
+	}
+
+	.shrinkToHide#FilterContainer {
+		transform: translate(0, -20px) scale(1, 0) skew(0deg);
 	}
 
 }

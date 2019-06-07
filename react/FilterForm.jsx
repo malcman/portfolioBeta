@@ -5,9 +5,15 @@ class FilterForm extends React.Component {
 		super(props);
 		this.handleFormChange = this.handleFormChange.bind(this);
 		this.createCategoryChecklist = this.createCategoryChecklist.bind(this);
+		this.createFormManagementButtons = this.createFormManagementButtons.bind(this);
 		this.categories = [];
 		this.createCategoryChecklist();
 	}
+
+	createFormManagementButtons() {
+
+	}
+
 
 	createCategoryChecklist() {
 		this.props.categories.forEach((category) => {
@@ -19,6 +25,7 @@ class FilterForm extends React.Component {
 							<input
 								className="filterCheckbox"
 								type="checkbox"
+								defaultChecked
 								value={category}
 								id={catNoWhitespace}/>
 							<div className="FilterBKG">

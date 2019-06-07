@@ -23,112 +23,6 @@ a{
 	}
 }
 
-
-// grid that holds filtering options
-#filterGrid {
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-column-gap: 4px;
-	transform: skew(-20deg);
-}
-
-// label surrounding filter options
-.FilterLabel {
-	width: 100%;
-	position: relative;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	margin: 10px auto;
-	box-sizing: border-box;
-	color: $mainDark;
-	transform: skew(20deg);
-  box-sizing: border-box;
-  padding-left: 50px;
-  padding-bottom: 7px;
-}
-
-// Hide the browser's default checkbox
-.filterCheckbox {
-	position: absolute;
-	opacity: 0;
-	cursor: pointer;
-}
-
-// When the checkbox is checked, add a blue background
-.filterCheckbox:checked + .FilterBKG {
-	background-position: -100% 0;
-	.checkmark {
-		background-color: $mainDark;
-		border: 1px solid $mainDark;
-
-		// Show the checkmark when checked
-		&:before {
-			display: block;
-		}
-	}
-	// recolor the label white
-	+ p {
-		color: white;
-	}
-}
-
-
-// Create a custom checkbox
-.checkmark {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 35px;
-	transform: skew(-20deg);
-	background-color: #FFF;
-	box-sizing: border-box;
-	border: 1px solid lighten($mainLight, 15%);
-	transform: skew(0);
-	transition: background-color .5s;
-
-	// Create the checkmark/indicator (hidden when not checked)
-	&:before {
-		content: "";
-		position: absolute;
-		display: none;
-		left: 12px;
-		top: 7px;
-		width: 6px;
-		height: 12px;
-		border: solid white;
-		border-width: 0 3px 3px 0;
-		-webkit-transform: rotate(50deg) skew(20deg);
-		-ms-transform: rotate(50deg) skew(20deg);
-		transform: rotate(50deg) skew(20deg);
-	}
-}
-
-
-// div to change color on sibling input with pure CSS
-.FilterBKG {
-	width: 100%;
-	background-color: lighten($mainLight, 15%);
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	height: 32px;
-	transform: skew(-20deg);
-	z-index: -1;
-  box-sizing: border-box;
-
-	// sliding grey to blue bkg on click
-  background-size: 200% 100%;
-	background-image: linear-gradient(to right, lighten($mainLight, 15%) 50%, $mainDark 50%);
-	transition: background-position .5s ease-out;
-	-webkit-transition: background-position .5s ease-out;
-	-moz-transition: background-position .5s ease-out;
-}
-
-
 p, b, div{
 	font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
 	font-weight: 300;
@@ -170,6 +64,16 @@ h5{
 
 ul {
 	list-style-type: none;
+}
+
+button {
+	padding: 5px 10px;
+	margin: 5px;
+	text-decoration: underline;
+	font-family: 'Montserrat', 'Lato', sans-serif;
+	cursor: pointer;
+	background-color: white;
+	border-radius: 5px;
 }
 
 @keyframes headerFadeIn {
@@ -340,6 +244,141 @@ ul {
 
 
 
+// grid that holds filtering options
+#filterGrid {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-column-gap: 4px;
+	transform: skew(-20deg);
+	background-color: lighten($mainLight, 15%);
+	width: 90%;
+}
+
+// label surrounding filter options
+.FilterLabel {
+	width: 95%;
+	position: relative;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	margin: 12px 0 8px 8px;
+	box-sizing: border-box;
+	color: $mainDark;
+	transform: skew(20deg);
+  box-sizing: border-box;
+  padding-left: 50px;
+  padding-bottom: 7px;
+}
+
+// Hide the browser's default checkbox
+.filterCheckbox {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+}
+
+// When the checkbox is checked, add a blue background
+.filterCheckbox:checked + .FilterBKG {
+	background-position: -100% 0;
+	.checkmark {
+		background-color: $mainDark;
+		border: 1px solid $mainDark;
+
+		// Show the checkmark when checked
+		&:before {
+			display: block;
+		}
+	}
+	// recolor the label white
+	+ p {
+		color: white;
+	}
+}
+
+
+// Create a custom checkbox
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 35px;
+	transform: skew(-20deg);
+	background-color: #FFF;
+	box-sizing: border-box;
+	border: 1px solid lighten($mainLight, 15%);
+	border-width: 0 1px;
+	transform: skew(0);
+	transition: background-color .5s ease-in, border .2s ease-in;
+
+	// Create the checkmark/indicator (hidden when not checked)
+	&:before {
+		content: "";
+		position: absolute;
+		display: none;
+		left: 12px;
+		top: 7px;
+		width: 6px;
+		height: 12px;
+		border: solid white;
+		border-width: 0 3px 3px 0;
+		-webkit-transform: rotate(50deg) skew(20deg);
+		-ms-transform: rotate(50deg) skew(20deg);
+		transform: rotate(50deg) skew(20deg);
+	}
+}
+
+
+// div to change color on sibling input with pure CSS
+.FilterBKG {
+	width: 100%;
+	// background-color: lighten($mainLight, 15%);
+	background-color: #FFF;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 32px;
+	transform: skew(-20deg);
+	z-index: -1;
+  box-sizing: border-box;
+
+	// sliding grey to blue bkg on click
+  background-size: 200% 100%;
+	background-image: linear-gradient(to right, #FFF 50%, $mainDark 50%);
+	transition: background-position .5s ease-out;
+	-webkit-transition: background-position .5s ease-out;
+	-moz-transition: background-position .5s ease-out;
+
+}
+.filterCheckbox + .FilterBKG + p {
+	text-indent: -5px;
+}
+
+
+#ManagmentButtons {
+	width: 100%;
+	display: flex;
+	padding: 10px;
+	background-color: white;
+	flex-direction: row-reverse;
+	button {
+		margin: 0 5px;
+	}
+}
+
+#FilterContainer {
+	width: 100%;
+	position: relative;
+	transition: transform .4s ease-out;
+	display: block;
+}
+
+.shrinkToHide#FilterContainer {
+	transform: translate(0, -95px) scale(1, 0) skew(0deg);
+}
+
 #resume{
 	// width: 80vw;
 	height: 70vh;
@@ -505,8 +544,35 @@ ul {
 	display: none;
 }
 
+.transOpacity {
+	transition: opacity 1s;
+}
+
+.fullOpacity {
+	opacity: 1;
+}
+
+.noOpacity {
+	opacity: 0;
+}
+
 .hiddenRight {
 	right: -1000px;
+}
+
+.fullWidth {
+	width: 100%;
+}
+
+.noWidth {
+	width: 0;
+}
+
+.noHeight {
+	height: 0;
+}
+.autoHeight {
+	height: auto;
 }
 
 .openNav {
@@ -553,6 +619,7 @@ ul {
 	margin: 3% auto;
 	position: relative;
 	transform: skew(20deg);
+	z-index: 4;
 }
 
 #query {

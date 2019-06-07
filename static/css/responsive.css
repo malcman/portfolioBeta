@@ -8,7 +8,10 @@
     padding-bottom: 12px; }
 
   #searchBar {
-    min-height: 50px; } }
+    min-height: 50px; }
+
+  .FilterBKG + p {
+    font-size: 80%; } }
 @media only screen and (min-width: 650px) {
   #menu-container {
     width: 80%;
@@ -45,7 +48,14 @@
     height: auto; }
 
   #filterGrid {
-    grid-template-columns: repeat(2, 1fr); }
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%; }
+
+  .FilterLabel {
+    width: 100%; }
+
+  .FilterBKG {
+    width: 95%; }
 
   #toggle {
     display: none; }
@@ -88,7 +98,10 @@
     position: relative; }
 
   #query {
-    width: 90%; } }
+    width: 90%; }
+
+  .shrinkToHide#FilterContainer {
+    transform: translate(0, -45px) scale(1, 0) skew(0deg); } }
 @media only screen and (min-width: 1000px) {
   .content {
     margin-bottom: 5%; }
@@ -134,7 +147,10 @@
     margin-top: 10%; }
 
   #footer-logo {
-    top: 15px; } }
+    top: 15px; }
+
+  .shrinkToHide#FilterContainer {
+    transform: translate(0, -20px) scale(1, 0) skew(0deg); } }
 @media only screen and (min-width: 1200px) {
   #footer-logo {
     width: 20%;

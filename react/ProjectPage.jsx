@@ -1,11 +1,13 @@
 import React from 'react';
-import FilterManager from './FilterManager.jsx'
+import FilterManager from './FilterManager.jsx';
+import Project from './Project.jsx';
 
 class ProjectPage extends React.Component {
 
 	constructor(props){
 		super(props);
 		this.fetchProjects = this.fetchProjects.bind(this)
+		this.state = {"projects": []};
 	}
 
 	componentDidMount(){
@@ -19,21 +21,16 @@ class ProjectPage extends React.Component {
 				return response.json();
 		})
 		.then((data) => {
-			console.log(data);
-			// loop over each comment
-			const newPosts = [];
-			data.results.forEach((res) => {
-				const newPost = (<Post
-					logname={this.props.logname}
-					url={res.url}
-					key={res.postid}
-					postid={res.postid}
+			let projects = [];
+			data.projects.forEach((proj) => {
+				const newProj = (<Project
+					key={proj.title}
 				/>);
-				newPosts.push(newPost);
+				projects.push(newProj);
 			});
-			this.setState(prevState => ({
-				posts: prevState.posts.concat(newPosts),
-			}));
+			this.setState({
+				projects: projects,
+			});
 		})
 		.catch(error => console.log(error)); // eslint-disable-line no-console
 	}

@@ -8,18 +8,44 @@ class FilterManager extends React.Component {
 		super(props);
 		this.state = {
 			filterText: '',
+			filtersShowing: false,
+			filterClass: 'hidden',
 		};
 		this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+		this.toggleFilterDisplay = this.toggleFilterDisplay.bind(this);
+		this.toggleSortDisplay = this.toggleSortDisplay.bind(this);
 	}
 
 	handleFilterTextChange(filterText) {
-    this.setState({
-      filterText: filterText
-    });
-  }
+		this.setState({
+			filterText: filterText,
+		});
+	}
+
+	toggleFilterDisplay(e){
+		e.preventDefault();
+		this.setState((prevState) => ({
+			filtersShowing: !prevState.filtersShowing
+		}));
+	}
+
+	toggleSortDisplay() {
+	//
+	}
 
 	render() {
-		const categories = ['Web Development', 'Optimization', 'Graphic Design', 'Interaction Design']
+		// TODO CHANGE get this from the data
+		const categories = ['Web Development',
+												'Optimization',
+												'Graphic Design',
+												'Interaction Design']
+
+		// hide or show the filters based on toggle
+		// do this by adjusting width and height in CSS
+		let formDisplay = ''
+		if (!this.state.filtersShowing)
+			formDisplay = 'shrinkToHide'
+
 		return (
 			<div id='FilterManager'>
 				<div id='searchBar'>
@@ -28,7 +54,13 @@ class FilterManager extends React.Component {
 						onFilterTextChange={this.handleFilterTextChange}/>
 
 				</div>
-				<FilterForm categories={categories}/>
+				<div id="ManagmentButtons">
+					<button id="FilterToggle" onClick={this.toggleFilterDisplay}>Filter</button>
+					<button id="SortToggle" onClick={this.toggleSortDisplay}>Sort</button>
+				</div>
+				<div className={formDisplay} id="FilterContainer">
+					<FilterForm categories={categories}/>
+				</div>
 			</div>
 		);
 	}
@@ -36,3 +68,4 @@ class FilterManager extends React.Component {
 }
 
 export default FilterManager;
+
