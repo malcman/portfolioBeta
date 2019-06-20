@@ -1,4 +1,5 @@
 import React from "react";
+import FilterButton from './FilterButton.jsx';
 
 class FilterForm extends React.Component {
 	constructor(props){
@@ -6,7 +7,6 @@ class FilterForm extends React.Component {
 		this.handleFormChange = this.handleFormChange.bind(this);
 		this.createCategoryChecklist = this.createCategoryChecklist.bind(this);
 		this.createFormManagementButtons = this.createFormManagementButtons.bind(this);
-		this.categories = [];
 		this.createCategoryChecklist();
 	}
 
@@ -16,25 +16,22 @@ class FilterForm extends React.Component {
 
 
 	createCategoryChecklist() {
+		let filterButtons = []
 		this.props.categories.forEach((category) => {
+			// remove whitespace from categories for id and key
 			const catNoWhitespace = category.replace(/\s/g,'');
+
 			const newCategory = (
-				<label
-					className="FilterLabel"
-					key={catNoWhitespace}>
-							<input
-								className="filterCheckbox"
-								type="checkbox"
-								defaultChecked
-								value={category}
-								id={catNoWhitespace}/>
-							<div className="FilterBKG">
-								<span className="checkmark"></span>
-							</div>
-							<p>{category}</p>
-					</label>);
-			this.categories.push(newCategory)
+				<FilterButton
+					key={catNoWhitespace}
+					isSelected={this.props.filters[category]}
+					category={category}
+					catNoWhitespace={catNoWhitespace}
+					handleCheckboxChange={this.props.handleCheckboxChange}/>
+			);
+			filterButtons.push(newCategory)
 		});
+		return filterButtons;
 	}
 
 	handleFormChange(e) {
@@ -42,11 +39,12 @@ class FilterForm extends React.Component {
 	}
 
 	render() {
+		const filterButtons = this.createCategoryChecklist();
 
 		return (
 			<form id='filterForm'>
 				<div id="filterGrid">
-					{this.categories}
+					{filterButtons}
 				</div>
 			</form>
 		);

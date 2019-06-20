@@ -33,13 +33,9 @@ class FilterManager extends React.Component {
 	//
 	}
 
-	render() {
-		// TODO CHANGE get this from the data
-		const categories = ['Web Development',
-												'Optimization',
-												'Graphic Design',
-												'Interaction Design']
 
+
+	render() {
 		// hide or show the filters based on toggle
 		// do this by adjusting width and height in CSS
 		let formDisplay = ''
@@ -59,7 +55,10 @@ class FilterManager extends React.Component {
 					<button id="SortToggle" onClick={this.toggleSortDisplay}>Sort</button>
 				</div>
 				<div className={formDisplay} id="FilterContainer">
-					<FilterForm categories={categories}/>
+					<FilterForm
+						categories={this.props.categories}
+						handleCheckboxChange={this.props.handleCheckboxChange}
+						filters={this.props.filters}/>
 				</div>
 			</div>
 		);
