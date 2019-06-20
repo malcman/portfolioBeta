@@ -16,7 +16,7 @@ class ProjectPage extends React.Component {
 		this.selectAllCheckboxes = this.selectAllCheckboxes.bind(this);
 		this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
 		this.selectAll = this.selectAll.bind(this);
-		this.deSelectAll = this.deSelectAll.bind(this);
+		this.clearAll = this.clearAll.bind(this);
 
 		this.state = {
 			"projects": [],
@@ -72,7 +72,7 @@ class ProjectPage extends React.Component {
 		this.selectAllCheckboxes(true);
 	}
 
-	deSelectAll() {
+	clearAll() {
 		this.selectAllCheckboxes(false);
 	}
 
@@ -94,7 +94,9 @@ class ProjectPage extends React.Component {
 				<FilterManager
 					categories={CATEGORIES}
 					handleCheckboxChange={this.handleCheckboxChange}
-					filters={this.state.checkboxes}/>
+					filters={this.state.checkboxes}
+					handleSelectAll={this.selectAll}
+					handleClearAll={this.clearAll}/>
 			</div>
 			)
 	}

@@ -6,12 +6,34 @@ class FilterForm extends React.Component {
 		super(props);
 		this.handleFormChange = this.handleFormChange.bind(this);
 		this.createCategoryChecklist = this.createCategoryChecklist.bind(this);
-		this.createFormManagementButtons = this.createFormManagementButtons.bind(this);
+		this.createFilterManagementButtons = this.createFilterManagementButtons.bind(this);
 		this.createCategoryChecklist();
 	}
 
-	createFormManagementButtons() {
+	createFilterManagementButtons() {
+		const numSelected = Object.values(this.props.filters).filter(Boolean).length
+		const allTrue = numSelected === Object.values(this.props.filters).length;
+		const allFalse = numSelected === 0;
+		const selectAllButton = (
+			<FilterButton
+				key='SelectAll'
+				catNoWhitespace='SelectAll'
+				category='Select All'
+				handleCheckboxChange={this.props.handleSelectAll}
+				isSelected={allTrue}
+				disable={allTrue}/>
+		);
 
+		const clearAllButton = (
+			<FilterButton
+				key='ClearAll'
+				catNoWhitespace='ClearAll'
+				category='Clear All'
+				handleCheckboxChange={this.props.handleClearAll}
+				isSelected={allFalse}
+				disable={allFalse}/>
+		);
+		return [selectAllButton, clearAllButton];
 	}
 
 
@@ -40,11 +62,13 @@ class FilterForm extends React.Component {
 
 	render() {
 		const filterButtons = this.createCategoryChecklist();
+		const managementButtons = this.createFilterManagementButtons();
 
 		return (
 			<form id='filterForm'>
 				<div id="filterGrid">
 					{filterButtons}
+					{managementButtons}
 				</div>
 			</form>
 		);

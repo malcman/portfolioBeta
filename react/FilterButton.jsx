@@ -6,15 +6,21 @@ class FilterButton extends React.Component {
 	}
 
 	render(){
+		const inputID = this.props.catNoWhitespace;
+		let className = "FilterLabel";
+		if (inputID === 'SelectAll' || inputID === 'ClearAll') {
+			className += ' selectorButton'
+		}
 		return (
-			<label className="FilterLabel">
+			<label className={className}>
 				<input
 					className="filterCheckbox"
 					type="checkbox"
 					checked={this.props.isSelected}
 					value={this.props.category}
-					id={this.props.catNoWhitespace}
-					onChange={this.props.handleCheckboxChange}/>
+					id={inputID}
+					onChange={this.props.handleCheckboxChange}
+					disabled={this.props.disable}/>
 				<div className="FilterBKG">
 					<span className="checkmark"></span>
 				</div>

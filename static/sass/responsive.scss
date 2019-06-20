@@ -78,6 +78,10 @@ $mainLight: #B3BBC5;
 
 	.FilterLabel {
 		width: 100%;
+		grid-column: auto;
+	}
+	.selectorButton:last-of-type {
+		width: 100%;
 	}
 
 	.FilterBKG{
@@ -159,6 +163,17 @@ $mainLight: #B3BBC5;
 		grid-column-gap: 6px;
 	}
 
+	.selectorButton {
+		width: 103%;
+	}
+
+	.selectorButton:nth-child(5) {
+		grid-column: 1 / 3;
+	}
+	.selectorButton:last-of-type {
+		grid-column: 3 / 5;
+	}
+
 	#skills-grid{
 		grid-template-rows: 1fr 1fr;
 		grid-template-columns: repeat(4, 1fr);
@@ -178,9 +193,6 @@ $mainLight: #B3BBC5;
 		}
 	}
 
-	// #homelink{
-	// 	left: 0px;
-	// }
 	#homelink{
 		img{
 			width: 70%;

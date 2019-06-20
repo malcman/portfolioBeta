@@ -58,7 +58,9 @@ class FilterManager extends React.Component {
 					<FilterForm
 						categories={this.props.categories}
 						handleCheckboxChange={this.props.handleCheckboxChange}
-						filters={this.props.filters}/>
+						filters={this.props.filters}
+						handleSelectAll={this.props.handleSelectAll}
+						handleClearAll={this.props.handleClearAll}/>
 				</div>
 			</div>
 		);
