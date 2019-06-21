@@ -276,6 +276,11 @@ button {
 .filterCheckbox + .FilterBKG + p {
   text-indent: -5px; }
 
+.selectorButton .filterCheckbox:checked + .FilterBKG .checkmark:before {
+  border-color: #d5d5d5; }
+.selectorButton .filterCheckbox:checked + .FilterBKG + p {
+  color: #d5d5d5; }
+
 .selectorButton:nth-child(5) {
   grid-column: 1 / 2; }
 
@@ -299,7 +304,7 @@ button {
   display: block; }
 
 .shrinkToHide#FilterContainer {
-  transform: translate(0, -95px) scale(1, 0) skew(0deg); }
+  transform: translate(0, -50%) scale(1, 0) skew(0deg); }
 
 #resume {
   height: 70vh;

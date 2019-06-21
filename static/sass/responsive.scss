@@ -147,7 +147,7 @@ $mainLight: #B3BBC5;
 		width: 90%;
 	}
 	.shrinkToHide#FilterContainer {
-		transform: translate(0, -45px) scale(1, 0) skew(0deg);
+		// transform: translate(0, -45px) scale(1, 0) skew(0deg);
 	}
 }
 
@@ -161,6 +161,7 @@ $mainLight: #B3BBC5;
 	#filterGrid {
 		grid-template-columns: repeat(4, 1fr);
 		grid-column-gap: 6px;
+	    padding-right: 5px;
 	}
 
 	.selectorButton {
@@ -172,6 +173,7 @@ $mainLight: #B3BBC5;
 	}
 	.selectorButton:last-of-type {
 		grid-column: 3 / 5;
+		width: 103%;
 	}
 
 	#skills-grid{
@@ -231,7 +233,7 @@ $mainLight: #B3BBC5;
 	}
 
 	.shrinkToHide#FilterContainer {
-		transform: translate(0, -20px) scale(1, 0) skew(0deg);
+		// transform: translate(0, -20px) scale(1, 0) skew(0deg);
 	}
 
 }

@@ -368,6 +368,8 @@ button {
 	text-indent: -5px;
 }
 
+
+$greyedOutFilters: #d5d5d5;
 .selectorButton {
 	.FilterBKG {
 		// background-image: linear-gradient(to right, #FFF 50%, lighten($mainDark, 12%) 50%);
@@ -376,6 +378,12 @@ button {
 		.checkmark {
 			// background-color: lighten($mainDark, 12%);
 			// border: 1px solid lighten($mainDark, 12%);
+			&:before {
+				border-color: $greyedOutFilters;
+			}
+		}
+		+ p {
+			color: $greyedOutFilters;
 		}
 	}
 }
@@ -408,7 +416,8 @@ button {
 }
 
 .shrinkToHide#FilterContainer {
-	transform: translate(0, -95px) scale(1, 0) skew(0deg);
+	// translate pixels are roughly half of filterGrid height
+	transform: translate(0, -50%) scale(1, 0) skew(0deg);
 }
 
 #resume{
