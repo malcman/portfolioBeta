@@ -27,14 +27,13 @@
     "eslint-plugin-react": "^7.12.4",
     "js-yaml": ">=3.13.1",
     "lodash": ">=4.17.11",
-    "moment": ">=2.19.3",
     "webpack": "==3.6.0"
   },
   "dependencies": {
     "ajv": "^6.10.0",
     "isomorphic-fetch": "==2.2.1",
     "jsonlint": "==1.6.2",
-    "moment": "==2.18.1",
+    "moment": ">=2.19.3",
     "prop-types": "==15.6.0",
     "react": "==16.0.0",
     "react-dom": "==16.0.1"
