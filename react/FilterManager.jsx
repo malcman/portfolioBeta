@@ -1,6 +1,7 @@
 import React from 'react';
-import SearchBar from './SearchBar.jsx'
-import FilterForm from './FilterForm.jsx'
+import SearchBar from './SearchBar.jsx'; // eslint-disable-line
+import FilterForm from './FilterForm.jsx'; // eslint-disable-line
+var classNames = require('classnames'); // eslint-disable-line
 
 class FilterManager extends React.Component {
 
@@ -37,10 +38,7 @@ class FilterManager extends React.Component {
 
 	render() {
 		// hide or show the filters based on toggle
-		// do this by adjusting width and height in CSS
-		let formDisplay = ''
-		if (!this.state.filtersShowing)
-			formDisplay = 'shrinkToHide'
+		const formDisplay = classNames({'shrinkToHide':!this.state.filtersShowing});
 
 		return (
 			<div id='FilterManager'>

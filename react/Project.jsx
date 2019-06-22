@@ -6,7 +6,7 @@ class Project extends React.Component {
 		return (
 			<div className="project">
 			</div>
-			)
+		);
 	}
 
 }

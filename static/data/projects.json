@@ -8,6 +8,7 @@
   [
     {
       "title": "ember",
+      "tags": [],
       "coverIMG": "./static/img/filename",
       "description": "Lorem ipsum boopity bopily",
       "role": "did most of it",

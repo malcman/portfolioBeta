@@ -3,13 +3,7 @@ import React from 'react';
 class Link extends React.Component {
 	constructor(props) {
 		super(props);
-		// this.handlePageChange = this.handlePageChange.bind(this);
 	}
-
-	// handlePageChange = (pageName) => (e) => {
-	// 	e.preventDefault();
-	// 	this.props.handlePageChange(pageName);
-	// }
 
 	render() {
 		return (

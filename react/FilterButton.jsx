@@ -1,4 +1,5 @@
 import React from "react";
+var classNames = require('classnames'); // eslint-disable-line
 
 class FilterButton extends React.Component {
 	constructor(props){
@@ -7,10 +8,9 @@ class FilterButton extends React.Component {
 
 	render(){
 		const inputID = this.props.catNoWhitespace;
-		let className = "FilterLabel";
-		if (inputID === 'SelectAll' || inputID === 'ClearAll') {
-			className += ' selectorButton'
-		}
+		const allButton = inputID === 'SelectAll' || inputID === 'ClearAll';
+		const className = classNames('FilterLabel',{'selectorButton': allButton})
+
 		return (
 			<label className={className}>
 				<input

@@ -1,5 +1,5 @@
 import React from "react";
-import FilterButton from './FilterButton.jsx';
+import FilterButton from './FilterButton.jsx'; // eslint-disable-line
 
 class FilterForm extends React.Component {
 	constructor(props){
@@ -11,9 +11,11 @@ class FilterForm extends React.Component {
 	}
 
 	createFilterManagementButtons() {
+		// get buttons to allow for selecting and clearing all options
 		const numSelected = Object.values(this.props.filters).filter(Boolean).length
 		const allTrue = numSelected === Object.values(this.props.filters).length;
 		const allFalse = numSelected === 0;
+
 		const selectAllButton = (
 			<FilterButton
 				key='SelectAll'
@@ -38,6 +40,7 @@ class FilterForm extends React.Component {
 
 
 	createCategoryChecklist() {
+		// create new filter button for each category in the data
 		let filterButtons = []
 		this.props.categories.forEach((category) => {
 			// remove whitespace from categories for id and key

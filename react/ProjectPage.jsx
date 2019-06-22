@@ -1,6 +1,6 @@
 import React from 'react';
-import FilterManager from './FilterManager.jsx';
-import Project from './Project.jsx';
+import FilterManager from './FilterManager.jsx'; // eslint-disable-line
+import Project from './Project.jsx'; // eslint-disable-line
 
 // TODO CHANGE get this from the data
 const CATEGORIES = ['Web Development',

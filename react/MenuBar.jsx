@@ -1,5 +1,6 @@
 import React from 'react';
-import MenuNav from './MenuNav';
+import MenuNav from './MenuNav'; // eslint-disable-line
+var classNames = require('classnames'); // eslint-disable-line
 
 class MenuBar extends React.Component {
 	constructor(props) {
@@ -107,10 +108,8 @@ class MenuBar extends React.Component {
 
 		const nav = this.getMenuNav();
 		const bodyCover = this.getBodyCover();
-		let toggleLineClass = "singleToggleLine";
-		if (this.state.openNav) {
-			toggleLineClass = "singleToggleLine lineUnder"
-		}
+		const toggleLineClass = classNames('singleToggleLine',
+									{'lineUnder': this.state.openNav})
 		// change homelink src if wide enough screen
 		let imgSRC = "./static/img/MalcMaturenCrop.png"
 		if (this.props.windowWidth > 1000) {
@@ -143,8 +142,5 @@ class MenuBar extends React.Component {
 		);
 	}
 }
-
-// <img id="toggleSVG"
-// 	src="./static/img/menuBars1.png"/>
 
 export default MenuBar;

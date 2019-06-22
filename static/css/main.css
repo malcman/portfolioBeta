@@ -281,7 +281,7 @@ button {
 .selectorButton .filterCheckbox:checked + .FilterBKG + p {
   color: #d5d5d5; }
 
-.selectorButton:nth-child(5) {
+.selectorButton:nth-last-of-type(2) {
   grid-column: 1 / 2; }
 
 .selectorButton:last-of-type {
