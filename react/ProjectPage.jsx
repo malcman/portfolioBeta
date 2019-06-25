@@ -1,6 +1,8 @@
 import React from 'react';
 import FilterManager from './FilterManager.jsx'; // eslint-disable-line
+import Gallery from './Gallery.jsx'; // eslint-disable-line
 import Project from './Project.jsx'; // eslint-disable-line
+var classNames = require('classnames'); // eslint-disable-line
 
 // TODO CHANGE get this from the data
 const CATEGORIES = ['Web Development',
@@ -17,8 +19,10 @@ class ProjectPage extends React.Component {
 		this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
 		this.selectAll = this.selectAll.bind(this);
 		this.clearAll = this.clearAll.bind(this);
+		this.handleFiltersToggle = this.handleFiltersToggle.bind(this);
 
 		this.state = {
+			"filtersOpen": false,
 			"projects": [],
 			// set all checkboxes to selected
 			checkboxes: CATEGORIES.reduce(
@@ -45,7 +49,8 @@ class ProjectPage extends React.Component {
 			let projects = [];
 			data.projects.forEach((proj) => {
 				const newProj = (<Project
-					key={proj.title}
+					key={proj.titleShort}
+					{...proj}
 				/>);
 				projects.push(newProj);
 			});
@@ -87,7 +92,15 @@ class ProjectPage extends React.Component {
 		}));
 	}
 
+	handleFiltersToggle() {
+		this.setState(prevState => ({
+			filtersOpen: !prevState.filtersOpen
+		}));
+	}
+
 	render() {
+		const projects = this.state.projects;
+		const galleryClass = classNames({'pushedDown': this.state.filtersOpen})
 		return (
 			<div id="ProjectComponent">
 				<h3>Projects</h3>
@@ -96,7 +109,9 @@ class ProjectPage extends React.Component {
 					handleCheckboxChange={this.handleCheckboxChange}
 					filters={this.state.checkboxes}
 					handleSelectAll={this.selectAll}
-					handleClearAll={this.clearAll}/>
+					handleClearAll={this.clearAll}
+					handleFiltersToggle={this.handleFiltersToggle}/>
+				<Gallery _className={galleryClass} pieces={projects}/>
 			</div>
 			)
 	}

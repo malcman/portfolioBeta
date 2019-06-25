@@ -11,7 +11,16 @@
     min-height: 50px; }
 
   .FilterBKG + p {
-    font-size: 80%; } }
+    font-size: 80%; }
+
+  .projCoverPhoto {
+    top: 0; }
+
+  #fooyaCoverIMG {
+    top: -40px; }
+
+  .content p.projDescription {
+    margin-bottom: 15%; } }
 @media only screen and (min-width: 650px) {
   #menu-container {
     width: 80%;
@@ -60,6 +69,11 @@
 
   .FilterBKG {
     width: 95%; }
+
+  .gallery {
+    grid-template-columns: 40vw 40vw; }
+    .gallery:not(.pushedDown) {
+      margin-top: -100px; }
 
   #toggle {
     display: none; }
@@ -111,6 +125,9 @@
     grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 6px;
     padding-right: 5px; }
+
+  .gallery:not(.pushedDown) {
+    margin-top: -70px; }
 
   .selectorButton {
     width: 103%; }

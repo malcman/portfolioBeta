@@ -18,6 +18,15 @@ $mainLight: #B3BBC5;
 	.FilterBKG + p {
 		font-size: 80%;
 	}
+	.projCoverPhoto {
+		top: 0;
+	}
+	#fooyaCoverIMG {
+		top: -40px;
+	}
+	.content p.projDescription {
+		margin-bottom: 15%;
+	}
 }
 
 @media only screen and (min-width: 650px){
@@ -86,6 +95,12 @@ $mainLight: #B3BBC5;
 
 	.FilterBKG{
 		width: 95%;
+	}
+	.gallery {
+		grid-template-columns: 40vw 40vw;
+		&:not(.pushedDown) {
+			margin-top: -100px;
+		}
 	}
 
 	#toggle{
@@ -162,6 +177,9 @@ $mainLight: #B3BBC5;
 		grid-template-columns: repeat(4, 1fr);
 		grid-column-gap: 6px;
 	    padding-right: 5px;
+	}
+	.gallery:not(.pushedDown) {
+		margin-top: -70px;
 	}
 
 	.selectorButton {

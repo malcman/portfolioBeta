@@ -7,9 +7,32 @@
   "projects":
   [
     {
-      "title": "ember",
+      "title": "Ember - Activism App Prototype",
+      "titleShort": "ember",
+      "tags": ["Interaction Design", "Graphic Design"],
+      "tools": [],
+      "coverIMG": "./static/img/EmberCover3.jpg",
+      "description": "Lorem ipsum boopity bopily Lorem ipsum boopity bopily Lorem ipsum boopity bopily Lorem ipsum boopity bopily Lorem ipsum boopity bopily Lorem ipsum boopity bopily Lorem ipsum boopity bopily Lorem ipsum boopity bopily Lorem ipsum boopity bopily Lorem ipsum boopity bopily Lorem ipsum boopity bopily Lorem ipsum boopity bopily Lorem ipsum boopity bopily Lorem ipsum boopity bopily",
+      "role": "did most of it",
+      "result": "It rocked",
+      "future": "implement",
+      "imgs":
+        [
+          {
+            "src": "./static/img/filename",
+            "description": "stuff"
+          },
+          {
+            "src": "./static/img/filename2",
+            "description": "stuff2"
+          }
+        ]
+    },
+    {
+      "title": "Fooya! Capstone Project",
+      "titleShort": "fooya",
       "tags": [],
-      "coverIMG": "./static/img/filename",
+      "coverIMG": "./static/img/FooyaCover.jpg",
       "description": "Lorem ipsum boopity bopily",
       "role": "did most of it",
       "result": "It rocked",

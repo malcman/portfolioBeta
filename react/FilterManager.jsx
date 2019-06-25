@@ -28,6 +28,7 @@ class FilterManager extends React.Component {
 		this.setState((prevState) => ({
 			filtersShowing: !prevState.filtersShowing
 		}));
+		this.props.handleFiltersToggle();
 	}
 
 	toggleSortDisplay() {
