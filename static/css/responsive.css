@@ -142,6 +142,13 @@
     grid-column: 3 / 5;
     width: 103%; }
 
+  .project.expanded {
+    background-color: rgba(255, 255, 255, 0.5); }
+    .project.expanded .projInfo {
+      background-color: white;
+      width: 80vw;
+      left: 10vw; }
+
   #skills-grid {
     grid-template-rows: 1fr 1fr;
     grid-template-columns: repeat(4, 1fr);

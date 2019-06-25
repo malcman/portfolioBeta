@@ -335,9 +335,11 @@ button {
   position: relative;
   min-width: 80vw;
   min-height: 200px;
-  -moz-transition: transform .35s ease-in-out, min-height .2s, min-width .2s;
-  -webkit-transition: transform .35s ease-in-out, min-height .2s, min-width .2s;
-  transition: transform .35s ease-in-out, min-height .2s, min-width .2s; }
+  -moz-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.5s;
+  -webkit-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0 0.5s, left 0.5s;
+  transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.5s;
+  transform-origin: bottom;
+  left: -1px; }
   .project h4, .project p {
     margin-left: 5%;
     margin-top: 2%; }
@@ -399,6 +401,11 @@ button {
   right: 0;
   position: absolute; }
 
+.projInfo {
+  width: 100%;
+  position: relative;
+  transition: box-shadow 0.5s; }
+
 .project.expanded {
   background-color: #FFF;
   z-index: 20;
@@ -408,7 +415,13 @@ button {
   overflow: scroll;
   cursor: default;
   top: 40%;
-  transform: translate(-10vw, -40%); }
+  left: 50%;
+  transform: translate(-50%, -40%); }
+  .project.expanded .projInfo {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 99vh;
+    box-shadow: 2px 0px 10px 1px rgba(67, 75, 99, 0.5); }
   .project.expanded .projClose {
     padding: 30px;
     cursor: pointer;

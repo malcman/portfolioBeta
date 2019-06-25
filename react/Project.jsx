@@ -10,14 +10,12 @@ class Project extends React.Component {
 		}
 		this.getTags = this.getTags.bind(this);
 		this.handleExpandToggle = this.handleExpandToggle.bind(this);
-		this.handleScroll = this.handleScroll.bind(this);
+		// this.handleScroll = this.handleScroll.bind(this);
 		this.projRef = React.createRef();
 	}
 	componentDidMount(){
-		window.addEventListener('scroll', this.handleScroll);
 	}
 	componentWillUnmount() {
-		window.removeEventListener('scroll', this.handleScroll);
 	}
 
 	getTags() {
@@ -35,25 +33,29 @@ class Project extends React.Component {
 
 	handleExpandToggle(e) {
 		e.stopPropagation();
-		// if not the whole project (close button) OR
-		// whole project target w/o expanded view
-		if (e.target.id !== this.props.titleShort ||
-			!this.state.expanded) {
+		// if the close button OR
+		// whole project target w/o expanded view OR
+		// desktop view and overlay was clicked
+		if (e.currentTarget.className === 'projClose' ||
+			!this.state.expanded ||
+			(window.innerWidth >= 1000 && e.target.id === this.props.titleShort)) {
 			this.setState(prevState => ({
 				expanded: !prevState.expanded,
-			}), () => {window.scrollTo(0, this.state.scrollPos, {behavior:'smooth'})});
-		}
-	}
-
-	handleScroll() {
-		const el = document.scrollingElement || document.documentElement;
-		const newScrollPos = el.scrollTop;
-		if (!this.state.expanded) {
-			this.setState({
-				scrollPos: newScrollPos
+			}), () => {
+				window.scrollTo(0, this.projRef.current.offsetTop, {behavior:'smooth'})
 			});
 		}
 	}
+
+	// handleScroll() {
+	// 	const el = document.scrollingElement || document.documentElement;
+	// 	const newScrollPos = el.scrollTop;
+	// 	if (!this.state.expanded) {
+	// 		this.setState({
+	// 			scrollPos: newScrollPos
+	// 		});
+	// 	}
+	// }
 
 	render() {
 		const altText = this.props.titleShort + " cover image";
@@ -67,24 +69,24 @@ class Project extends React.Component {
 				className={projClass}
 				ref={this.projRef}
 				onClick={this.handleExpandToggle}>
-				<div
-					className="projClose"
-					onClick={this.handleExpandToggle}>
-					<div className="singleToggleLine negFortyFive"></div>
-					<div className="singleToggleLine posFortyFive"></div>
+				<div className="projInfo">
+					<div className="projClose"
+						onClick={this.handleExpandToggle}>
+						<div className="singleToggleLine negFortyFive"></div>
+						<div className="singleToggleLine posFortyFive"></div>
+					</div>
+					<div className="coverPhotoContainer">
+						<img
+							id={imgID}
+							src={this.props.coverIMG}
+							alt={altText}
+							className="projCoverPhoto"/>
+					</div>
+					<h4 className="projTitle">{this.props.title}</h4>
+					{tags}
+					<p className="projDescription">{this.props.description}</p>
+					<a className="projReadMore">Read More</a>
 				</div>
-				<div className="coverPhotoContainer">
-					<img
-						id={imgID}
-						src={this.props.coverIMG}
-						alt={altText}
-						className="projCoverPhoto"/>
-				</div>
-				<h4 className="projTitle">{this.props.title}</h4>
-				{tags}
-				<p className="projDescription">{this.props.description}</p>
-				<a
-					className="projReadMore">Read More</a>
 			</div>
 		);
 	}
