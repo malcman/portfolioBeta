@@ -151,6 +151,18 @@ button {
   display: block;
   margin: 4px 0; }
 
+.singleToggleLine.posFortyFive {
+  -webkit-transform: rotate(45deg) skew(-50deg);
+  transform: rotate(45deg) skew(-50deg);
+  position: relative;
+  top: -5px; }
+
+.singleToggleLine.negFortyFive {
+  -webkit-transform: rotate(-45deg) skew(-50deg);
+  transform: rotate(-45deg) skew(-50deg);
+  position: relative;
+  top: 3px; }
+
 .lineUnder {
   position: relative; }
 
@@ -310,7 +322,6 @@ button {
   display: grid;
   grid-template-columns: 80vw;
   width: 100%;
-  position: relative;
   margin-top: -200px;
   transition: all .4s;
   grid-row-gap: 15px;
@@ -321,7 +332,12 @@ button {
 
 .project {
   box-shadow: 0px 2px 5px #cacedb;
-  position: relative; }
+  position: relative;
+  min-width: 80vw;
+  min-height: 200px;
+  -moz-transition: transform .35s ease-in-out, min-height .2s, min-width .2s;
+  -webkit-transition: transform .35s ease-in-out, min-height .2s, min-width .2s;
+  transition: transform .35s ease-in-out, min-height .2s, min-width .2s; }
   .project h4, .project p {
     margin-left: 5%;
     margin-top: 2%; }
@@ -375,6 +391,39 @@ button {
     padding: 2px 10px;
     margin-right: 5px;
     margin-bottom: 2%; }
+
+.projClose {
+  transition: transform 0.35s;
+  transform: scale(0, 0);
+  display: block;
+  right: 0;
+  position: absolute; }
+
+.project.expanded {
+  background-color: #FFF;
+  z-index: 20;
+  min-width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+  overflow: scroll;
+  cursor: default;
+  top: 40%;
+  transform: translate(-10vw, -40%); }
+  .project.expanded .projClose {
+    padding: 30px;
+    cursor: pointer;
+    z-index: 21;
+    transform: scale(1, 1); }
+  .project.expanded .coverPhotoContainer {
+    overflow: visible; }
+  .project.expanded p.projDescription {
+    overflow: visible;
+    white-space: normal;
+    text-indent: 5%; }
+  .project.expanded .projReadMore {
+    display: none; }
+  .project.expanded #emberCoverIMG, .project.expanded #fooyaCoverIMG {
+    max-width: none; }
 
 #emberCoverIMG {
   max-width: 310px;
@@ -543,7 +592,6 @@ button {
 .content {
   transition: all 400ms;
   width: 80%;
-  position: relative;
   margin: 15% 10%; }
   .content #profpic {
     position: relative;

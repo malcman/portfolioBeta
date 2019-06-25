@@ -102,9 +102,6 @@ button {
 
 .fixedHeader{
 	animation: headerFadeIn 500ms forwards;
-	// -webkit-animation-name: webKitHeaderFadeIn;
-	// -webkit-animation-duration: 500ms;
-	// -webkit-animation-fill-mode: forwards;
 	position: fixed;
 	z-index: 5;
 	-webkit-transition: all 400ms;
@@ -132,10 +129,6 @@ button {
 	cursor: pointer;
 	padding: 34px 8vw;
 	float: right;
-	// img {
-	// 	width: 40px;
-	// 	float: right;
-	// }
 	#toggleLine4 {
 		position: relative;
 		transform: skew(-50deg);
@@ -203,6 +196,19 @@ button {
 	display: block;
 	margin: 4px 0;
 }
+.singleToggleLine.posFortyFive {
+	-webkit-transform: rotate(45deg) skew(-50deg);
+	transform: rotate(45deg) skew(-50deg);
+	position: relative;
+	top: -5px;
+}
+.singleToggleLine.negFortyFive {
+	-webkit-transform: rotate(-45deg) skew(-50deg);
+	transform: rotate(-45deg) skew(-50deg);
+	position: relative;
+	top: 3px;
+}
+
 .lineUnder {
 	position: relative;
 }
@@ -424,7 +430,7 @@ $greyedOutFilters: #d5d5d5;
 	display: grid;
 	grid-template-columns: 80vw;
 	width: 100%;
-	position: relative;
+	// position: relative;
 	margin-top: -200px;
 	transition: all .4s;
 	grid-row-gap: 15px;
@@ -439,6 +445,11 @@ $greyedOutFilters: #d5d5d5;
 .project {
 	box-shadow: 0px 2px 5px lighten($mainDark, 50%);
 	position: relative;
+	min-width: 80vw;
+	min-height: 200px;
+	-moz-transition: transform .35s ease-in-out, min-height .2s, min-width .2s;
+	-webkit-transition: transform .35s ease-in-out, min-height .2s, min-width .2s;
+	transition: transform .35s ease-in-out, min-height .2s, min-width .2s;;
 	h4, p {
 		margin-left: 5%;
 		margin-top: 2%;
@@ -496,6 +507,47 @@ $greyedOutFilters: #d5d5d5;
     margin-right: 5px;
     margin-bottom: 2%;
 	}
+}
+.projClose {
+	transition: transform 0.35s;
+	transform: scale(0, 0);
+	display: block;
+	right: 0;
+	position: absolute;
+}
+.project.expanded {
+	background-color: #FFF;
+	z-index: 20;
+	min-width: 100vw;
+	min-height: 100vh;
+	position: fixed;
+	overflow: scroll;
+	cursor: default;
+	top: 40%;
+  transform: translate(-10vw, -40%);
+	.projClose {
+		padding: 30px;
+		cursor: pointer;
+		z-index: 21;
+		transform: scale(1, 1);
+	}
+	.coverPhotoContainer {
+		overflow: visible;
+	}
+	p.projDescription {
+		overflow: visible;
+		white-space: normal;
+		text-indent: 5%;
+	}
+	.projReadMore {
+		display: none;
+	}
+
+	// begin specific cover image adjustments
+	#emberCoverIMG, #fooyaCoverIMG {
+		max-width: none;
+	}
+	// end specific cover image adjustments
 }
 
 // begin specifc cover image adjustments
@@ -712,10 +764,8 @@ $greyedOutFilters: #d5d5d5;
 .content{
 	transition: all 400ms;
 	width: 80%;
-	position: relative;
-	// top: 90px;
+	// position: relative;
 	margin: 15% 10%;
-	// margin-bottom: 10%;
 	#profpic{
 		position: relative;
 		float: right;
