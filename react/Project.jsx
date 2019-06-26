@@ -43,6 +43,7 @@ class Project extends React.Component {
 				expanded: !prevState.expanded,
 			}), () => {
 				window.scrollTo(0, this.projRef.current.offsetTop, {behavior:'smooth'})
+				// document.location.href=`#${this.props.titleShort}`;
 			});
 		}
 	}
@@ -85,7 +86,7 @@ class Project extends React.Component {
 					<h4 className="projTitle">{this.props.title}</h4>
 					{tags}
 					<p className="projDescription">{this.props.description}</p>
-					<a className="projReadMore">Read More</a>
+					<h5 className="projReadMore">Read More</h5>
 				</div>
 			</div>
 		);

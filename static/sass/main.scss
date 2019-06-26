@@ -469,7 +469,6 @@ $greyedOutFilters: #d5d5d5;
 	}
 }
 .coverPhotoContainer {
-	width: 100%;
 	height: 120px;
 	overflow: hidden;
 }
@@ -495,6 +494,8 @@ $greyedOutFilters: #d5d5d5;
   bottom: -1px;
   right: 5px;
   color: $mainDark;
+  font-weight: 400;
+  text-decoration: none;
 }
 .projTags {
 	margin-top: 5%;

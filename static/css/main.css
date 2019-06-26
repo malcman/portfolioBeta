@@ -354,7 +354,6 @@ button {
     text-decoration: underline; }
 
 .coverPhotoContainer {
-  width: 100%;
   height: 120px;
   overflow: hidden; }
 
@@ -379,7 +378,9 @@ button {
   position: absolute;
   bottom: -1px;
   right: 5px;
-  color: #434B63; }
+  color: #434B63;
+  font-weight: 400;
+  text-decoration: none; }
 
 .projTags {
   margin-top: 5%;
