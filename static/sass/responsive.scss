@@ -102,9 +102,19 @@ $mainLight: #B3BBC5;
 			margin-top: -100px;
 		}
 	}
-	.project {
-		min-width: 40vw;
+	.projGridCell {
+		width: 40vw;
+	&:nth-child(odd){
+		.project.expanded {
+			left: -10vw;
+		}
 	}
+	&:nth-child(even){
+		.project.expanded {
+			left: calc(-50vw - 15px);
+		}
+	}
+}
 
 	#toggle{
 		display: none;
@@ -197,7 +207,7 @@ $mainLight: #B3BBC5;
 		width: 103%;
 	}
 	.project.expanded {
-		background-color: rgba(white, 0.5);
+		background-color: transparent;
 		.projInfo{
 			background-color: white;
 			width: 80vw;

@@ -441,17 +441,27 @@ $greyedOutFilters: #d5d5d5;
 	margin-top: 5%;
 }
 
+.projGridCell {
+	width: 80vw;
+	height: 315px;
+	position: relative;
+}
+
 
 .project {
 	box-shadow: 0px 2px 5px lighten($mainDark, 50%);
 	position: relative;
-	min-width: 80vw;
-	min-height: 200px;
-	-moz-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.5s;
-	-webkit-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width .0.5s, left 0.5s;
-	transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.5s;
+	width: 100%;
+	min-width: 100%;
+	// height: 100%;
+	min-height: 315px;
+	-moz-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.75s, top 0.75s;
+	-webkit-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.75s, top 0.75s;
+	transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.75s, top 0.75s;
 	transform-origin: bottom;
 	left: -1px;
+	top: -1px;
+  // z-index: 6;
 	h4, p {
 		margin-left: 5%;
 		margin-top: 2%;
@@ -469,6 +479,7 @@ $greyedOutFilters: #d5d5d5;
 	}
 }
 .coverPhotoContainer {
+	width: 100%;
 	height: 120px;
 	overflow: hidden;
 }
@@ -494,8 +505,6 @@ $greyedOutFilters: #d5d5d5;
   bottom: -1px;
   right: 5px;
   color: $mainDark;
-  font-weight: 400;
-  text-decoration: none;
 }
 .projTags {
 	margin-top: 5%;
@@ -520,24 +529,39 @@ $greyedOutFilters: #d5d5d5;
 }
 .projInfo {
 	width: 100%;
+	height: 100%;
 	position: relative;
 	transition: box-shadow 0.5s;
+	background-color: white;
 }
+
 .project.expanded {
 	background-color: #FFF;
 	z-index: 20;
 	min-width: 100vw;
 	min-height: 100vh;
-	position: fixed;
+	// position: fixed;
+	position: absolute;
 	overflow: scroll;
 	cursor: default;
-	top: 40%;
-  left: 50%;
-  transform: translate(-50%, -40%);
+	left: -10vw;
+	// animation: becomeFixed 1s linear 0.75s forwards;
+	// top: 40%;  //need to do top with JS I believe
+  // left: 50%;
+  // &:nth-child(odd){
+  // 	left: -10vw;
+  // }
+  // &:nth-child(even){
+  // 	left: calc(-50vw - 15px);
+  // }
+  // transform: translate(-50%, -40%);
+  body {
+  	background-color: red;
+  }
   .projInfo {
 		overflow-y: scroll;
 		overflow-x: hidden;
-  	height: 99vh;
+  	height: 100vh;
   	box-shadow: 2px 0px 10px 1px rgba(67,75,99,0.5);
   }
 	.projClose {
@@ -563,6 +587,22 @@ $greyedOutFilters: #d5d5d5;
 		max-width: none;
 	}
 	// end specific cover image adjustments
+}
+
+@keyframes becomeFixed {
+	0% {
+
+	}
+	50% {
+
+	}
+	99% {
+		left: 0;
+		top: 0;
+	}
+	100% {
+		position: fixed;
+	}
 }
 
 // begin specifc cover image adjustments
@@ -725,7 +765,7 @@ $greyedOutFilters: #d5d5d5;
 	color: $mainDark;
 }
 
-.bodyCover {
+.bodyCover, .projBodyCover {
 	display: inline-block;
 	position: fixed;
 	right: 0;
@@ -736,6 +776,11 @@ $greyedOutFilters: #d5d5d5;
 	transition: all 100ms;
 	background-color: rgba(169,169,169,0.5);
 }
+
+.projBodyCover {
+	z-index: 19;
+}
+
 
 .hidden {
 	display: none;

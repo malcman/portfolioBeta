@@ -75,8 +75,12 @@
     .gallery:not(.pushedDown) {
       margin-top: -100px; }
 
-  .project {
-    min-width: 40vw; }
+  .projGridCell {
+    width: 40vw; }
+    .projGridCell:nth-child(odd) .project.expanded {
+      left: -10vw; }
+    .projGridCell:nth-child(even) .project.expanded {
+      left: calc(-50vw - 15px); }
 
   #toggle {
     display: none; }
@@ -143,7 +147,7 @@
     width: 103%; }
 
   .project.expanded {
-    background-color: rgba(255, 255, 255, 0.5); }
+    background-color: transparent; }
     .project.expanded .projInfo {
       background-color: white;
       width: 80vw;

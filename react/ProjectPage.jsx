@@ -111,7 +111,9 @@ class ProjectPage extends React.Component {
 					handleSelectAll={this.selectAll}
 					handleClearAll={this.clearAll}
 					handleFiltersToggle={this.handleFiltersToggle}/>
-				<Gallery _className={galleryClass} pieces={projects}/>
+				<Gallery
+					_className={galleryClass}
+					pieces={projects}/>
 			</div>
 			)
 	}
