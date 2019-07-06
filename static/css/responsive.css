@@ -147,11 +147,15 @@
     width: 103%; }
 
   .project.expanded {
-    background-color: transparent; }
+    background-color: transparent;
+    box-shadow: none; }
     .project.expanded .projInfo {
       background-color: white;
       width: 80vw;
       left: 10vw; }
+    .project.expanded + .projBodyCover {
+      display: inline-block;
+      opacity: 1; }
 
   #skills-grid {
     grid-template-rows: 1fr 1fr;

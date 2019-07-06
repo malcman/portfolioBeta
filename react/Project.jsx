@@ -7,39 +7,45 @@ class Project extends React.Component {
 		this.state = {
 			expanded: false,
 			scrollPos: 0,
+			styles: {
+				top: 0,
+				position: null
+			}
 		}
 		this.getTags = this.getTags.bind(this);
 		this.handleExpandToggle = this.handleExpandToggle.bind(this);
-		this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+		this.toggleExpandCallback = this.toggleExpandCallback.bind(this);
+		this.updateTopValue = this.updateTopValue.bind(this);
 		this.getInlineStyles = this.getInlineStyles.bind(this);
 		this.handleScroll = this.handleScroll.bind(this);
+
 		this.projRef = React.createRef();
 		this.gridCellRef = React.createRef();
 	}
 	componentDidMount(){
-		this.updateWindowDimensions();
-		window.addEventListener('resize', this.updateWindowDimensions);
+		window.addEventListener('resize', this.updateTopValue);
 		window.addEventListener('scroll', this.handleScroll);
+		this.updateTopValue();
 	}
 	componentWillUnmount() {
-		window.removeEventListener('resize', this.updateWindowDimensions);
+		window.removeEventListener('resize', this.updateTopValue);
 		window.removeEventListener('scroll', this.handleScroll);
 	}
-	updateWindowDimensions(e) {
-		const newTop = this.gridCellRef.current.getBoundingClientRect().top * -1;
-		if (this.state.expanded) {
-			this.setState({
-				topVal: Math.round(newTop),
-			});
-		} else {
-			this.setState({
-				topVal: Math.round(newTop - this.state.scrollPos),
-			});
-		}
+	updateTopValue(e) {
+		// set top state value as distance from parent grid cell to top of viewport
+		// if card is expanded, don't factor in scroll position
+		let newTop = this.gridCellRef.current.getBoundingClientRect().top * -1;
+		if (!this.state.expanded) newTop = newTop - this.state.scrollPos;
+		this.setState(prevState => ({
+			styles: {
+				...prevState.styles,
+				['top']: Math.round(newTop),
+			}
+		}));
 	}
 
 	getTags() {
-		// return an unorded list of all tags this project is associated with
+		// return an unordered list of all tags this project is associated with
 		let tags = [];
 		this.props.tags.forEach((tag) => {
 			tags.push(<li key={tag}>{tag}</li>);
@@ -59,15 +65,37 @@ class Project extends React.Component {
 		if (e.currentTarget.className === 'projClose' ||
 			!this.state.expanded ||
 			(window.innerWidth >= 1000 && e.target.id === this.props.titleShort)) {
+
+			// remove "fixed" position effects
+			document.body.style.overflow = 'auto';
+			document.body.style.height = 'auto';
+
 			this.setState(prevState => ({
 				expanded: !prevState.expanded,
-			}), () => {
-				if (!this.state.expanded) {
-					window.scrollTo(0, this.gridCellRef.current.offsetTop - 100, {behavior:'smooth'})
-				} else {
-					setTimeout(window.scrollTo(0, this.projRef.current.offsetTop, {behavior:'smooth'}), 1000);
-				}
+			}), this.toggleExpandCallback);
+		}
+	}
+
+	toggleExpandCallback() {
+		// scroll to project grid cell after close
+		if (!this.state.expanded) {
+			window.scrollTo(0, this.gridCellRef.current.offsetTop - 100, {behavior:'smooth'});
+			setTimeout(() => {
+				this.updateTopValue();
+			}, 200);
+
+		// scroll to viewport top upon expansion
+		// possible edit: could be done with href and target
+		} else {
+			// scroll to top of window
+			setTimeout(() => {
+				window.scrollTo(0, 0, {behavior:'smooth'});
 			});
+
+			// make it appear "fixed" at top
+			// yes kind of hacky but pos: fixed keeps bullocksing everything up
+			document.body.style.overflow = 'hidden';
+			document.body.style.height = '100vh';
 		}
 	}
 
@@ -83,7 +111,7 @@ class Project extends React.Component {
 
 	getInlineStyles() {
 		if (this.state.expanded) {
-			return {'top': this.state.topVal};
+			return this.state.styles;
 		}
 		return {};
 	}
@@ -92,7 +120,10 @@ class Project extends React.Component {
 		const altText = this.props.titleShort + " cover image";
 		const imgID = this.props.titleShort + "CoverIMG";
 		const projClass = classNames('project', {'expanded': this.state.expanded});
-		const coverDiv = <div className="projbodyCover"></div>
+		const coverDiv = (<div
+												className="projBodyCover"
+												onClick={this.handleExpandToggle}>
+											</div>)
 		const closeCover = this.state.expanded ? coverDiv : null;
 		const tags = this.getTags();
 		const inlineStyles = this.getInlineStyles();
@@ -101,7 +132,6 @@ class Project extends React.Component {
 			<div
 				className="projGridCell"
 				ref={this.gridCellRef}>
-				{closeCover}
 				<div
 					id={this.props.titleShort}
 					className={projClass}
@@ -127,6 +157,7 @@ class Project extends React.Component {
 						<a className="projReadMore">Read More</a>
 					</div>
 				</div>
+				{coverDiv}
 			</div>
 		);
 	}

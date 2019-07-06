@@ -182,7 +182,6 @@ $mainLight: #B3BBC5;
 @media only screen and (min-width: 1000px){
 
 	.content{
-		// top: 160px;
 		margin-bottom: 5%;
 	}
 
@@ -206,12 +205,18 @@ $mainLight: #B3BBC5;
 		grid-column: 3 / 5;
 		width: 103%;
 	}
+
 	.project.expanded {
 		background-color: transparent;
+		box-shadow: none;
 		.projInfo{
 			background-color: white;
 			width: 80vw;
 			left: 10vw;
+		}
+		+ .projBodyCover {
+			display: inline-block;
+			opacity: 1;
 		}
 	}
 

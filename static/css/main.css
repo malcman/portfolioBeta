@@ -332,19 +332,18 @@ button {
 
 .projGridCell {
   width: 80vw;
-  height: 315px;
-  position: relative; }
+  height: 315px; }
 
 .project {
   box-shadow: 0px 2px 5px #cacedb;
-  position: relative;
   width: 100%;
   min-width: 100%;
   min-height: 315px;
-  -moz-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.75s, top 0.75s;
-  -webkit-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.75s, top 0.75s;
-  transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.75s, top 0.75s;
-  transform-origin: bottom;
+  -moz-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.65s, top 0.65s;
+  -webkit-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.65s, top 0.65s;
+  transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.65s, top 0.65s;
+  transform-origin: top;
+  position: relative;
   left: -1px;
   top: -1px; }
   .project h4, .project p {
@@ -402,7 +401,7 @@ button {
     margin-bottom: 2%; }
 
 .projClose {
-  transition: transform 0.35s;
+  transition: transform 0.6s;
   transform: scale(0, 0);
   display: block;
   right: 0;
@@ -416,16 +415,9 @@ button {
   background-color: white; }
 
 .project.expanded {
-  background-color: #FFF;
   z-index: 20;
-  min-width: 100vw;
-  min-height: 100vh;
-  position: absolute;
-  overflow: scroll;
-  cursor: default;
-  left: -10vw; }
-  .project.expanded body {
-    background-color: red; }
+  -webkit-animation: shrinkToFullWK 0.5s cubic-bezier(0.1, 0.34, 0.97, 0.08) forwards;
+  animation: shrinkToFull 0.5s cubic-bezier(0.1, 0.34, 0.97, 0.08) forwards; }
   .project.expanded .projInfo {
     overflow-y: scroll;
     overflow-x: hidden;
@@ -447,12 +439,38 @@ button {
   .project.expanded #emberCoverIMG, .project.expanded #fooyaCoverIMG {
     max-width: none; }
 
-@keyframes becomeFixed {
-  99% {
-    left: 0;
-    top: 0; }
+@-webkit-keyframes shrinkToFullWK {
+  0% {
+    margin: auto;
+    left: 0; }
+  25% {
+    transform: scale(0.8, 0.75); }
   100% {
-    position: fixed; } }
+    transform: scale(1, 1);
+    min-height: 100vh;
+    min-width: 100vw;
+    left: -10vw; } }
+@keyframes shrinkToFull {
+  0% {
+    margin: auto;
+    left: 0; }
+  50% {
+    transform: scale(0.8, 0.75); }
+  100% {
+    transform: scale(1, 1);
+    min-height: 100vh;
+    min-width: 100vw;
+    left: -10vw; } }
+@keyframes becomeFixed {
+  100% {
+    position: fixed;
+    left: 0;
+    top: 0; } }
+@-webkit-keyframes becomeFixedWK {
+  100% {
+    position: fixed;
+    left: 0;
+    top: 0; } }
 #emberCoverIMG {
   max-width: 310px;
   left: 5%;
@@ -588,7 +606,10 @@ button {
   background-color: rgba(169, 169, 169, 0.5); }
 
 .projBodyCover {
-  z-index: 19; }
+  z-index: 19;
+  opacity: 0;
+  transition: opacity 1s;
+  display: none; }
 
 .hidden {
   display: none; }
