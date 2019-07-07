@@ -111,10 +111,26 @@ $mainLight: #B3BBC5;
 	}
 	&:nth-child(even){
 		.project.expanded {
-			left: calc(-50vw - 15px);
+			animation: shrinkToFullRightmost 0.5s cubic-bezier(0.1, 0.34, 0.97, 0.08) forwards;
 		}
 	}
-}
+	}
+
+	@keyframes shrinkToFullRightmost {
+		0% {
+			margin: auto;
+			left: 0;
+		}
+		50% {
+			transform: scale(0.8, 0.75);
+		}
+		100% {
+			transform: scale(1, 1);
+			min-height: 100vh;
+			min-width: 100vw;
+	    left: calc(-50vw - 15px);
+		}
+	}
 
 	#toggle{
 		display: none;
@@ -204,6 +220,20 @@ $mainLight: #B3BBC5;
 	.selectorButton:last-of-type {
 		grid-column: 3 / 5;
 		width: 103%;
+	}
+
+	.projGridCell {
+		width: 40vw;
+	&:nth-child(odd){
+		.project {
+			transform-origin: top left;
+		}
+	}
+	&:nth-child(even){
+		.project {
+			transform-origin: top right;
+		}
+	}
 	}
 
 	.project.expanded {
