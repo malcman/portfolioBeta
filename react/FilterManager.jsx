@@ -15,6 +15,7 @@ class FilterManager extends React.Component {
 		this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
 		this.toggleFilterDisplay = this.toggleFilterDisplay.bind(this);
 		this.toggleSortDisplay = this.toggleSortDisplay.bind(this);
+		this.getFilterClass = this.getFilterClass.bind(this);
 	}
 
 	handleFilterTextChange(filterText) {
@@ -35,11 +36,23 @@ class FilterManager extends React.Component {
 	//
 	}
 
+	getFilterClass() {
+		// get number of filters applied for visual affordances on filter button
+		const numSelected = Object.values(this.props.filters).filter(Boolean).length;
+		const numFilters = Object.values(this.props.filters).length;
+		const filterClass = classNames({'filtersApplied': numSelected < numFilters});
+		return filterClass;
+	}
+
 
 
 	render() {
 		// hide or show the filters based on toggle
 		const formDisplay = classNames({'shrinkToHide':!this.state.filtersShowing});
+
+		// style button differently if filters are applied
+		const filterClass = this.getFilterClass();
+
 
 		return (
 			<div id='FilterManager'>
@@ -50,8 +63,17 @@ class FilterManager extends React.Component {
 
 				</div>
 				<div id="ManagmentButtons">
-					<button id="FilterToggle" onClick={this.toggleFilterDisplay}>Filter</button>
-					<button id="SortToggle" onClick={this.toggleSortDisplay}>Sort</button>
+					<button
+						id="FilterToggle"
+						className={filterClass}
+						onClick={this.toggleFilterDisplay}>
+						Filter
+					</button>
+					<button
+						id="SortToggle"
+						onClick={this.toggleSortDisplay}>
+						Sort
+					</button>
 				</div>
 				<div className={formDisplay} id="FilterContainer">
 					<FilterForm

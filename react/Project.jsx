@@ -9,7 +9,6 @@ class Project extends React.Component {
 			scrollPos: 0,
 			styles: {
 				top: 0,
-				position: null
 			}
 		}
 		this.getTags = this.getTags.bind(this);
@@ -59,6 +58,7 @@ class Project extends React.Component {
 
 	handleExpandToggle(e) {
 		e.stopPropagation();
+		this.updateTopValue();
 		// if the close button OR
 		// whole project target w/o expanded view OR
 		// desktop view and overlay was clicked
@@ -132,13 +132,13 @@ class Project extends React.Component {
 			<div
 				className="projGridCell"
 				ref={this.gridCellRef}>
-				<div
+				<article
 					id={this.props.titleShort}
 					className={projClass}
 					ref={this.projRef}
 					onClick={this.handleExpandToggle}
 					style={inlineStyles}>
-					<div className="projInfo">
+					<section className="projInfo">
 						<div className="projClose"
 							onClick={this.handleExpandToggle}>
 							<div className="singleToggleLine negFortyFive"></div>
@@ -154,9 +154,9 @@ class Project extends React.Component {
 						<h4 className="projTitle">{this.props.title}</h4>
 						{tags}
 						<p className="projDescription">{this.props.description}</p>
-						<a className="projReadMore">Read More</a>
-					</div>
-				</div>
+						<aside className="projReadMore">Read More</aside>
+					</section>
+				</article>
 				{coverDiv}
 			</div>
 		);

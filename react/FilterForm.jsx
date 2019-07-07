@@ -12,7 +12,7 @@ class FilterForm extends React.Component {
 
 	createFilterManagementButtons() {
 		// get buttons to allow for selecting and clearing all options
-		const numSelected = Object.values(this.props.filters).filter(Boolean).length
+		const numSelected = Object.values(this.props.filters).filter(Boolean).length;
 		const allTrue = numSelected === Object.values(this.props.filters).length;
 		const allFalse = numSelected === 0;
 

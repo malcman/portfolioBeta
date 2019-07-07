@@ -3,4 +3,4 @@ node_modules
 .sublime-workspace
 static/.sass-cache
 designResources/
-.nosync
+*.map
