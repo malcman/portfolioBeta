@@ -1,32 +1,42 @@
 // SearchBar.js
-import React from "react";
+import React from 'react';
 
 class SearchBar extends React.Component {
-	constructor(props){
-		super(props);
-		this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-	}
+  constructor(props) {
+    super(props);
+    this.keyHandler = this.keyHandler.bind(this);
+    this.handleSearchTextChange = this.handleSearchTextChange.bind(this);
+  }
 
-	handleFilterTextChange(e) {
-		this.props.onFilterTextChange(e.target.value);
-	}
+  keyHandler(e) {
+    if (e.keyCode === 13 || e.which === 13) {
+      e.preventDefault();
+      this.handleSearchTextChange(e);
+    }
+  }
 
-	render() {
-		const filterText = this.props.filterText;
+  handleSearchTextChange(e) {
+    this.props.onSearchTextChange(e.target.value);
+  }
 
-		return (
-			<form id='searchForm' autoComplete="off">
-				<input
-					id='query'
-					type="text"
-					placeholder="Search Project Titles"
-					autoComplete="off"
-					value={filterText}
-					onChange={this.handleFilterTextChange}/>
-			</form>
-		);
-	}
+  render() {
+    const filterText = this.props.filterText;
+
+    return (
+      <form id="searchForm" autoComplete="off">
+        <input
+          id="query"
+          type="text"
+          placeholder="Search Project Titles"
+          autoComplete="off"
+          value={filterText}
+          onChange={this.handleSearchTextChange}
+          onKeyDown={this.keyHandler}
+        />
+      </form>
+    );
+  }
 }
 
 
-export default SearchBar
+export default SearchBar;
