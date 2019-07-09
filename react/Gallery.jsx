@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Project from './Project';
 
 class Gallery extends React.Component {
   constructor(props) {
     super(props);
+    this.getFilteredPieces = this.getFilteredPieces.bind(this);
     this.getValidPieces = this.getValidPieces.bind(this);
+    this.matchesSearchText = this.matchesSearchText.bind(this);
   }
   static similarity(s1, s2) {
     let longer = s1;
@@ -46,31 +47,48 @@ class Gallery extends React.Component {
     return costs[s2.length];
   }
 
-  getValidPieces() {
-    // TODO: add "filters applied" condition
-    if (!this.props.searchText) {
-      return this.props.pieces;
-    }
-    // gets valid pieces to display based on applied filters and search text
-    const validPieces = [];
+  matchesSearchText(piece) {
+    // functor for filtering pieces based on search text
     const searchText = this.props.searchText.toLowerCase();
+    const fullTitle = piece.props.title.toLowerCase();
+    const shortTitle = piece.props.titleShort.toLowerCase();
+
+    // currently arbitrary match percentages used as minimum
     const fullSimThreshold = 0.75;
     const shortSimThreshold = 0.7;
 
-    // TODO: get valid pieces from tags/filters first
-
-    // Filter further based on searchText
-    this.props.pieces.forEach((piece) => {
-      const fullTitle = piece.props.title.toLowerCase();
-      const shortTitle = piece.props.titleShort.toLowerCase();
-      // if the word is in the title
-      // or it is similar enough
-      if (fullTitle.indexOf(searchText) !== -1 ||
+    // if the word is in the title
+    // or it is "similar enough"
+    return (fullTitle.indexOf(searchText) !== -1 ||
         Gallery.similarity(searchText, fullTitle) >= fullSimThreshold ||
-        Gallery.similarity(searchText, shortTitle) >= shortSimThreshold) {
-        validPieces.push(piece);
+        Gallery.similarity(searchText, shortTitle) >= shortSimThreshold);
+  }
+
+  getFilteredPieces() {
+    // gets valid pieces determined solely by filters applied
+    const filteredPieces = [];
+    this.props.pieces.forEach((piece) => {
+      for (let i = 0; i < piece.props.tags.length; ++i) {
+        const thisTag = piece.props.tags[i];
+        if (this.props.activeFilters.indexOf(thisTag) !== -1) {
+          filteredPieces.push(piece);
+          break;
+        }
       }
     });
+    return filteredPieces;
+  }
+
+  getValidPieces() {
+    // do no work if not needed
+    if (!this.props.searchText &&
+      this.props.maxFilters === this.props.activeFilters.length) {
+      return this.props.pieces;
+    }
+    // gets valid pieces to display based on applied filters and search text
+    let validPieces = this.getFilteredPieces();
+    // Filter further based on searchText
+    validPieces = validPieces.filter(this.matchesSearchText);
     return validPieces;
   }
 
@@ -87,6 +105,10 @@ class Gallery extends React.Component {
 
 Gallery.propTypes = {
   pieces: PropTypes.arrayOf(PropTypes.element),
+};
+
+Gallery.defaultProps = {
+  pieces: [],
 };
 
 export default Gallery;
