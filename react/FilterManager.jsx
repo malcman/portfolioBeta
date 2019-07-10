@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import FilterForm from './FilterForm';
+import SortForm from './SortForm';
 
 const classNames = require('classnames');
 
@@ -11,7 +12,7 @@ class FilterManager extends React.Component {
       searchText: '',
     };
     this.toggleFilterDisplay = this.toggleFilterDisplay.bind(this);
-    // this.toggleSortDisplay = this.toggleSortDisplay.bind(this);
+    this.toggleSortDisplay = this.toggleSortDisplay.bind(this);
     this.getFilterButtonClass = this.getFilterButtonClass.bind(this);
   }
 
@@ -28,9 +29,10 @@ class FilterManager extends React.Component {
     this.props.handleFiltersToggle();
   }
 
-  // toggleSortDisplay() {
-  //
-  // }
+  toggleSortDisplay(e) {
+    e.preventDefault();
+    this.props.handleSortToggle();
+  }
 
   render() {
     // hide or show the filters based on toggle
@@ -38,7 +40,7 @@ class FilterManager extends React.Component {
 
     // style button differently if filters are applied
     const filterClass = this.getFilterButtonClass();
-    const sortDisplay = '';
+    const sortDisplay = classNames({ shrinkToHide: !this.props.sortsOpen });
 
 
     return (
@@ -75,6 +77,10 @@ class FilterManager extends React.Component {
           />
         </div>
         <div className={sortDisplay} id="SortContainer">
+          <SortForm
+            handleSortChange={this.props.handleSortChange}
+            currentSort={this.props.currentSort}
+          />
         </div>
       </div>
     );

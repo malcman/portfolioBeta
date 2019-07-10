@@ -13,12 +13,15 @@ class ProjectPage extends React.Component {
     this.handleSearchTextChange = this.handleSearchTextChange.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleFiltersToggle = this.handleFiltersToggle.bind(this);
+    this.handleSortToggle = this.handleSortToggle.bind(this);
+    this.handleSortChange = this.handleSortChange.bind(this);
     this.getActiveFilters = this.getActiveFilters.bind(this);
     this.selectAll = this.selectAll.bind(this);
     this.clearAll = this.clearAll.bind(this);
 
     this.state = {
       filtersOpen: false,
+      sortsOpen: false,
       searchText: '',
       projects: [],
       // set all checkboxes to selected
@@ -29,6 +32,8 @@ class ProjectPage extends React.Component {
           [option]: true,
         // start accumulator as empty object
         }), {}),
+
+      currentSort: 'recent',
     };
   }
 
@@ -114,7 +119,21 @@ class ProjectPage extends React.Component {
   handleFiltersToggle() {
     this.setState(prevState => ({
       filtersOpen: !prevState.filtersOpen,
+      sortsOpen: false,
     }));
+  }
+
+  handleSortToggle() {
+    this.setState(prevState => ({
+      sortsOpen: !prevState.sortsOpen,
+      filtersOpen: false,
+    }));
+  }
+
+  handleSortChange(e) {
+    this.setState({
+      currentSort: e.target.value,
+    });
   }
 
   getActiveFilters() {
@@ -129,7 +148,7 @@ class ProjectPage extends React.Component {
 
   render() {
     const projects = this.state.projects;
-    const galleryClass = classNames({ pushedDown: this.state.filtersOpen });
+    const galleryClass = classNames({ pushedDown: this.state.filtersOpen || this.state.sortsOpen });
     const activeFilters = this.getActiveFilters();
     return (
       <div id="ProjectComponent">
@@ -137,11 +156,15 @@ class ProjectPage extends React.Component {
         <FilterManager
           categories={Object.keys(this.state.checkboxes)}
           filters={this.state.checkboxes}
+          currentSort={this.state.currentSort}
           filtersOpen={this.state.filtersOpen}
+          sortsOpen={this.state.sortsOpen}
           handleCheckboxChange={this.handleCheckboxChange}
           handleSelectAll={this.selectAll}
           handleClearAll={this.clearAll}
           handleFiltersToggle={this.handleFiltersToggle}
+          handleSortToggle={this.handleSortToggle}
+          handleSortChange={this.handleSortChange}
           handleSearchTextChange={this.handleSearchTextChange}
         />
         <Gallery

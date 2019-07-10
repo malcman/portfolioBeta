@@ -253,13 +253,18 @@ button {
 
 
 // grid that holds filtering options
-#filterGrid {
+#filterGrid, #sortGrid {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	// grid-column-gap: 4px;
 	transform: skew(-20deg);
 	background-color: lighten($mainLight, 15%);
 	width: 90%;
+}
+
+// grid that holds sorting options
+#sortGrid {
+	grid-template-columns: 1fr;
 }
 
 // label surrounding filter options
@@ -421,14 +426,14 @@ $greyedOutFilters: #d5d5d5;
 	}
 }
 
-#FilterContainer {
+#FilterContainer, #SortContainer {
 	width: 100%;
-	position: relative;
+	position: absolute;
 	transition: transform .4s ease-out;
 	display: block;
 }
 
-.shrinkToHide#FilterContainer {
+.shrinkToHide#FilterContainer, .shrinkToHide#SortContainer {
 	// translate pixels are roughly half of filterGrid height
 	transform: translate(0, -50%) scale(1, 0) skew(0deg);
 }
@@ -437,15 +442,16 @@ $greyedOutFilters: #d5d5d5;
 	display: grid;
 	grid-template-columns: 80vw;
 	width: 100%;
-	margin-top: -200px;
-	margin-top: -55%;
 	transition: all .4s;
 	grid-row-gap: 15px;
 	grid-column-gap: 15px;
+	position: relative;
+  top: 15px;
 }
 
 .pushedDown {
-	margin-top: 5%;
+	// TODO: maybe make this better?;
+	top: 250px;
 }
 
 .projGridCell {
@@ -547,7 +553,7 @@ $greyedOutFilters: #d5d5d5;
 	// min-height: 100vh;
 	// position: absolute;
 	// overflow: scroll;
-	// cursor: default;
+	cursor: default;
 	// left: -10vw;
 	// -webkit-animation: becomeFixedWK 0s linear 1s forwards;
 	// animation: becomeFixed 0s linear 1s forwards;
@@ -854,7 +860,6 @@ $greyedOutFilters: #d5d5d5;
 .content{
 	transition: all 400ms;
 	width: 80%;
-	// position: relative;
 	margin: 15% 10%;
 	#profpic{
 		position: relative;
@@ -880,6 +885,7 @@ $greyedOutFilters: #d5d5d5;
 
 #FilterManager {
 	width: 100%;
+	position: relative;
 }
 
 #searchBar {
