@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Flipper } from 'react-flip-toolkit';
 
 class Gallery extends React.Component {
   constructor(props) {
     super(props);
     this.getFilteredPieces = this.getFilteredPieces.bind(this);
     this.getValidPieces = this.getValidPieces.bind(this);
+    this.getFlipKey = this.getFlipKey.bind(this);
     this.matchesSearchText = this.matchesSearchText.bind(this);
   }
   static similarity(s1, s2) {
@@ -92,13 +94,24 @@ class Gallery extends React.Component {
     return validPieces;
   }
 
+  getFlipKey() {
+    const titles = [];
+    this.props.pieces.forEach((piece) => {
+      titles.push(piece.props.titleShort);
+    });
+    return titles.join(' ');
+  }
+
   render() {
     const galleryClasses = `gallery ${this.props.classsName}`;
     const pieces = this.getValidPieces();
+    const flipKey = this.getFlipKey();
     return (
-      <div className={galleryClasses}>
-        {pieces}
-      </div>
+      <Flipper flipKey={flipKey}>
+        <div className={galleryClasses}>
+          {pieces}
+        </div>
+      </Flipper>
     );
   }
 }

@@ -9,6 +9,7 @@
     {
       "title": "Ember - Activism App Prototype",
       "titleShort": "ember",
+      "date": "11/01/18",
       "tags": ["Interaction Design", "Graphic Design"],
       "tools": [],
       "coverIMG": "./static/img/EmberCover3.jpg",
@@ -32,6 +33,7 @@
       "title": "Fooya! Capstone Project",
       "titleShort": "fooya",
       "tags": ["UX Research", "Waste of Time"],
+      "date": "05/01/19",
       "coverIMG": "./static/img/FooyaCover.jpg",
       "description": "Lorem ipsum boopity bopily",
       "role": "did most of it",

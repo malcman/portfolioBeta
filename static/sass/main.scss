@@ -384,8 +384,15 @@ button {
 
 $greyedOutFilters: #d5d5d5;
 .selectorButton {
+	margin-top: 20px;
 	.FilterBKG {
 		// background-image: linear-gradient(to right, #FFF 50%, lighten($mainDark, 12%) 50%);
+		border-radius: 5px;
+	}
+	.filterCheckbox + .FilterBKG {
+		.checkmark {
+			border-radius: 5px;
+		}
 	}
 	.filterCheckbox:checked + .FilterBKG {
 		.checkmark {
@@ -547,16 +554,8 @@ $greyedOutFilters: #d5d5d5;
 }
 
 .project.expanded {
-	// background-color: #FFF;
 	z-index: 20;
-	// min-width: 100vw;
-	// min-height: 100vh;
-	// position: absolute;
-	// overflow: scroll;
 	cursor: default;
-	// left: -10vw;
-	// -webkit-animation: becomeFixedWK 0s linear 1s forwards;
-	// animation: becomeFixed 0s linear 1s forwards;
 	-webkit-animation: shrinkToFullWK 0.5s cubic-bezier(0.1, 0.34, 0.97, 0.08) forwards;
 	animation: shrinkToFull 0.5s cubic-bezier(0.1, 0.34, 0.97, 0.08) forwards;
   .projInfo {

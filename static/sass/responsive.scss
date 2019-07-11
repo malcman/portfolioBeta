@@ -9,7 +9,7 @@ $mainLight: #B3BBC5;
 		#query {
 			font-size: 110%;
 			width: 80%;
-		    padding-bottom: 12px;
+	    padding-bottom: 12px;
 		}
 	}
 	#searchBar {
@@ -80,7 +80,7 @@ $mainLight: #B3BBC5;
 		}
 	}
 
-	#filterGrid {
+	#filterGrid, #sortGrid {
 		grid-template-columns: repeat(2, 1fr);
 		width: 100%;
 	}
@@ -99,7 +99,9 @@ $mainLight: #B3BBC5;
 	.gallery {
 		grid-template-columns: 40vw 40vw;
 		&:not(.pushedDown) {
-			margin-top: -100px;
+		}
+		&.pushedDown {
+			top: 175px;
 		}
 	}
 	.projGridCell {
@@ -201,13 +203,16 @@ $mainLight: #B3BBC5;
 		margin-bottom: 5%;
 	}
 
-	#filterGrid {
+	#filterGrid, #sortGrid {
 		grid-template-columns: repeat(4, 1fr);
 		grid-column-gap: 6px;
-	    padding-right: 5px;
+    padding-right: 5px;
 	}
 	.gallery:not(.pushedDown) {
-		margin-top: -70px;
+		// margin-top: -70px;
+	}
+	.gallery.pushedDown {
+		top: 115px;
 	}
 
 	.selectorButton {

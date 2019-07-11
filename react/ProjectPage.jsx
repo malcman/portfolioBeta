@@ -130,9 +130,10 @@ class ProjectPage extends React.Component {
     }));
   }
 
-  handleSortChange(e) {
+  handleSortChange(currentSort, sortFunc) {
     this.setState({
-      currentSort: e.target.value,
+      currentSort,
+      projects: this.state.projects.sort(sortFunc),
     });
   }
 

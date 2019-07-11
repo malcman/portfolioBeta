@@ -56,7 +56,7 @@
     width: 40%;
     height: auto; }
 
-  #filterGrid {
+  #filterGrid, #sortGrid {
     grid-template-columns: repeat(2, 1fr);
     width: 100%; }
 
@@ -72,8 +72,8 @@
 
   .gallery {
     grid-template-columns: 40vw 40vw; }
-    .gallery:not(.pushedDown) {
-      margin-top: -100px; }
+    .gallery.pushedDown {
+      top: 175px; }
 
   .projGridCell {
     width: 40vw; }
@@ -139,13 +139,13 @@
   .content {
     margin-bottom: 5%; }
 
-  #filterGrid {
+  #filterGrid, #sortGrid {
     grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 6px;
     padding-right: 5px; }
 
-  .gallery:not(.pushedDown) {
-    margin-top: -70px; }
+  .gallery.pushedDown {
+    top: 115px; }
 
   .selectorButton {
     width: 103%; }

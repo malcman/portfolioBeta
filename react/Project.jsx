@@ -1,4 +1,5 @@
 import React from 'react';
+import { Flipped } from 'react-flip-toolkit';
 
 const classNames = require('classnames');
 
@@ -129,43 +130,45 @@ class Project extends React.Component {
     const inlineStyles = this.getInlineStyles();
 
     return (
-      <div
-        className="projGridCell"
-        ref={this.gridCellRef}
-      >
-        <article
-          id={this.props.titleShort}
-          className={projClass}
-          ref={this.projRef}
-          onClick={this.handleExpandToggle}
-          style={inlineStyles}
+      <Flipped flipId={this.props.titleShort}>
+        <div
+          className="projGridCell"
+          ref={this.gridCellRef}
         >
-          <section className="projInfo">
-            <div
-              className="projClose"
-              onClick={this.handleExpandToggle}
-              role="button"
-              tabIndex="0"
-            >
-              <div className="singleToggleLine negFortyFive" />
-              <div className="singleToggleLine posFortyFive" />
-            </div>
-            <div className="coverPhotoContainer">
-              <img
-                id={imgID}
-                src={this.props.coverIMG}
-                alt={altText}
-                className="projCoverPhoto"
-              />
-            </div>
-            <h4 className="projTitle">{this.props.title}</h4>
-            {tags}
-            <p className="projDescription">{this.props.description}</p>
-            <aside className="projReadMore">Read More</aside>
-          </section>
-        </article>
-        {coverDiv}
-      </div>
+          <article // eslint-disable-line
+            id={this.props.titleShort}
+            className={projClass}
+            ref={this.projRef}
+            onClick={this.handleExpandToggle}
+            style={inlineStyles}
+          >
+            <section className="projInfo">
+              <div
+                className="projClose"
+                onClick={this.handleExpandToggle}
+                role="button"
+                tabIndex="0"
+              >
+                <div className="singleToggleLine negFortyFive" />
+                <div className="singleToggleLine posFortyFive" />
+              </div>
+              <div className="coverPhotoContainer">
+                <img
+                  id={imgID}
+                  src={this.props.coverIMG}
+                  alt={altText}
+                  className="projCoverPhoto"
+                />
+              </div>
+              <h4 className="projTitle">{this.props.title}</h4>
+              {tags}
+              <p className="projDescription">{this.props.description}</p>
+              <aside className="projReadMore">Read More</aside>
+            </section>
+          </article>
+          {coverDiv}
+        </div>
+      </Flipped>
     );
   }
 }

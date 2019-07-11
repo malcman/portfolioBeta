@@ -2,21 +2,37 @@ import React from 'react';
 import SortButton from './SortButton';
 
 const sortFunctions = {
-  alphaNormal: {
-    func: (a, b) => a.title < b.title,
-    displayName: 'A - Z',
-  },
-  alphaReverse: {
-    func: (a, b) => a.title > b.title,
-    displayName: 'Z - A',
-  },
   recent: {
-    func: (a, b) => a.date < b.date,
+    func: (a, b) => {
+      if (a.props.date > b.props.date) return -1;
+      if (a.props.date < b.props.date) return 1;
+      return 0;
+    },
     displayName: 'Date: Recent',
   },
   oldest: {
-    func: (a, b) => a.date > b.date,
+    func: (a, b) => {
+      if (a.props.date < b.props.date) return -1;
+      if (a.props.date > b.props.date) return 1;
+      return 0;
+    },
     displayName: 'Date: Oldest',
+  },
+  alphaNormal: {
+    func: (a, b) => {
+      if (a.props.title < b.props.title) return -1;
+      if (a.props.title > b.props.title) return 1;
+      return 0;
+    },
+    displayName: 'A - Z',
+  },
+  alphaReverse: {
+    func: (a, b) => {
+      if (a.props.title > b.props.title) return -1;
+      if (a.props.title < b.props.title) return 1;
+      return 0;
+    },
+    displayName: 'Z - A',
   },
 };
 
@@ -24,6 +40,12 @@ class SortForm extends React.Component {
   constructor(props) {
     super(props);
     this.getSortButtons = this.getSortButtons.bind(this);
+    this.handleSortChange = this.handleSortChange.bind(this);
+  }
+
+  handleSortChange(e) {
+    const inputID = e.target.id;
+    this.props.handleSortChange(e.target.value, sortFunctions[inputID].func);
   }
 
   getSortButtons() {
@@ -34,7 +56,7 @@ class SortForm extends React.Component {
         key={sort}
         displayName={sortFunctions[sort].displayName}
         currentSort={this.props.currentSort}
-        handleSortChange={this.props.handleSortChange}
+        handleSortChange={this.handleSortChange}
       />);
       sortButtons.push(newSortButton);
     });

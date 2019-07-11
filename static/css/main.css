@@ -292,10 +292,16 @@ button {
 .filterCheckbox + .FilterBKG + p {
   text-indent: -5px; }
 
-.selectorButton .filterCheckbox:checked + .FilterBKG .checkmark:before {
-  border-color: #d5d5d5; }
-.selectorButton .filterCheckbox:checked + .FilterBKG + p {
-  color: #d5d5d5; }
+.selectorButton {
+  margin-top: 20px; }
+  .selectorButton .FilterBKG {
+    border-radius: 5px; }
+  .selectorButton .filterCheckbox + .FilterBKG .checkmark {
+    border-radius: 5px; }
+  .selectorButton .filterCheckbox:checked + .FilterBKG .checkmark:before {
+    border-color: #d5d5d5; }
+  .selectorButton .filterCheckbox:checked + .FilterBKG + p {
+    color: #d5d5d5; }
 
 .selectorButton:nth-last-of-type(2) {
   grid-column: 1 / 2; }
