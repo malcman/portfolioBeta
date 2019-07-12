@@ -105,12 +105,14 @@ class Gallery extends React.Component {
   render() {
     const galleryClasses = `gallery ${this.props.classsName}`;
     const pieces = this.getValidPieces();
-    const flipKey = this.getFlipKey();
+    const sortFlipKey = this.getFlipKey();
     return (
-      <Flipper flipKey={flipKey}>
-        <div className={galleryClasses}>
-          {pieces}
-        </div>
+      <Flipper flipKey={sortFlipKey} id="sortFlippper">
+        <Flipper flipKey={pieces.length} id="filterFlipper">
+          <div className={galleryClasses}>
+            {pieces}
+          </div>
+        </Flipper>
       </Flipper>
     );
   }
