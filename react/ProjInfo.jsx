@@ -1,4 +1,5 @@
 import React from 'react';
+import { Flipper, Flipped } from 'react-flip-toolkit';
 
 class ProjInfo extends React.Component {
   constructor(props) {
@@ -27,29 +28,31 @@ class ProjInfo extends React.Component {
     const tags = this.getTags();
 
     return (
-      <section className="projInfo">
-        <div
-          className="projClose"
-          onClick={this.props.handleExpandToggle}
-          role="button"
-          tabIndex="0"
-        >
-          <div className="singleToggleLine negFortyFive" />
-          <div className="singleToggleLine posFortyFive" />
-        </div>
-        <div className="coverPhotoContainer">
-          <img
-            id={imgID}
-            src={this.props.coverIMG}
-            alt={altText}
-            className="projCoverPhoto"
-          />
-        </div>
-        <h4 className="projTitle">{this.props.title}</h4>
-        {tags}
-        <p className="projDescription">{this.props.description}</p>
-        <aside className="projReadMore">Read More</aside>
-      </section>
+      <Flipped flipId={`${this.props.title}Info`} translate>
+        <section className="projInfo">
+          <div
+            className="projClose"
+            onClick={this.props.handleExpandToggle}
+            role="button"
+            tabIndex="0"
+          >
+            <div className="singleToggleLine negFortyFive" />
+            <div className="singleToggleLine posFortyFive" />
+          </div>
+          <div className="coverPhotoContainer">
+            <img
+              id={imgID}
+              src={this.props.coverIMG}
+              alt={altText}
+              className="projCoverPhoto"
+            />
+          </div>
+          <h4 className="projTitle">{this.props.title}</h4>
+          {tags}
+          <p className="projDescription">{this.props.description}</p>
+          <aside className="projReadMore">Read More</aside>
+        </section>
+      </Flipped>
     );
   }
 }

@@ -46,6 +46,9 @@ h4 {
 h5 {
   text-decoration: underline; }
 
+input[type="checkbox"] {
+  height: auto; }
+
 ul {
   list-style-type: none; }
 
@@ -226,7 +229,8 @@ button {
 .filterCheckbox {
   position: absolute;
   opacity: 0;
-  cursor: pointer; }
+  cursor: pointer;
+  height: 32px; }
 
 .filterCheckbox[disabled] {
   cursor: default; }
@@ -349,177 +353,52 @@ button {
   width: 80vw;
   height: 315px; }
 
-.project {
-  box-shadow: 0px 2px 5px #cacedb;
-  width: 100%;
-  min-width: 100%;
-  min-height: 315px;
-  -moz-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.65s, top 0.65s;
-  -webkit-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.65s, top 0.65s;
-  transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.65s, top 0.65s;
-  transform-origin: top;
-  position: relative;
-  left: -1px;
-  top: -1px; }
-  .project h4, .project p {
-    margin-left: 5%;
-    margin-top: 2%; }
-  .project h4 {
-    width: 80%;
-    font-size: 18pt; }
-
-.project:hover {
-  box-shadow: 0px 5px 6px #cacedb;
-  cursor: pointer; }
-  .project:hover .projReadMore {
-    text-decoration: underline; }
-
-.coverPhotoContainer {
-  width: 100%;
-  height: 120px;
-  overflow: hidden; }
-
-.projCoverPhoto {
-  width: 100%;
-  object-fit: cover;
-  position: relative;
-  top: -35px; }
-
-.content p.projDescription {
-  width: 80%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  text-indent: 0;
-  margin-bottom: 13%; }
-
-.projReadMore {
-  float: right;
-  padding: 3px 5px;
-  margin: 10px;
-  position: absolute;
-  bottom: -1px;
-  right: 5px;
-  color: #434B63; }
-
-.projTags {
-  margin-top: 5%;
-  margin-left: 5%; }
-  .projTags li {
-    font-size: 12pt;
-    color: #FFF;
-    background-color: #434B63;
-    display: inline-block;
-    border-radius: 10px;
-    padding: 2px 10px;
-    margin-right: 5px;
-    margin-bottom: 2%; }
-
-.projClose {
-  transition: transform 0.6s;
-  transform: scale(0, 0);
-  display: block;
-  right: 0;
-  position: absolute; }
-
-.projInfo {
-  width: 100%;
-  height: 100%;
-  min-height: 315px;
-  position: relative;
-  transition: box-shadow 0.5s;
-  background-color: white; }
-
-.project.expanded {
-  z-index: 20;
-  cursor: default;
-  -webkit-animation: shrinkToFullWK 0.5s cubic-bezier(0.1, 0.34, 0.97, 0.08) forwards;
-  animation: shrinkToFull 0.5s cubic-bezier(0.1, 0.34, 0.97, 0.08) forwards; }
-  .project.expanded .projInfo {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 100vh;
-    box-shadow: 2px 0px 10px 1px rgba(67, 75, 99, 0.5); }
-  .project.expanded .projClose {
-    padding: 30px;
-    cursor: pointer;
-    z-index: 21;
-    transform: scale(1, 1); }
-  .project.expanded .coverPhotoContainer {
-    overflow: visible; }
-  .project.expanded p.projDescription {
-    overflow: visible;
-    white-space: normal;
-    text-indent: 5%; }
-  .project.expanded .projReadMore {
-    display: none; }
-  .project.expanded #emberCoverIMG, .project.expanded #fooyaCoverIMG {
-    max-width: none; }
-
-@-webkit-keyframes shrinkToFullWK {
-  0% {
-    margin: auto;
-    left: 0; }
-  25% {
-    transform: scale(0.8, 0.75); }
-  100% {
-    transform: scale(1, 1);
-    min-height: 100vh;
-    min-width: 100vw;
-    left: -10vw; } }
-@keyframes shrinkToFull {
-  0% {
-    margin: auto;
-    left: 0; }
-  50% {
-    transform: scale(0.8, 0.75); }
-  100% {
-    transform: scale(1, 1);
-    min-height: 100vh;
-    min-width: 100vw;
-    left: -10vw; } }
-@keyframes becomeFixed {
-  100% {
-    position: fixed;
-    left: 0;
-    top: 0; } }
-@-webkit-keyframes becomeFixedWK {
-  100% {
-    position: fixed;
-    left: 0;
-    top: 0; } }
-.projExp {
+.proj {
   width: 80vw;
   height: 315px;
   cursor: pointer;
   box-shadow: 0px 2px 5px #cacedb;
   background-color: white;
   color: black; }
-  .projExp div[data-inverse-flip-id] {
+  .proj:hover {
+    box-shadow: 0px 5px 6px #cacedb; }
+    .proj:hover .projReadMore {
+      text-decoration: underline; }
+  .proj h4, .proj p {
+    margin-left: 5%;
+    margin-top: 2%; }
+  .proj h4 {
+    width: 80%;
+    font-size: 18pt; }
+  .proj div[data-inverse-flip-id] {
     width: 100%; }
-  .projExp p.projDescription {
+  .proj .projInfo {
+    width: 100%;
+    height: 100%;
+    min-height: 315px;
+    position: relative;
+    transition: box-shadow 0.5s;
+    background-color: white; }
+  .proj p.projDescription {
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis; }
-  .projExp .coverPhotoContainer {
+    text-overflow: ellipsis;
+    text-indent: 0;
+    width: 80%;
+    margin-bottom: 13%; }
+  .proj .coverPhotoContainer {
     width: 100%;
     height: 120px;
     overflow: hidden; }
-  .projExp .projCoverPhoto {
+  .proj .projCoverPhoto {
     width: 100%;
     object-fit: cover;
     position: relative;
     top: -35px; }
-  .projExp h4, .projExp p {
-    margin-left: 5%;
-    margin-top: 2%; }
-  .projExp h4 {
-    width: 80%;
-    font-size: 18pt; }
-  .projExp .projTags {
+  .proj .projTags {
     margin-top: 5%;
     margin-left: 5%; }
-    .projExp .projTags li {
+    .proj .projTags li {
       font-size: 12pt;
       color: #FFF;
       background-color: #434B63;
@@ -528,41 +407,52 @@ button {
       padding: 2px 10px;
       margin-right: 5px;
       margin-bottom: 2%; }
-  .projExp .projClose {
+  .proj .projClose {
     transition: transform 0.6s;
     transform: scale(0, 0);
     display: block;
     right: 0;
     position: absolute; }
+  .proj .projReadMore {
+    transition: opacity 0.5s;
+    opacity: 1;
+    float: right;
+    padding: 3px 5px;
+    margin: 10px;
+    position: absolute;
+    bottom: -1px;
+    right: 5px;
+    color: #434B63; }
 
-.content .fullScreen {
+.proj.expanded {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  cursor: pointer;
+  cursor: default;
   z-index: 20; }
-  .content .fullScreen .coverPhotoContainer {
+  .proj.expanded .coverPhotoContainer {
     width: 100%;
     height: auto;
     overflow: visible; }
-  .content .fullScreen .projClose {
+  .proj.expanded .projClose {
     padding: 30px;
     cursor: pointer;
     z-index: 21;
     transform: scale(1, 1); }
-  .content .fullScreen .projInfo {
-    width: 100%;
-    height: 100%;
+  .proj.expanded .projInfo {
+    height: 100vh;
     overflow-y: scroll;
     overflow-x: hidden; }
-    .content .fullScreen .projInfo p.projDescription {
+    .proj.expanded .projInfo p.projDescription {
       overflow: visible;
       white-space: normal;
       text-indent: 5%; }
-  .content .fullScreen .projReadMore {
-    display: none; }
+  .proj.expanded .projReadMore {
+    opacity: 0; }
+  .proj.expanded #emberCoverIMG, .proj.expanded #fooyaCoverIMG {
+    max-width: none; }
 
 #emberCoverIMG {
   max-width: 310px;
