@@ -94,25 +94,28 @@ class Gallery extends React.Component {
     return validPieces;
   }
 
-  getFlipKey() {
+  getFlipKey(pieceLength) {
     const titles = [];
     this.props.pieces.forEach((piece) => {
       titles.push(piece.props.titleShort);
     });
+    // allows for filters to affect one Flipper component,
+    // as it includes lenth in the flipKey
+    titles.push(pieceLength);
     return titles.join(' ');
   }
 
   render() {
     const galleryClasses = `gallery ${this.props.classsName}`;
     const pieces = this.getValidPieces();
-    const sortFlipKey = this.getFlipKey();
+    const sortFlipKey = this.getFlipKey(pieces.length);
+
     return (
-      <Flipper flipKey={sortFlipKey} id="sortFlippper">
-        <Flipper flipKey={pieces.length} id="filterFlipper">
-          <div className={galleryClasses}>
-            {pieces}
-          </div>
-        </Flipper>
+      // flipKey dependent on sort and filter allows for smooth animations
+      <Flipper flipKey={sortFlipKey} id="sortFlippper" applyTransformOrigin={false}>
+        <div className={galleryClasses}>
+          {pieces}
+        </div>
       </Flipper>
     );
   }

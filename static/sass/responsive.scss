@@ -108,7 +108,7 @@ $mainLight: #B3BBC5;
 		width: 40vw;
 	&:nth-child(odd){
 		.project.expanded {
-			left: -10vw;
+			// left: -10vw;
 		}
 	}
 	&:nth-child(even){
@@ -238,6 +238,16 @@ $mainLight: #B3BBC5;
 		.project {
 			transform-origin: top right;
 		}
+	}
+	.project {
+		-moz-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.65s, top 0.65s;
+		-webkit-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.65s, top 0.65s;
+		transition:
+			transform 0.5s ease-in-out,
+			min-height 0.5s,
+			min-width 0.5s,
+			left 0.65s,
+			top 0.65s ;
 	}
 	}
 

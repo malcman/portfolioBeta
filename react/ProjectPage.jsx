@@ -2,6 +2,7 @@ import React from 'react';
 import FilterManager from './FilterManager';
 import Gallery from './Gallery';
 import Project from './Project';
+import ProjExp from './ProjectExperiment';
 
 const classNames = require('classnames');
 
@@ -52,7 +53,7 @@ class ProjectPage extends React.Component {
         const projects = [];
         data.projects.forEach((proj) => {
           // add new project
-          const newProj = (<Project
+          const newProj = (<ProjExp
             key={proj.titleShort}
             {...proj}
           />);

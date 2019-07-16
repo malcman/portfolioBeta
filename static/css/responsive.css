@@ -77,8 +77,6 @@
 
   .projGridCell {
     width: 40vw; }
-    .projGridCell:nth-child(odd) .project.expanded {
-      left: -10vw; }
     .projGridCell:nth-child(even) .project.expanded {
       animation: shrinkToFullRightmost 0.5s cubic-bezier(0.1, 0.34, 0.97, 0.08) forwards; }
 
@@ -163,6 +161,10 @@
       transform-origin: top left; }
     .projGridCell:nth-child(even) .project {
       transform-origin: top right; }
+    .projGridCell .project {
+      -moz-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.65s, top 0.65s;
+      -webkit-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.65s, top 0.65s;
+      transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.65s, top 0.65s; }
 
   .project.expanded {
     background-color: transparent;

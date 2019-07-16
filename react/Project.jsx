@@ -1,5 +1,6 @@
 import React from 'react';
 import { Flipped } from 'react-flip-toolkit';
+import ProjInfo from './ProjInfo';
 
 const classNames = require('classnames');
 
@@ -13,7 +14,6 @@ class Project extends React.Component {
         top: 0,
       },
     };
-    this.getTags = this.getTags.bind(this);
     this.handleExpandToggle = this.handleExpandToggle.bind(this);
     this.toggleExpandCallback = this.toggleExpandCallback.bind(this);
     this.updateTopValue = this.updateTopValue.bind(this);
@@ -37,25 +37,13 @@ class Project extends React.Component {
     // if card is expanded, don't factor in scroll position
     let newTop = this.gridCellRef.current.getBoundingClientRect().top * -1;
     if (!this.state.expanded) newTop -= this.state.scrollPos;
+
     this.setState(prevState => ({
       styles: {
         ...prevState.styles,
         ['top']: Math.round(newTop), // eslint-disable-line
       },
     }));
-  }
-
-  getTags() {
-    // return an unordered list of all tags this project is associated with
-    const tags = [];
-    this.props.tags.forEach((tag) => {
-      tags.push(<li key={tag}>{tag}</li>);
-    });
-    return (
-      <ul className="projTags">
-        {tags}
-      </ul>
-    );
   }
 
   handleExpandToggle(e) {
@@ -117,8 +105,6 @@ class Project extends React.Component {
   }
 
   render() {
-    const altText = `${this.props.titleShort} cover image`;
-    const imgID = `${this.props.titleShort}CoverIMG`;
     const projClass = classNames('project', { expanded: this.state.expanded });
     const coverDiv = (<div
       className="projBodyCover"
@@ -126,46 +112,28 @@ class Project extends React.Component {
       role="button"
       tabIndex="0"
     />);
-    const tags = this.getTags();
     const inlineStyles = this.getInlineStyles();
 
     return (
-      <Flipped flipId={this.props.titleShort}>
+      <Flipped flipId={this.props.titleShort} >
         <div
           className="projGridCell"
           ref={this.gridCellRef}
         >
-          <article // eslint-disable-line
+          <div
             id={this.props.titleShort}
             className={projClass}
             ref={this.projRef}
             onClick={this.handleExpandToggle}
             style={inlineStyles}
+            role="button"
+            tabIndex="0"
           >
-            <section className="projInfo">
-              <div
-                className="projClose"
-                onClick={this.handleExpandToggle}
-                role="button"
-                tabIndex="0"
-              >
-                <div className="singleToggleLine negFortyFive" />
-                <div className="singleToggleLine posFortyFive" />
-              </div>
-              <div className="coverPhotoContainer">
-                <img
-                  id={imgID}
-                  src={this.props.coverIMG}
-                  alt={altText}
-                  className="projCoverPhoto"
-                />
-              </div>
-              <h4 className="projTitle">{this.props.title}</h4>
-              {tags}
-              <p className="projDescription">{this.props.description}</p>
-              <aside className="projReadMore">Read More</aside>
-            </section>
-          </article>
+            <ProjInfo
+              handleExpandToggle={this.handleExpandToggle}
+              {...this.props}
+            />
+          </div>
           {coverDiv}
         </div>
       </Flipped>
