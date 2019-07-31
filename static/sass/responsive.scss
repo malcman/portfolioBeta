@@ -69,15 +69,17 @@ $mainLight: #B3BBC5;
 		}
 	}
 
-	.content{
-		// top: 90px;
-	}
-
 	#homelink{
 		img{
 			width: 40%;
 			height: auto;
 		}
+	}
+	.mobileSVG {
+		display: none;
+	}
+	.tabletSVG {
+		display: block;
 	}
 
 	#filterGrid, #sortGrid {
@@ -104,18 +106,24 @@ $mainLight: #B3BBC5;
 			top: 175px;
 		}
 	}
+	.proj {
+		width: 100%;
+	}
 	.projGridCell {
 		width: 40vw;
-	&:nth-child(odd){
-		.project.expanded {
+		&:nth-child(odd){
+			.project.expanded {
 			// left: -10vw;
+			}
 		}
-	}
-	&:nth-child(even){
-		.project.expanded {
-			animation: shrinkToFullRightmost 0.5s cubic-bezier(0.1, 0.34, 0.97, 0.08) forwards;
+		&:nth-child(even){
+			.project.expanded {
+				animation: shrinkToFullRightmost 0.5s cubic-bezier(0.1, 0.34, 0.97, 0.08) forwards;
+			}
 		}
-	}
+		.projFlipper {
+			width: 100%;
+		}
 	}
 
 	@keyframes shrinkToFullRightmost {
@@ -199,6 +207,12 @@ $mainLight: #B3BBC5;
 
 @media only screen and (min-width: 1000px){
 
+	.desktopSVG {
+		display: block;
+	}
+	.tabletSVG {
+		display: none;
+	}
 	.content{
 		margin-bottom: 5%;
 	}

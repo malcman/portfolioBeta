@@ -37,9 +37,21 @@ header{
 	top: 0;
 	width: 100vw;
 	position: absolute;
-	background-color: white;
 	-webkit-transition: all 400ms;
 	transition: all 400ms;
+}
+
+#headerSVG {
+	position: absolute;
+	z-index: -5;
+	-webkit-transition: all 400ms;
+	transition: all 400ms;
+  polygon {
+  	fill: white;
+  }
+}
+.tabletSVG, .desktopSVG {
+	display: none;
 }
 
 h3{
@@ -64,6 +76,7 @@ h5{
 
 input[type="checkbox"] {
 	height:auto;
+	width: auto;
 }
 
 ul {
@@ -112,7 +125,10 @@ button {
 	z-index: 5;
 	-webkit-transition: all 400ms;
 	transition: all 400ms;
-	box-shadow: 0px 3px 10px #d3d3d3;
+	#headerSVG {
+		-webkit-filter: drop-shadow(0px 3px 10px #d3d3d3);
+	  filter: drop-shadow(0px 3px 10px #d3d3d3);
+	}
 }
 
 #toggle {
@@ -121,11 +137,8 @@ button {
 	text-align: center;
 	box-sizing: border-box;
 	cursor: pointer;
-	// font-size: 200%;
 	padding: 30px 8%;
 	width: 120px;
-	// margin-right: 10%;
-	// transform: skew(-20deg);
 }
 
 
@@ -295,7 +308,7 @@ button {
 	position: absolute;
 	opacity: 0;
 	cursor: pointer;
-	height: 32px;
+	// height: 32px;
 }
 
 .filterCheckbox[disabled] {
@@ -841,6 +854,14 @@ $greyedOutFilters: #d5d5d5;
 		width: 100%;
 		text-indent: 5%;
 	}
+	&#contactContent {
+		width: 100vw;
+		margin: 0;
+		margin-top: 15%;
+		h3 {
+			margin-left: 10vw;
+		}
+	}
 }
 
 
@@ -920,11 +941,11 @@ $greyedOutFilters: #d5d5d5;
 		cursor: pointer;
 	}
 	#email-info {
-		transform: skew();
 		border: none;
 		text-align: center;
 		font-family: 'Montserrat', 'Lato', sans-serif;
 		font-size: 14pt;
+		background-color: $mainDark;
 	}
 }
 
@@ -953,6 +974,17 @@ $greyedOutFilters: #d5d5d5;
 			text-indent: 20%;
 		}
 	}
+}
+
+.wide-grid-cell {
+	width: 100%;
+	background-color: $mainDark;
+	color: white;
+	h4, input {
+		color: white;
+    -webkit-text-fill-color: white;
+	}
+
 }
 
 .sub-grid-cell{

@@ -1,13 +1,17 @@
 import React from 'react';
 import FilterButton from './FilterButton';
 
+
 class FilterForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleFormChange = this.handleFormChange.bind(this);
     this.createCategoryChecklist = this.createCategoryChecklist.bind(this);
     this.createFilterManagementButtons = this.createFilterManagementButtons.bind(this);
-    this.createCategoryChecklist();
+    this.checklist = [];
+  }
+  componentDidUpdate() {
+    this.checklist = this.createCategoryChecklist();
   }
 
   createFilterManagementButtons() {
@@ -51,7 +55,6 @@ class FilterForm extends React.Component {
       const newCategory = (
         <FilterButton
           key={catNoWhitespace}
-          isSelected={this.props.filters[category]}
           category={category}
           catNoWhitespace={catNoWhitespace}
           handleCheckboxChange={this.props.handleCheckboxChange}
@@ -67,13 +70,12 @@ class FilterForm extends React.Component {
   }
 
   render() {
-    const filterButtons = this.createCategoryChecklist();
     const managementButtons = this.createFilterManagementButtons();
 
     return (
       <form id="filterForm">
         <div id="filterGrid">
-          {filterButtons}
+          {this.checklist}
           {managementButtons}
         </div>
       </form>
