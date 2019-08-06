@@ -1,6 +1,8 @@
 $midGray: #696969;
 $mainDark: #434B63;
 $mainLight: #B3BBC5;
+$darkBlue: #354557;
+$lightGrey: #C3CCD6;
 $darkerWhite: darken(#FFF, 1%);
 
 *{
@@ -23,7 +25,7 @@ a{
 	}
 }
 
-p, b, div{
+p, div{
 	font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
 	font-weight: 300;
 }
@@ -267,7 +269,140 @@ button {
 	}
 }
 
+#landingFigure {
+	position: relative;
+	img {
+		vertical-align: middle;
+	}
+}
+#landingCaption {
+	position: absolute;
+  top: 40%;
+  margin-left: 10%;
+  // font-family: "Nothing You Could Do";
+  // font-size: 28pt;
+  // width: 40%;
+  width: 60%;
+  color: #434B63;
+}
+.triangle-down-right {
+    width: 10%;
+    height: 0;
+    padding-top: 10%;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.triangle-down-right:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    margin-top:-500px;
 
+    border-top: 500px solid transparent;
+    border-right: 700px solid $darkBlue;
+}
+
+#designSection {
+  height: 300px;
+	position: relative;
+	svg {
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	polygon {
+		fill: $darkBlue;
+	}
+	p {
+		color: white;
+		line-height: 1.4;
+		padding: 5% 10%;
+    position: relative;
+    z-index: 1;
+	}
+	h3 {
+		color: $lightGrey;
+		-webkit-text-fill-color: $lightGrey;
+		b {
+			font-weight: 600;
+		}
+	}
+}
+
+#developSection {
+	background-color: black;
+	height: 600px;
+	z-index: -1;
+	p {
+  	color: #EFEFEF;
+  	line-height: 1.4;
+  	margin-left: 20%;
+    position: relative;
+    top: 17%;
+  }
+  svg {
+  	position: absolute;
+  	bottom: 0;
+  	polygon {
+  		fill: white;
+  	}
+  }
+}
+
+#humanSection {
+	p {
+    margin-left: 15%;
+    margin-top: 5%;
+	}
+}
+
+.content {
+	.landingSection {
+		position: relative;
+		padding: 5% 0;
+		p {
+			width: 60%;
+	    padding: 0 10%;
+	    text-indent: 0;
+		}
+		h4 {
+		  position: absolute;
+		  font-size: 36pt;
+		}
+	}
+}
+#homeContent p {
+	font-family: 'Red Hat Text';
+}
+
+#designHeader {
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+  z-index: 2;
+  right: -5%;
+  top: 30%;
+	font-weight: 300;
+  font-family: Muli;
+  color: $lightGrey;
+  -webkit-text-fill-color: $lightGrey;
+}
+#developHeader {
+	-webkit-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+  font-weight: 300;
+  font-family: Muli;
+  color: #C3CCD6;
+  -webkit-text-fill-color: #C3CCD6;
+  top: 31%;
+  left: -7%;
+}
+#humanHeader {
+	position: static;
+	margin-left: 5%;
+}
 
 // grid that holds filtering options
 #filterGrid, #sortGrid {
@@ -838,7 +973,7 @@ $greyedOutFilters: #d5d5d5;
 .content{
 	transition: all 400ms;
 	width: 80%;
-	margin: 15% 10%;
+	padding: 15% 10%;
 	#profpic{
 		position: relative;
 		float: right;
@@ -862,8 +997,11 @@ $greyedOutFilters: #d5d5d5;
 			margin-left: 10vw;
 		}
 	}
+	&#homeContent {
+		width: 100%;
+		padding: 0;
+	}
 }
-
 
 #ProjectComponent {
 	width: 100%;

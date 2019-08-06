@@ -12,6 +12,8 @@
 	<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
 	<!-- Montserrat -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300&display=swap" rel="stylesheet">
+	<!-- Red Hat Display -->
+	<link href="https://fonts.googleapis.com/css?family=Red+Hat+Text&display=swap" rel="stylesheet">
 
 	<!-- favicons -->
 	<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
@@ -27,63 +29,41 @@
 </head>
 <body>
 	<div id="menuEntry"></div>
-	<!-- <img src="./static/img/indianaMalc.JPG" style="width: 100%; margin-top: 80px;"> -->
-	<div class="content">
-		<h3>About Me</h3><br>
-		<div id="profpic">
+	<figure id="landingFigure">
+		<img src="./static/img/ShrugRegular.png" style="width: 100%; margin-top: 80px;opacity: 0;">
+		<!-- <figcaption id="landingCaption">I'm just a boy.</figcaption> -->
+		<figcaption id="landingCaption">
+			<h3>Some <b>design.</b></h3>
+			<h3>Some <b>develop.</b></h3>
+			<h3>Some <b>lead.</b></h3><br>
+			<h3>I do it <b>all.</b></h3>
+		</figcaption>
+		<div class="triangle-down-right"></div>
+	</figure>
+	<div class="content" id="homeContent">
+		<section class="landingSection" id="designSection">
+			<h4 id="designHeader">Design</h4>
+			<svg height="600" width="100%">
+				<polygon points="0,10 0,400 2000,600 2000,0 80,0"/>
+			</svg>
+			<br><p>Websites, movie posters, or safety systems; it doesn't matter. Design is where art meets utility, and few things get me more excited.</p>
+		</section>
+		<section class="landingSection" id="developSection">
+			<h4 id="developHeader">Develop</h4>
+			<br><p>I see things all the way through. It's not enough for me to design something sweet and hand it off without a second thought.</p>
+			<br><p>Not only do I build what I design, I make sure it is as optimized and performant as possible, delivering the full vision.</p>
+			<svg height="200" width="100%">
+				<polygon points="0,200 2000,200 2000,0"/>
+			</svg>
+		</section>
+		<section class="landingSection" id="humanSection">
+			<h4 id="humanHeader">Humanity</h4>
+			<p>Aside from Agile Development and project management strategies, I've spent a lot of time working with teams across disciplines and skill levels. We need each other to get things done, and I continuously work to foster a trusting, safe, and fun workplace.</p>
+			<p>The things I make are for people, and (almost always) with people.
+			You can't solve problems with just a smart brain; a lot of people have that.</p>
 
-		</div>
-		<!-- THIS SITE IS STILL VERY MUCH UNDER CONSTRUCTION PLS DON'T THINK THIS IS A FINISHED PRODUCT -->
-		<h4>Who Am I</h4><br>
-			<p>This is a great question. I'm still figuring that out, as we all are, so I'll skip the
-				buzzwords for you and just tell you what I do. In the meantime, I'm Malcolm Maturen,
-				the guy on the left. Preferred pronoun: He.
-			</p><br>
-		<h4>What I Do</h4><br>
-			<p>Throughout my education, I have assimilated an array of computer science, design, and
-				information organization skills. This combination allows me to bring a unique understanding
-				of back-end optimization and user-experience to the table.
-			</p><br>
-		<h4>Languages</h4><br>
-			<ul id="languages">
-				<li>Italian, Advanced</li>
-				<li>Spanish, Proficient</li>
-			</ul><br>
-		<h4>Skills</h4><br>
-		<div class="disp-grid" id="skills-grid">
-			<div class="grid-cell">
-				<div class="bkg-cell" id="cpp-box"></div>
-				<div class="sub-grid-cell">C++</div>
-			</div>
-			<div class="grid-cell">
-				<div class="bkg-cell" id="python-box"></div>
-				<div class="sub-grid-cell">Python</div>
-			</div>
-			<div class="grid-cell">
-				<div class="bkg-cell" id="html-box"></div>
-				<div class="sub-grid-cell">HTML</div>
-			</div>
-			<div class="grid-cell">
-				<div class="bkg-cell" id="css-box"></div>
-				<div class="sub-grid-cell">CSS/SASS</div>
-			</div>
-			<div class="grid-cell">
-				<div class="bkg-cell" id="js-box"></div>
-				<div class="sub-grid-cell">Javascript/jQuery</div>
-			</div>
-			<div class="grid-cell">
-				<div class="bkg-cell" id="sql-box"></div>
-				<div class="sub-grid-cell">SQL</div>
-			</div>
-			<div class="grid-cell">
-				<div class="bkg-cell" id="ai-box"></div>
-				<div class="sub-grid-cell">Adobe Illustrator</div>
-			</div>
-			<div class="grid-cell">
-				<div class="bkg-cell" id="ps-box"></div>
-				<div class="sub-grid-cell">Adobe Photoshop</div>
-			</div>
-		</div>
+		</section>
+
 	</div>
 	<script src="./static/js/bundle.js"></script>
 </body>

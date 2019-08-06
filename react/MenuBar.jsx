@@ -118,7 +118,7 @@ class MenuBar extends React.Component {
 
     return (
       <header className={this.state.headerClass}>
-        <svg id="headerSVG" height="200" width="100vw">
+        <svg id="headerSVG" height="200" width="100%">
           <polygon className="mobileSVG" points="0,0 0,140 70,85 1000,85 1000,0" />
           <polygon className="tabletSVG" points="0,0 0,140 20,140 90,90 1000,85 1000,0" />
           <polygon className="desktopSVG" points="0,0 0,200 40,200 120,120 1500,85 1500,0" />

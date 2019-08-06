@@ -13,7 +13,7 @@ a {
   a :hover {
     text-decoration: underline; }
 
-p, b, div {
+p, div {
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
   font-weight: 300; }
 
@@ -212,6 +212,116 @@ button {
   to {
     -webkit-transform: rotate(45deg) skew(-50deg);
     transform: rotate(45deg) skew(-50deg); } }
+#landingFigure {
+  position: relative; }
+  #landingFigure img {
+    vertical-align: middle; }
+
+#landingCaption {
+  position: absolute;
+  top: 40%;
+  margin-left: 10%;
+  width: 60%;
+  color: #434B63; }
+
+.triangle-down-right {
+  width: 10%;
+  height: 0;
+  padding-top: 10%;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  bottom: 0; }
+
+.triangle-down-right:after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  margin-top: -500px;
+  border-top: 500px solid transparent;
+  border-right: 700px solid #354557; }
+
+#designSection {
+  height: 300px;
+  position: relative; }
+  #designSection svg {
+    position: absolute;
+    left: 0;
+    top: 0; }
+  #designSection polygon {
+    fill: #354557; }
+  #designSection p {
+    color: white;
+    line-height: 1.4;
+    padding: 5% 10%;
+    position: relative;
+    z-index: 1; }
+  #designSection h3 {
+    color: #C3CCD6;
+    -webkit-text-fill-color: #C3CCD6; }
+    #designSection h3 b {
+      font-weight: 600; }
+
+#developSection {
+  background-color: black;
+  height: 600px;
+  z-index: -1; }
+  #developSection p {
+    color: #EFEFEF;
+    line-height: 1.4;
+    margin-left: 20%;
+    position: relative;
+    top: 17%; }
+  #developSection svg {
+    position: absolute;
+    bottom: 0; }
+    #developSection svg polygon {
+      fill: white; }
+
+#humanSection p {
+  margin-left: 15%;
+  margin-top: 5%; }
+
+.content .landingSection {
+  position: relative;
+  padding: 5% 0; }
+  .content .landingSection p {
+    width: 60%;
+    padding: 0 10%;
+    text-indent: 0; }
+  .content .landingSection h4 {
+    position: absolute;
+    font-size: 36pt; }
+
+#homeContent p {
+  font-family: 'Red Hat Text'; }
+
+#designHeader {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  z-index: 2;
+  right: -5%;
+  top: 30%;
+  font-weight: 300;
+  font-family: Muli;
+  color: #C3CCD6;
+  -webkit-text-fill-color: #C3CCD6; }
+
+#developHeader {
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  font-weight: 300;
+  font-family: Muli;
+  color: #C3CCD6;
+  -webkit-text-fill-color: #C3CCD6;
+  top: 31%;
+  left: -7%; }
+
+#humanHeader {
+  position: static;
+  margin-left: 5%; }
+
 #filterGrid, #sortGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -639,7 +749,7 @@ button {
 .content {
   transition: all 400ms;
   width: 80%;
-  margin: 15% 10%; }
+  padding: 15% 10%; }
   .content #profpic {
     position: relative;
     float: right;
@@ -658,6 +768,9 @@ button {
     margin-top: 15%; }
     .content#contactContent h3 {
       margin-left: 10vw; }
+  .content#homeContent {
+    width: 100%;
+    padding: 0; }
 
 #ProjectComponent {
   width: 100%; }
