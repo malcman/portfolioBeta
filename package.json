@@ -28,6 +28,7 @@
     "eslint-plugin-react": "^7.12.4",
     "js-yaml": ">=3.13.1",
     "lodash": ">=4.17.13",
+    "matter-js": "^0.14.2",
     "mem": ">=4.0.0",
     "react-flip-toolkit": "^6.6.9",
     "webpack": "==3.6.0"

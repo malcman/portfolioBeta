@@ -392,12 +392,13 @@ button {
 #developHeader {
 	-webkit-transform: rotate(-90deg);
 	transform: rotate(-90deg);
+	transform-origin: bottom right;
   font-weight: 300;
   font-family: Muli;
   color: #C3CCD6;
   -webkit-text-fill-color: #C3CCD6;
-  top: 31%;
-  left: -7%;
+  top: 13%;
+  left: -200px;
 }
 #humanHeader {
 	position: static;
