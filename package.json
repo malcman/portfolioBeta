@@ -38,6 +38,7 @@
     "isomorphic-fetch": "==2.2.1",
     "jsonlint": "==1.6.2",
     "moment": ">=2.19.3",
+    "poly-decomp": "^0.3.0",
     "prop-types": "==15.6.0",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"

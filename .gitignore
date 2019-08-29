@@ -4,3 +4,5 @@ node_modules
 static/.sass-cache
 designResources/
 *.map
+manipulationEx.js
+terrain.js
