@@ -11,9 +11,9 @@
 	<!-- roboto -->
 	<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
 	<!-- Montserrat -->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:300&display=swap" rel="stylesheet">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:300&display=swap" rel="stylesheet"> -->
 	<!-- Red Hat Display -->
-	<link href="https://fonts.googleapis.com/css?family=Red+Hat+Text&display=swap" rel="stylesheet">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Red+Hat+Text&display=swap" rel="stylesheet"> -->
 
 	<!-- favicons -->
 	<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
@@ -29,17 +29,17 @@
 </head>
 <body>
 	<div id="menuEntry"></div>
-	<figure id="landingFigure">
-		<img src="./static/img/ShrugRegular.png" style="width: 100%; margin-top: 80px;opacity: 0;">
-		<!-- <figcaption id="landingCaption">I'm just a boy.</figcaption> -->
-		<figcaption id="landingCaption">
-			<h3>Some <b>design.</b></h3>
-			<h3>Some <b>develop.</b></h3>
-			<h3>Some <b>lead.</b></h3><br>
-			<h3>I do it <b>all.</b></h3>
-		</figcaption>
-		<div class="triangle-down-right"></div>
-	</figure>
+	<div id="landingFigure">
+		<div class="canvasCover"></div>
+		<div id="canvasContainer"></div>
+		<div id="landingCaption">
+			<h3>Most tech: <br>exasperating and exclusive.</h3>
+			<br>
+			<h3><b>Screw that.</b></h3>
+			<br>
+			<h3>Let's make it<br> <b>fun and empowering.</b></h3>
+		</div>
+	</div>
 	<div class="content" id="homeContent">
 		<section class="landingSection" id="designSection">
 			<h4 id="designHeader">Design</h4>
@@ -65,6 +65,12 @@
 		</section>
 
 	</div>
+	<!-- React -->
 	<script src="./static/js/bundle.js"></script>
+	<!-- matter stuff -->
+	<script src="./static/js/pathseg.js"></script>
+  <script src="./static/js/decomp.js"></script>
+  <script src="./static/js/matter.js"></script>
+	<script src="./static/js/matterTest.js"></script>
 </body>
 </html>

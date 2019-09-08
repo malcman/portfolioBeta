@@ -26,12 +26,12 @@ const render = Render.create({
     wireframes: false,
     hasBounds: true,
     background: '#FFF',
-    pixelRatio: 'auto'
+    pixelRatio: 'auto',
   },
 });
 
 const world = engine.world;
-world.gravity.y = 0;
+// world.gravity.y = 0;
 
 // run the engine
 Engine.run(engine);
@@ -94,7 +94,8 @@ function createWalls(canvasWidth, canvasHeight) {
     { isStatic: true },
   );
 
-  World.add(world, [leftWall, rightWall, ground, ceiling]);
+  // World.add(world, [leftWall, rightWall, ground, ceiling]);
+  World.add(world, [rightWall, ceiling, ground]);
 }
 
 function toggleGravity() { // eslint-disable-line
@@ -105,47 +106,68 @@ function toggleGravity() { // eslint-disable-line
   }
 }
 
-function createTrianglePyramid() {
+function getTriangle(x, y, radius, properties) {
+  // x: x coordinate on canvas
+  // y: y coodinate on cavas
+  // properties: optional object that will be destructed and applied to
+  // little triangle shapes. see below URL for more info
+  // http://brm.io/matter-js/docs/classes/Body.html#properties
+  const triangle = Bodies.polygon(x, y, 3, radius, properties);
+  return triangle;
+}
+
+function createRotatedTrianglePyramid(xx, yy, columns, rows, columnGap, rowGap) {
   // pyramid(xx, yy, columns, rows, columnGap, rowGap, callback)
-  const pyra1 = Composites.pyramid(100, 400, 10, 15, 0, 0, (x, y) => {
-    return (
-      Bodies.polygon(x, y, 3, 12, {
-        angle: -Math.PI / 2,
-        render: {
-          fillStyle: '#C3CCD6',
-          frictionAir: 0.5,
-        },
-      })
-    );
+  // note: this starts from the point shape
+  // and the last shape is on the right/positive side
+  // rotated to be upside down
+  const triangleRadius = 12;
+  const fillColor = '#4F5357';
+
+  const properties = {
+    angle: Math.PI / 2,
+    friction: 0,
+    frictionStatic: 0,
+    restitution: 1,
+    render: {
+      fillStyle: fillColor,
+    },
+  };
+
+  // const difference = 5.19615 / 2;
+  const pyra = Composites.pyramid(xx, yy, columns, rows, columnGap, rowGap, (x, y) => { // eslint-disable-line
+    // eslint disabled bc apparently matter.js needs this return keyword?
+    return getTriangle(x, y, triangleRadius, properties);
   });
 
-  const difference = 5.19615 / 2;
-  const pyra2 = Composites.pyramid(100 + difference, 400, 10, 15, 0, 0, (x, y) => {
-    return (
-      Bodies.polygon(x, y, 3, 12, {
-        angle: Math.PI / 2,
-        render: {
-          fillStyle: '#354557',
-        },
-      })
-    );
-  });
+  const pyraBounds = Composite.bounds(pyra);
+  const midY = (pyraBounds.min.y + pyraBounds.max.y) / 2;
+  const midX = (pyraBounds.min.x + pyraBounds.max.x) / 2;
 
-  Composite.rotate(pyra1, Math.PI, { x: 400, y: 300 });
-  Composite.rotate(pyra2, Math.PI, { x: 400, y: 300 });
-  World.add(world, [pyra1, pyra2]);
+  // find the center of the pyramid
+  const centerPos = {
+    x: midX,
+    y: midY,
+  };
 
-  const circ = Bodies.circle(500, 250, 100, { isStatic: true });
-  World.add(world, circ);
+  // and rotate it around that
+  Composite.rotate(pyra, Math.PI, centerPos);
+  World.add(world, [pyra]);
+
+  // const circ = Bodies.circle(500, 250, 100, { isStatic: true });
+  // World.add(world, circ);
 }
 
 function renderAndAddSVG(svgVertexSets, fillColor) {
-  const svg = Bodies.fromVertices(620, 420, svgVertexSets, {
+  const svg = Bodies.fromVertices(700, 400, svgVertexSets, {
     isStatic: true,
     render: {
       fillStyle: fillColor,
       strokeStyle: fillColor,
       lineWidth: 1,
+      friction: 0,
+      frictionStatic: 0,
+      isStatic: true,
     },
   }, true);
 
@@ -177,6 +199,13 @@ function makeSVGXMLRequest(url, fillColor) {
         vertexSets.push(SVG.pathToVertices(paths[j], 30));
       }
 
+      // const points = [];
+      // for (let i = 0; i < vertexSets[0].length; ++i) {
+      //   const pointArray = [];
+      //   pointArray.push(vertexSets[0][i].x);
+      //   pointArray.push(vertexSets[0][i].y);
+      //   points.push(pointArray);
+      // }
       // add these vertices to the world
       renderAndAddSVG(vertexSets, fillColor);
     } else {
@@ -190,7 +219,7 @@ function makeSVGXMLRequest(url, fillColor) {
 }
 
 createWalls(800, 600);
-createTrianglePyramid();
+createRotatedTrianglePyramid(450, 50, 20, 20, 0, 0);
 
 
 const svgFilenames = [
@@ -198,5 +227,11 @@ const svgFilenames = [
 ];
 
 svgFilenames.forEach((filename) => {
-  makeSVGXMLRequest(`./static/svg/${filename}`, '#2e2b44');
+  makeSVGXMLRequest(`./static/svg/${filename}`, '#C3CCD6');
+});
+
+// fit the render viewport to the scene
+Render.lookAt(render, {
+  min: { x: 0, y: 0 },
+  max: { x: 800, y: 600 },
 });
