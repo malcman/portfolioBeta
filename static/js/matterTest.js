@@ -1,12 +1,15 @@
 // module aliases
 /* eslint no-undef: 0 */
 const Engine = Matter.Engine;
+const Events = Matter.Events;
 const Render = Matter.Render;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
+const Body = Matter.Body;
 const Mouse = Matter.Mouse;
 const Composites = Matter.Composites;
 const Composite = Matter.Composite;
+const Common = Matter.Common;
 const MouseConstraint = Matter.MouseConstraint;
 const SVG = Matter.Svg;
 
@@ -31,7 +34,7 @@ const render = Render.create({
 });
 
 const world = engine.world;
-// world.gravity.y = 0;
+world.gravity.y = 0;
 
 // run the engine
 Engine.run(engine);
@@ -102,7 +105,7 @@ function toggleGravity() { // eslint-disable-line
   if (world.gravity.y !== 1) {
     world.gravity.y = 1;
   } else {
-    world.gravity.y = 0.005;
+    world.gravity.y = 0;
   }
 }
 
@@ -137,6 +140,7 @@ function createRotatedTrianglePyramid(xx, yy, columns, rows, columnGap, rowGap) 
   // const difference = 5.19615 / 2;
   const pyra = Composites.pyramid(xx, yy, columns, rows, columnGap, rowGap, (x, y) => { // eslint-disable-line
     // eslint disabled bc apparently matter.js needs this return keyword?
+    properties.render.fillStyle = Common.choose(['#C3CCD6', '#4F5357']);
     return getTriangle(x, y, triangleRadius, properties);
   });
 
@@ -156,6 +160,7 @@ function createRotatedTrianglePyramid(xx, yy, columns, rows, columnGap, rowGap) 
 
   // const circ = Bodies.circle(500, 250, 100, { isStatic: true });
   // World.add(world, circ);
+  return pyra;
 }
 
 function renderAndAddSVG(svgVertexSets, fillColor) {
@@ -218,16 +223,43 @@ function makeSVGXMLRequest(url, fillColor) {
   xhr.send();
 }
 
+function addListeners() {
+  const breakButton = document.querySelector('#breakThings');
+  breakButton.addEventListener('click', toggleGravity);
+}
+
+// begin main
 createWalls(800, 600);
-createRotatedTrianglePyramid(450, 50, 20, 20, 0, 0);
+const pyra = createRotatedTrianglePyramid(450, 50, 20, 20, 0, 0);
+addListeners();
 
-
+// TODO clean this shit up
 const svgFilenames = [
   'Curve.svg',
 ];
 
 svgFilenames.forEach((filename) => {
   makeSVGXMLRequest(`./static/svg/${filename}`, '#C3CCD6');
+});
+
+// TODO put in addListeners() with access to pyra variable
+Events.on(engine, 'afterUpdate', () => {
+  const triangles = pyra.bodies;
+
+  for (let i = 0; i < triangles.length; ++i) {
+    const body = triangles[i];
+    if (body.position.x < 0) {
+      Body.setPosition(body, {
+        x: 650,
+        y: 50,
+      });
+
+      Body.setVelocity(body, {
+        x: 0,
+        y: 0,
+      });
+    }
+  }
 });
 
 // fit the render viewport to the scene

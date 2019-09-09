@@ -317,7 +317,21 @@ canvas {
   // width: 40%;
   width: 60%;
   color: #434B63;
+  z-index: 6;
 }
+
+#breakThings {
+	margin-left: 0;
+	font-size: 16pt;
+	transform: skew(20deg);
+	border-radius: 0;
+	border-color: $mainDark;
+	p {
+		transform: skew(-20deg);
+		padding: 0 5px;
+	}
+}
+
 .triangle-down-right {
     width: 10%;
     height: 0;
