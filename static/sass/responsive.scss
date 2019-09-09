@@ -29,6 +29,12 @@ $mainLight: #B3BBC5;
 	}
 }
 
+@media only screen and (max-width: 400px) {
+	canvas {
+		margin-top: 15%;
+	}
+}
+
 @media only screen and (min-width: 650px){
 	#menu-container{
 		width: 80%;

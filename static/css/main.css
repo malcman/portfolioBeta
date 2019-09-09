@@ -39,6 +39,9 @@ header {
 .tabletSVG, .desktopSVG {
   display: none; }
 
+h1, h2 {
+  font-family: 'Montserrat', 'Lato', sans-serif; }
+
 h3 {
   color: #434B63;
   font-family: 'Montserrat', 'Lato', sans-serif;
@@ -219,7 +222,7 @@ button {
     transform: rotate(45deg) skew(-50deg); } }
 .canvasCover {
   width: 100%;
-  height: 800px;
+  height: 80vw;
   position: absolute;
   z-index: 5; }
 
@@ -238,13 +241,19 @@ button {
   min-height: 50vh; }
 
 canvas {
-  max-width: 100%; }
+  max-width: 100%;
+  max-height: 80vw;
+  min-height: 400px; }
 
 #landingFigure {
   position: relative;
   width: 100vw; }
   #landingFigure img {
     vertical-align: middle; }
+  #landingFigure h2, #landingFigure h1 {
+    font-weight: 300; }
+  #landingFigure h2 b {
+    font-family: "Nothing You Could Do"; }
 
 #landingCaption {
   position: absolute;
