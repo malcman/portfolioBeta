@@ -6,3 +6,4 @@ designResources/
 *.map
 manipulationEx.js
 terrain.js
+collisionFiltering.js

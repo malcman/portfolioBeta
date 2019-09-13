@@ -226,19 +226,24 @@ button {
   position: absolute;
   z-index: 5; }
 
-#canvasContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.canvasContainer {
+  display: flex; }
+
+#landingCanvasContainer {
   -webkit-box-align: end;
-  -ms-flex-align: end;
   align-items: end;
   -webkit-box-pack: end;
-  -ms-flex-pack: flex-end;
   justify-content: flex-end;
-  -ms-flex-direction: row;
   flex-direction: row;
   min-height: 50vh; }
+
+#designCanvasContainer {
+  min-height: 600px;
+  width: 100vw;
+  position: absolute;
+  z-index: 1;
+  clip-path: polygon(0% 2%, 0% 76%, 100% 100%, 100% 0%, 15% 0%);
+  background-color: #354557; }
 
 canvas {
   max-width: 100%;
@@ -252,7 +257,7 @@ canvas {
     vertical-align: middle; }
   #landingFigure h2, #landingFigure h1 {
     font-weight: 300; }
-  #landingFigure h2 b {
+  #landingFigure h2:nth-of-type(3) {
     font-family: "Nothing You Could Do"; }
 
 #landingCaption {
@@ -292,8 +297,10 @@ canvas {
   border-right: 700px solid #354557; }
 
 #designSection {
-  height: 300px;
-  position: relative; }
+  height: 80vw;
+  position: relative;
+  padding: 0;
+  padding-bottom: 10%; }
   #designSection svg {
     position: absolute;
     left: 0;
@@ -303,9 +310,9 @@ canvas {
   #designSection p {
     color: white;
     line-height: 1.4;
-    padding: 5% 10%;
+    padding: 7% 10%;
     position: relative;
-    z-index: 1; }
+    z-index: 3; }
   #designSection h3 {
     color: #C3CCD6;
     -webkit-text-fill-color: #C3CCD6; }
@@ -328,9 +335,11 @@ canvas {
     #developSection svg polygon {
       fill: white; }
 
-#humanSection p {
-  margin-left: 15%;
-  margin-top: 5%; }
+#humanSection {
+  background-color: white; }
+  #humanSection p {
+    margin-left: 15%;
+    margin-top: 5%; }
 
 .content .landingSection {
   position: relative;

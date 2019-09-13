@@ -15,6 +15,10 @@ body {
 	overflow-x: hidden;
 }
 
+#homeBody {
+	// background-color: black;
+}
+
 a{
 	text-decoration: none;
 	[href$= ".pdf"]{
@@ -286,21 +290,29 @@ button {
   z-index: 5;
 }
 
-#canvasContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.canvasContainer {
   display: flex;
+}
+
+#landingCanvasContainer {
   -webkit-box-align: end;
-  -ms-flex-align: end;
   align-items: end;
   -webkit-box-pack: end;
-  -ms-flex-pack: flex-end;
   justify-content: flex-end;
-  -ms-flex-direction: row;
   flex-direction: row;
   min-height: 50vh;
-  // background-color: cyan;
 }
+
+#designCanvasContainer {
+	min-height: 600px;
+	width: 100vw;
+	position: absolute;
+  z-index: 1;
+  clip-path: polygon(0% 2%, 0% 76%, 100% 100%, 100% 0%, 15% 0%);
+  // background-color: $mainDark;
+  background-color: #354557;
+}
+
 canvas {
   max-width: 100%;
   max-height: 80vw;
@@ -316,7 +328,7 @@ canvas {
 	h2, h1 {
 		font-weight: 300;
 	}
-	h2 b {
+	h2:nth-of-type(3) {
 		font-family: "Nothing You Could Do";
 	}
 }
@@ -365,8 +377,10 @@ canvas {
 }
 
 #designSection {
-  height: 300px;
+  height: 80vw;
 	position: relative;
+	padding: 0;
+  padding-bottom: 10%;
 	svg {
 		position: absolute;
 		left: 0;
@@ -378,9 +392,9 @@ canvas {
 	p {
 		color: white;
 		line-height: 1.4;
-		padding: 5% 10%;
+		padding: 7% 10%;
     position: relative;
-    z-index: 1;
+    z-index: 3;
 	}
 	h3 {
 		color: $lightGrey;
@@ -412,6 +426,7 @@ canvas {
 }
 
 #humanSection {
+	background-color: white;
 	p {
     margin-left: 15%;
     margin-top: 5%;
