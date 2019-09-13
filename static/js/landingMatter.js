@@ -291,8 +291,8 @@ function addAllSVGsToCanvases() {
       panelName: 'design',
       properties: {
         render: {
-          fillStyle: 'black',
-          strokeStyle: 'black',
+          fillStyle: '#4F5357',
+          strokeStyle: '#4F5357',
           lineWidth: 1,
         },
         collisionFilter: {
