@@ -235,10 +235,10 @@ button {
   -webkit-box-pack: end;
   justify-content: flex-end;
   flex-direction: row;
-  min-height: 50vh; }
+  margin-top: 50px; }
 
 #designCanvasContainer {
-  min-height: 600px;
+  min-height: 450px;
   width: 100vw;
   position: absolute;
   z-index: 1;
@@ -247,8 +247,7 @@ button {
 
 canvas {
   max-width: 100%;
-  max-height: 80vw;
-  min-height: 400px; }
+  max-height: 80vw; }
 
 #landingFigure {
   position: relative;
@@ -310,9 +309,13 @@ canvas {
   #designSection p {
     color: white;
     line-height: 1.4;
-    padding: 7% 10%;
     position: relative;
-    z-index: 3; }
+    float: right;
+    margin-right: 10%;
+    z-index: 2;
+    width: 40%;
+    box-sizing: border-box;
+    padding: 0; }
   #designSection h3 {
     color: #C3CCD6;
     -webkit-text-fill-color: #C3CCD6; }
@@ -335,6 +338,15 @@ canvas {
     #developSection svg polygon {
       fill: white; }
 
+#developSection:before {
+  background-color: black;
+  width: 100vw;
+  content: '';
+  position: absolute;
+  z-index: -10;
+  height: 400px;
+  top: -50%; }
+
 #humanSection {
   background-color: white; }
   #humanSection p {
@@ -356,15 +368,17 @@ canvas {
   font-family: 'Red Hat Text'; }
 
 #designHeader {
-  -webkit-transform: rotate(90deg);
-  transform: rotate(90deg);
   z-index: 2;
-  right: -5%;
-  top: 30%;
   font-weight: 300;
   font-family: Muli;
   color: #C3CCD6;
-  -webkit-text-fill-color: #C3CCD6; }
+  -webkit-text-fill-color: #C3CCD6;
+  position: relative;
+  margin: 20px;
+  margin-top: 40px;
+  margin-right: 20%;
+  font-size: 48pt;
+  float: right; }
 
 #developHeader {
   -webkit-transform: rotate(-90deg);

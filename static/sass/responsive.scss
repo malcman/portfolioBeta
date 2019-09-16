@@ -5,6 +5,9 @@ $mainLight: #B3BBC5;
 	.content {
 		// margin-top: 90px;
 	}
+	#landingCaption {
+		width: 85%;
+	}
 	#searchForm {
 		#query {
 			font-size: 110%;
@@ -26,12 +29,6 @@ $mainLight: #B3BBC5;
 	}
 	.content p.projDescription {
 		margin-bottom: 15%;
-	}
-}
-
-@media only screen and (max-width: 400px) {
-	canvas {
-		margin-top: 15%;
 	}
 }
 

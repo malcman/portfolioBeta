@@ -285,8 +285,8 @@ function addAllSVGsToCanvases() {
     // design windmill
     {
       filename: 'windmillSingle.svg',
-      x: canvasSize.width * 0.25,
-      y: canvasSize.height * 0.75,
+      x: canvasSize.width * 0.20,
+      y: canvasSize.height * 0.55,
       spin: degreesToRadians(-1),
       panelName: 'design',
       properties: {
@@ -303,8 +303,8 @@ function addAllSVGsToCanvases() {
 
     {
       filename: 'windmillSingle.svg',
-      x: canvasSize.width * 0.25,
-      y: canvasSize.height * 0.75,
+      x: canvasSize.width * 0.20,
+      y: canvasSize.height * 0.55,
       spin: degreesToRadians(1),
       panelName: 'design',
       properties: {
@@ -338,7 +338,7 @@ function teleportBodies(panel, composite, startPoint, axis) {
   // { x: xCoord, y: yCoord }
 
   // error checking
-  if (!startPoint.x || !startPoint.y) console.log('Warning, no startPoint defined in teleportBodies()'); // eslint-disable-line
+  if (startPoint.x === null || startPoint.y === null) console.log('Warning, no startPoint defined in teleportBodies()'); // eslint-disable-line
 
   for (let i = 0; i < composite.bodies.length; ++i) {
     const body = composite.bodies[i];
@@ -364,19 +364,19 @@ function teleportBodies(panel, composite, startPoint, axis) {
 function addListeners(pyraComposite) {
   const breakButton = document.querySelector('#breakThings');
   breakButton.addEventListener('click', () => {
-    toggleGravity(allCanvases['landing']);
+    toggleGravity(allCanvases.landing);
   });
 
-  Events.on(allCanvases['landing'].engine, 'afterUpdate', () => {
-    const pyraBodiesStartPoint = { x: 650, y: 50 };
-    teleportBodies(allCanvases['landing'], pyraComposite, pyraBodiesStartPoint, 'x');
+  Events.on(allCanvases.landing.engine, 'afterUpdate', () => {
+    const pyraBodiesStartPoint = { x: 650, y: 0 };
+    teleportBodies(allCanvases.landing, pyraComposite, pyraBodiesStartPoint, 'x');
   });
 }
 
 // begin main
-createWalls(allCanvases['landing'], canvasSize.width, canvasSize.height);
+createWalls(allCanvases.landing, canvasSize.width, canvasSize.height);
 addAllSVGsToCanvases();
-const pyra = createRotatedTrianglePyramid(allCanvases['landing'], 450, 50, 20, 20, 0, 0);
+const pyra = createRotatedTrianglePyramid(allCanvases.landing, 450, 50, 20, 20, 0, 0);
 addListeners(pyra);
 
 // add mouse control
