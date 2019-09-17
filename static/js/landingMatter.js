@@ -8,9 +8,10 @@ const Composites = Matter.Composites;
 const Constraint = Matter.Constraint;
 const Engine = Matter.Engine;
 const Events = Matter.Events;
-const Mouse = Matter.Mouse;
-const MouseConstraint = Matter.MouseConstraint;
+// const Mouse = Matter.Mouse;
+// const MouseConstraint = Matter.MouseConstraint;
 const Render = Matter.Render;
+const Runner = Matter.Runner;
 const SVG = Matter.Svg;
 const World = Matter.World;
 
@@ -25,12 +26,14 @@ const canvasSize = {
 const allPanelData = {
   landing: {
     engine: Engine.create(),
+    runner: Runner.create(),
     // To be reset in following loop...
     render: null,
     world: null,
   },
   design: {
     engine: Engine.create(),
+    runner: Runner.create(),
     render: null,
     world: null,
   },
@@ -74,8 +77,7 @@ function populatePanelData(panelData) {
     const newRender = Render.create(renderProps);
     allCanvases[key].render = newRender;
 
-    // TODO: remove and add to listener; only run engine while in view
-    Engine.run(allCanvases[key].engine);
+    Runner.run(allCanvases[key].runner, allCanvases[key].engine);
     Render.run(allCanvases[key].render);
 
     if (key === 'landing') {
@@ -93,13 +95,13 @@ function createWalls(panel, canvasWidth, canvasHeight) {
 
   // x, y, width, height, options
   // x, y is center of body
-  const leftWall = Bodies.rectangle(
-    -widthOffset,
-    canvasHeight / 2,
-    wallWidth,
-    canvasHeight,
-    { isStatic: true },
-  );
+  // const leftWall = Bodies.rectangle(
+  //   -widthOffset,
+  //   canvasHeight / 2,
+  //   wallWidth,
+  //   canvasHeight,
+  //   { isStatic: true },
+  // );
 
   const rightWall = Bodies.rectangle(
     canvasWidth + widthOffset,
@@ -130,9 +132,9 @@ function createWalls(panel, canvasWidth, canvasHeight) {
 
 function toggleGravity(panel, minGravity = 0, maxGravity = 1) {
   if (panel.world.gravity.y !== maxGravity) {
-    panel.world.gravity.y = maxGravity;
+    panel.world.gravity.y = maxGravity; //eslint-disable-line
   } else {
-    panel.world.gravity.y = minGravity;
+    panel.world.gravity.y = minGravity; //eslint-disable-line
   }
 }
 
@@ -151,7 +153,7 @@ function getTriangle(x, y, radius, properties) {
   return triangle;
 }
 
-function getIsoscelesTriangle(x, y, base, height, properties, fromBase = true) {
+function getIsoscelesTriangle(x, y, base, height, properties, fromBase = true) { // eslint-disable-line
   // create an upright isosceles triangle
   vertices = [
     // left point
@@ -361,6 +363,40 @@ function teleportBodies(panel, composite, startPoint, axis) {
   }
 }
 
+function isInViewport(elem) { // eslint-disable-line
+  const bounding = elem.getBoundingClientRect();
+  return (
+    bounding.top >= 0 &&
+    bounding.left >= 0 &&
+    bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
+}
+
+function isHalfInViewport(elem) {
+  const bounding = elem.getBoundingClientRect();
+  const elemHeight = elem.clientHeight;
+  const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+  const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+  return (
+    bounding.top >= -(elemHeight / 2) &&
+    bounding.left >= 0 &&
+    bounding.bottom <= windowHeight + (elemHeight / 2) &&
+    bounding.right <= windowWidth
+  );
+}
+
+function watchStopAndLoadPanels() {
+  Object.keys(allCanvases).forEach((panel) => {
+    // if (!isInViewport(allCanvases[panel].render.canvas)) {
+    if (!isHalfInViewport(allCanvases[panel].render.canvas)) {
+      allCanvases[panel].runner.enabled = false;
+    } else {
+      allCanvases[panel].runner.enabled = true;
+    }
+  });
+}
+
 function addListeners(pyraComposite) {
   const breakButton = document.querySelector('#breakThings');
   breakButton.addEventListener('click', () => {
@@ -370,6 +406,14 @@ function addListeners(pyraComposite) {
   Events.on(allCanvases.landing.engine, 'afterUpdate', () => {
     const pyraBodiesStartPoint = { x: 650, y: 0 };
     teleportBodies(allCanvases.landing, pyraComposite, pyraBodiesStartPoint, 'x');
+  });
+
+  // document.addEventListener('load', () => {
+  //   watchStopAndLoadPanels();
+  // });
+
+  window.addEventListener('scroll', () => {
+    watchStopAndLoadPanels();
   });
 }
 
