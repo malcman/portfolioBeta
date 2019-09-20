@@ -20,12 +20,6 @@ function getPage() {
   return page;
 }
 
-// Render Menu and Navigator
-ReactDOM.render(
-  <App page={getPage()} />,
-  document.getElementById('menuEntry'),
-);
-
 
 // Render Projects Page
 const projectsEntry = document.getElementById('projectsEntry');
@@ -54,6 +48,60 @@ function copyToClipboard(text) {
   }
   navigator.clipboard.writeText(text);
 }
+
+function expand(expandableEl, expandingEl) {
+  // already expanded, so close it
+  if (expandableEl.classList.contains('expanded')) {
+    expandableEl.classList.remove('expanded');
+    // replace with desire default margin
+    expandableEl.style.marginBottom = '0'; //eslint-disable-line
+
+  // close, so expand it
+  } else {
+    expandableEl.classList.add('expanded');
+    // determine appropriate distance to push following elements down
+    const marginSize = expandingEl.clientHeight;
+    const marginPxStr = `${marginSize}px`;
+    // apply
+    expandableEl.style.marginBottom = marginPxStr; //eslint-disable-line
+    setTimeout(() => {
+      window.scrollTo(0, expandableEl.offsetTop, { behavior: 'smooth' });
+    }, 400);
+  }
+}
+
+function enableExpansions() {
+  // get all expandable elements
+  const expandables = document.querySelectorAll('.expandable');
+  expandables.forEach((expandable) => {
+    // get associated child elements that do the actual expanding
+    const expanding = expandable.querySelector('.expanding');
+    // add click listeners to all
+    expandable.addEventListener('click', () => {
+      expand(expandable, expanding);
+    });
+  });
+}
+
+function setHeights() {
+  // this function is necessary bc transform needs a height set first in order to work effectively
+  const expandables = document.querySelectorAll('.expandable');
+  expandables.forEach((expandable) => {
+    const expanding = expandable.querySelector('.expanding');
+    const content = expanding.querySelector('.expandContent');
+    expanding.style.height = `${content.clientHeight}px`;
+  });
+}
+
+// enable all non-react expandable sections
+setHeights();
+enableExpansions();
+
+// Render Menu and Navigator
+ReactDOM.render(
+  <App page={getPage()} />,
+  document.getElementById('menuEntry'),
+);
 
 // Copy contact info
 const emailBox = document.getElementById('email-box');

@@ -1,6 +1,7 @@
 @media only screen and (max-width: 400px) {
   #landingCaption {
-    width: 85%; }
+    width: 85%;
+    margin-left: 5%; }
 
   #searchForm #query {
     font-size: 110%;

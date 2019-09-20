@@ -8,8 +8,8 @@ const Composites = Matter.Composites;
 const Constraint = Matter.Constraint;
 const Engine = Matter.Engine;
 const Events = Matter.Events;
-// const Mouse = Matter.Mouse;
-// const MouseConstraint = Matter.MouseConstraint;
+const Mouse = Matter.Mouse;
+const MouseConstraint = Matter.MouseConstraint;
 const Render = Matter.Render;
 const Runner = Matter.Runner;
 const SVG = Matter.Svg;
@@ -37,6 +37,12 @@ const allPanelData = {
     render: null,
     world: null,
   },
+  develop: {
+    engine: Engine.create(),
+    runner: Runner.create(),
+    render: null,
+    world: null,
+  },
 };
 
 const renderProps = {
@@ -58,6 +64,7 @@ const renderProps = {
 const canvasColors = {
   landing: 'white',
   design: DARK_BLUE,
+  develop: 'black',
 };
 
 function populatePanelData(panelData) {
@@ -74,7 +81,17 @@ function populatePanelData(panelData) {
     // get appropriate color
     renderProps.options.background = canvasColors[key];
 
-    const newRender = Render.create(renderProps);
+    let newRender;
+    if (key === 'develop') {
+      // make the develop canvas taller than normal, then reset
+      renderProps.options.height = canvasSize.height * 2;
+      // renderProps.options.width = canvasSize.width * 2;
+      newRender = Render.create(renderProps);
+      renderProps.options.width = canvasSize.width;
+      renderProps.options.height = canvasSize.height;
+    } else {
+      newRender = Render.create(renderProps);
+    }
     allCanvases[key].render = newRender;
 
     Runner.run(allCanvases[key].runner, allCanvases[key].engine);
@@ -89,52 +106,67 @@ function populatePanelData(panelData) {
 
 const allCanvases = populatePanelData(allPanelData);
 
-function createWalls(panel, canvasWidth, canvasHeight) {
+function createWalls(panel, canvasWidth, canvasHeight, walls = 'LRGC') {
   const wallWidth = 100;
   const widthOffset = wallWidth / 2;
+  const createdWalls = [];
 
   // x, y, width, height, options
   // x, y is center of body
-  // const leftWall = Bodies.rectangle(
-  //   -widthOffset,
-  //   canvasHeight / 2,
-  //   wallWidth,
-  //   canvasHeight,
-  //   { isStatic: true },
-  // );
+  if (walls.indexOf('L') !== -1) {
+    const leftWall = Bodies.rectangle(
+      -widthOffset,
+      canvasHeight / 2,
+      wallWidth,
+      canvasHeight,
+      { isStatic: true },
+    );
+    createdWalls.push(leftWall);
+  }
 
-  const rightWall = Bodies.rectangle(
-    canvasWidth + widthOffset,
-    canvasHeight / 2,
-    wallWidth,
-    canvasHeight,
-    { isStatic: true },
-  );
+  if (walls.indexOf('R') !== -1) {
+    const rightWall = Bodies.rectangle(
+      canvasWidth + widthOffset,
+      canvasHeight / 2,
+      wallWidth,
+      canvasHeight,
+      { isStatic: true },
+    );
+    createdWalls.push(rightWall);
+  }
 
-  const ground = Bodies.rectangle(
-    canvasWidth / 2,
-    canvasHeight + widthOffset,
-    canvasWidth,
-    wallWidth,
-    { isStatic: true },
-  );
+  if (walls.indexOf('G') !== -1) {
+    const ground = Bodies.rectangle(
+      canvasWidth / 2,
+      canvasHeight + widthOffset,
+      canvasWidth,
+      wallWidth,
+      { isStatic: true },
+    );
+    createdWalls.push(ground);
+  }
 
-  const ceiling = Bodies.rectangle(
-    canvasWidth / 2,
-    -widthOffset,
-    canvasWidth,
-    wallWidth,
-    { isStatic: true },
-  );
+  if (walls.indexOf('C') !== -1) {
+    const ceiling = Bodies.rectangle(
+      canvasWidth / 2,
+      -widthOffset,
+      canvasWidth,
+      wallWidth,
+      { isStatic: true },
+    );
+    createdWalls.push(ceiling);
+  }
 
-  World.add(panel.world, [rightWall, ceiling, ground]);
+  World.add(panel.world, createdWalls);
 }
 
-function toggleGravity(panel, minGravity = 0, maxGravity = 1) {
+function toggleGravity(panel, button, minGravity = 0, maxGravity = 1) {
   if (panel.world.gravity.y !== maxGravity) {
     panel.world.gravity.y = maxGravity; //eslint-disable-line
+    button.children[0].innerHTML = 'Embrace Inertia'; //eslint-disable-line
   } else {
     panel.world.gravity.y = minGravity; //eslint-disable-line
+    button.children[0].innerHTML = 'Drop the Game'; //eslint-disable-line
   }
 }
 
@@ -207,6 +239,76 @@ function createRotatedTrianglePyramid(panel, xx, yy, columns, rows, columnGap, r
   World.add(panel.world, [pyra]);
 
   return pyra;
+}
+
+function createBouncingBall(x, y, radius) {
+  const bouncingProps = {
+    render: {
+      fillStyle: 'white',
+      strokeStyle: 'white',
+      lineWidth: 1,
+    },
+    collisionFilter: {
+      category: particleCategory,
+    },
+    frictionAir: 0.05,
+    frictionStatic: 0,
+    friction: 0,
+    // density: 0.01,
+    restitution: 0,
+  };
+  const bouncingCirc = Bodies.circle(x, y, radius, bouncingProps);
+  World.add(allCanvases.design.world, bouncingCirc);
+
+  return bouncingCirc;
+}
+
+function createInfiniteWrap(panel, numBodies) {
+  Matter.use(
+    'matter-wrap', // PLUGIN_NAME
+  );
+  // make sure gravity isn't gonna muck things up
+  panel.world.gravity.scale = 0; // eslint-disable-line
+  const numSides = 3; // we makin trianles here boi
+  for (let i = 0; i < numBodies; ++i) {
+    // edit these props to change possibilities for floating bois
+    const bodyProps = {
+      friction: 0,
+      frictionAir: 0,
+
+      render: {
+        fillStyle: Common.choose(['#C3CCD6', '#4F5357', '#182E45']),
+      },
+
+      // set the body's wrapping bounds
+      plugin: {
+        wrap: {
+          min: {
+            x: 0,
+            y: 0,
+          },
+          max: {
+            x: panel.render.canvas.width,
+            y: panel.render.canvas.height,
+          },
+        },
+      },
+    };
+    const body = Bodies.polygon(
+      Common.random(0, panel.render.canvas.width),
+      Common.random(0, panel.render.canvas.height),
+      numSides,
+      // create variable sizes
+      Common.random() > 0.9 ? Common.random(20, 30) : Common.random(10, 15),
+      bodyProps);
+
+    Body.setVelocity(body, {
+      x: Common.random(-3, 3) + 3,
+      y: Common.random(-3, 3) + 3,
+    });
+
+    World.add(panel.world, body);
+  }
 }
 
 function renderAndAddSVG(panel, svgVertexSets, x, y, properties, spin) {
@@ -292,6 +394,8 @@ function addAllSVGsToCanvases() {
       spin: degreesToRadians(-1),
       panelName: 'design',
       properties: {
+        density: 1,
+        slop: 0,
         render: {
           fillStyle: '#4F5357',
           strokeStyle: '#4F5357',
@@ -310,6 +414,8 @@ function addAllSVGsToCanvases() {
       spin: degreesToRadians(1),
       panelName: 'design',
       properties: {
+        density: 1,
+        slop: 0,
         render: {
           fillStyle: LIGHT_BLUE,
           strokeStyle: LIGHT_BLUE,
@@ -320,6 +426,22 @@ function addAllSVGsToCanvases() {
         },
       },
     },
+
+    // single M final panel
+    // {
+    //   filename: 'singleM.svg',
+    //   x: canvasSize.width / 2,
+    //   y: canvasSize.height / 2,
+    //   spin: null,
+    //   panelName: 'me',
+    //   properties: {
+    //     render: {
+    //       fillStyle: '#434B63',
+    //       strokeStyle: '#434B63',
+    //       lineWidth: 1,
+    //     },
+    //   },
+    // },
 
   ];
 
@@ -363,7 +485,35 @@ function teleportBodies(panel, composite, startPoint, axis) {
   }
 }
 
-function isInViewport(elem) { // eslint-disable-line
+function teleportSingleBody(panel, body, startPoint, axis) {
+  // this function should be put in an Engine event listener to work properly
+  // watches indicated body
+  // if it passes the bounds of the indicated axis,
+  // teleports body to startPoint
+  // startPoint should be of the following form:
+  // { x: xCoord, y: yCoord }
+
+  // error checking
+  if (startPoint.x === null || startPoint.y === null) console.log('Warning, no startPoint defined in teleportBodies()'); // eslint-disable-line
+
+  // if the body goes beyond the axis' bounds
+  if (body.position[axis] < panel.render.bounds.min[axis]
+    || body.position[axis] > panel.render.bounds.max[axis]) {
+    // "teleport" this body to startPoint
+    Body.setPosition(body, {
+      x: startPoint.x,
+      y: startPoint.y,
+    });
+
+    // ensure previous velocity does not carry over
+    Body.setVelocity(body, {
+      x: 0,
+      y: 0,
+    });
+  }
+}
+
+function isFullyInViewport(elem) { // eslint-disable-line
   const bounding = elem.getBoundingClientRect();
   return (
     bounding.top >= 0 &&
@@ -377,19 +527,22 @@ function isHalfInViewport(elem) {
   const bounding = elem.getBoundingClientRect();
   const elemHeight = elem.clientHeight;
   const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
-  const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+  // const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
   return (
     bounding.top >= -(elemHeight / 2) &&
-    bounding.left >= 0 &&
-    bounding.bottom <= windowHeight + (elemHeight / 2) &&
-    bounding.right <= windowWidth
+    bounding.bottom <= windowHeight + (elemHeight / 2)
   );
 }
 
 function watchStopAndLoadPanels() {
+  // to be used in a listener function
+  // watches all panels and enables the associated runner if it
+  // is at least halfway in the viewport.
   Object.keys(allCanvases).forEach((panel) => {
-    // if (!isInViewport(allCanvases[panel].render.canvas)) {
-    if (!isHalfInViewport(allCanvases[panel].render.canvas)) {
+    let boundingElem = allCanvases[panel].render.canvas;
+    if (panel === 'develop') boundingElem = allCanvases[panel].render.canvas.parentNode;
+
+    if (!isHalfInViewport(boundingElem)) {
       allCanvases[panel].runner.enabled = false;
     } else {
       allCanvases[panel].runner.enabled = true;
@@ -397,48 +550,74 @@ function watchStopAndLoadPanels() {
   });
 }
 
-function addListeners(pyraComposite) {
-  const breakButton = document.querySelector('#breakThings');
-  breakButton.addEventListener('click', () => {
-    toggleGravity(allCanvases.landing);
+function addMouseControl(panel) {
+  // add mouse control to the indicated panel
+  // first account forpixelRatio bug. hopefully this will be fixed in the future...
+  Render.setPixelRatio(panel.render, 1);
+  const mouse = Mouse.create(panel.render.canvas);
+  const mouseConstraint = MouseConstraint.create(panel.engine, {
+    mouse,
+    constraint: {
+      stiffness: 0.5,
+      render: {
+        visible: false,
+      },
+    },
   });
 
+  World.add(panel.world, mouseConstraint);
+
+  // keep the mouse in sync with rendering
+  panel.render.mouse = mouse; //eslint-disable-line
+}
+
+function addListeners(pyraComposite, bouncingBall, ballStartPoint) {
+  // params:
+  // pyraComposite: composite of little triangles in first landing panel
+  // bouncingBall: white ball body in the design panel
+  // ballStartPoint: that white ball body's starting point
+
+  // all user to cause gravity changes in the first landing figure
+  const breakButton = document.querySelector('#breakThings');
+  breakButton.addEventListener('click', () => {
+    toggleGravity(allCanvases.landing, breakButton);
+  });
+
+  // teleport pyramid triangles back to top if they go out of bounds
   Events.on(allCanvases.landing.engine, 'afterUpdate', () => {
     const pyraBodiesStartPoint = { x: 650, y: 0 };
     teleportBodies(allCanvases.landing, pyraComposite, pyraBodiesStartPoint, 'x');
   });
 
-  // document.addEventListener('load', () => {
-  //   watchStopAndLoadPanels();
-  // });
+  // keep the bouncing white ball in view (for the most part)
+  Events.on(allCanvases.design.engine, 'afterUpdate', () => {
+    teleportSingleBody(allCanvases.design, bouncingBall, ballStartPoint, 'x');
+  });
 
+  // only run runners for each panel when in view
+  document.body.addEventListener('load', () => {
+    watchStopAndLoadPanels();
+  });
   window.addEventListener('scroll', () => {
     watchStopAndLoadPanels();
   });
 }
 
 // begin main
-createWalls(allCanvases.landing, canvasSize.width, canvasSize.height);
+createWalls(allCanvases.landing, canvasSize.width, canvasSize.height, 'RGC');
 addAllSVGsToCanvases();
+
+// add large pyramid composite to landing figure
 const pyra = createRotatedTrianglePyramid(allCanvases.landing, 450, 50, 20, 20, 0, 0);
-addListeners(pyra);
 
-// add mouse control
-// const mouse = Mouse.create(render.canvas);
-// const mouseConstraint = MouseConstraint.create(engine, {
-//   mouse,
-//   constraint: {
-//     stiffness: 0.5,
-//     render: {
-//       visible: false,
-//     },
-//   },
-// });
+// add bouncing circle to design panel
+bouncingStart = { x: canvasSize.width * 0.2, y: 0 };
+const bouncingCirc = createBouncingBall(bouncingStart.x, bouncingStart.y, 25);
 
-// World.add(world, mouseConstraint);
-
-// // keep the mouse in sync with rendering
-// render.mouse = mouse;
+// create infinte wrap on develop panel
+const numBodies = 150;
+createInfiniteWrap(allCanvases.develop, numBodies);
+addListeners(pyra, bouncingCirc, bouncingStart);
 
 // fit the render viewport to the scene
 // Render.lookAt(render, {

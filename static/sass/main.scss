@@ -301,6 +301,8 @@ button {
   justify-content: flex-end;
   flex-direction: row;
   margin-top: 50px;
+  max-height: 80vw;
+  width: 100vw;
 }
 
 #designCanvasContainer {
@@ -308,9 +310,18 @@ button {
 	width: 100vw;
 	position: absolute;
   z-index: 1;
+  -webkit-clip-path: polygon(0% 2%, 0% 76%, 100% 100%, 100% 0%, 15% 0%);
   clip-path: polygon(0% 2%, 0% 76%, 100% 100%, 100% 0%, 15% 0%);
   // background-color: $mainDark;
   background-color: #354557;
+}
+
+#developCanvasContainer {
+	position: absolute;
+	// clip-path: polygon(0% 0%, 0% 80%, 100% 65%, 100% 0%);
+  overflow: hidden;
+  max-height: 800px;
+  top: -10%;
 }
 
 canvas {
@@ -329,6 +340,8 @@ canvas {
 	}
 	h2:nth-of-type(3) {
 		font-family: "Nothing You Could Do";
+	}
+	h1 {
 	}
 }
 #landingCaption {
@@ -355,31 +368,11 @@ canvas {
 	}
 }
 
-.triangle-down-right {
-    width: 10%;
-    height: 0;
-    padding-top: 10%;
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-}
-.triangle-down-right:after {
-    content: "";
-    display: block;
-    width: 0;
-    height: 0;
-    margin-top:-500px;
-
-    border-top: 500px solid transparent;
-    border-right: 700px solid $darkBlue;
-}
-
 #designSection {
   height: 80vw;
 	position: relative;
 	padding: 0;
-  padding-bottom: 10%;
+  // padding-bottom: 10%;
 	svg {
 		position: absolute;
 		left: 0;
@@ -393,11 +386,15 @@ canvas {
     line-height: 1.4;
     position: relative;
     float: right;
+    clear: right;
     margin-right: 10%;
     z-index: 2;
-    width: 40%;
+    width: 45%;
     box-sizing: border-box;
     padding: 0;
+    &:nth-of-type(2) {
+    	margin-top: 3%;
+    }
 	}
 	h3 {
 		color: $lightGrey;
@@ -411,20 +408,26 @@ canvas {
 #developSection {
 	background-color: black;
 	height: 600px;
-	z-index: -1;
+	top: -20vw;
+  overflow: hidden;
+  width: 100vw;
 	p {
   	color: #EFEFEF;
   	line-height: 1.4;
   	margin-left: 20%;
     position: relative;
-    top: 17%;
+    top: 25%;
   }
   svg {
   	position: absolute;
-  	bottom: 0;
+  	bottom: -1px;
   	polygon {
   		fill: white;
   	}
+  }
+  canvas {
+  	max-width: 100%;
+    max-height: 160vw;
   }
 }
 #developSection:before {
@@ -434,14 +437,150 @@ canvas {
   position: absolute;
   z-index: -10;
   height: 400px;
-  top: -50%;
+  top: -40%;
 }
 
-#humanSection {
+#leadershipSection {
 	background-color: white;
 	p {
     margin-left: 15%;
     margin-top: 5%;
+	}
+}
+
+#egoSection {
+	background-color: #FFF;
+	width: 100%;
+}
+
+#egoNote {
+	display: block;
+	transition: transform 0.4s, height 0.4s;
+	padding-bottom: 5%;
+	p {
+		transition: transform 0.4s, opacity 0.3s linear 0.5s;
+		width: 75%;
+		margin-left: 10%;
+		text-indent: 0;
+	}
+}
+
+
+#egoHeader {
+	text-decoration: none;
+  font-family: 'Montserrat', 'Lato', sans-serif;
+  font-size: 18pt;
+  font-weight: 300;
+  padding: 5%;
+  &:after {
+  	content: '+';
+  	float: right;
+    padding-right: 10px;
+    transition: transform 0.5s;
+    transform: translateY(-5px);
+    font-size: 22pt;
+  }
+  &:hover {
+  	cursor: pointer;
+  }
+}
+
+.expandable {
+  position: relative;
+  box-sizing: border-box;
+  // necessary for smooth 'push down' effect
+  transition: margin 0.5s;
+  margin-bottom: 0;
+}
+.expanding {
+  display: block;
+  width: 100%;
+  // abs position is crucial
+  position: absolute;
+  left: 0;
+  transition: transform 0.5s;
+  // set it to be hidden by default
+  transform: translateY(-50%) scaleY(0);
+}
+.expandContent {
+  transition: transform 0.5s;
+  // try to reduce text warping effects
+  transform: translateY(50%) scaleY(2);
+	p {
+		opacity: 0;
+		transition: opacity 0.3s linear 0.5s;
+	}
+}
+
+.expanded {
+  #egoHeader {
+    &:after {
+      // turns '+' into 'x'
+      transform: rotate(45deg);
+    }
+  }
+  .expanding {
+    // make it full height; effectively reset properties
+    transform: translateY(0) scaleY(1);
+    .expandContent {
+      transform: translateY(0) scaleY(1);
+      p {
+      	opacity: 1;
+      }
+    }
+  }
+}
+
+#finalLandingSection {
+	width: 100%;
+	h1, h2 {
+		padding: 5% 10%;
+		font-weight: 400;
+		font-size: 36pt;
+		color: $mainDark;
+		margin-top: 10%;
+	}
+	$headerTriClip: polygon(1% 32%, 20% 93%, 94% 15%);
+	h2:before {
+    content: '';
+    position: absolute;
+    left: 0px;
+    bottom: -10px;
+    width: 100%;
+    max-width: 550px;
+    height: 35%;
+    z-index: -1;
+    // background-color: $mainLight;
+    background-color: rgba(185, 197, 202, 0.6);
+    -webkit-clip-path: $headerTriClip;
+    clip-path: $headerTriClip;
+	}
+	a {
+		padding: 5% 10%;
+		color: $mainDark;
+		font-size: 16pt;
+    float: right;
+		&:after {
+			content: '';
+			position: absolute;
+			bottom: -21px;
+			height: 12px;
+			width: 12px;
+			border: 2px solid $mainDark;
+			transform: rotate(45deg);
+			transition: transform 0.3s;
+			border-left: 0;
+			border-bottom: 0;
+		}
+	}
+	a:hover::after {
+		transform: rotate(45deg) translate(5px, -5px);
+	}
+	img {
+		width: 100%;
+		display: block;
+		max-width: 450px;
+		margin: auto;
 	}
 }
 
@@ -485,10 +624,10 @@ canvas {
   font-family: Muli;
   color: #C3CCD6;
   -webkit-text-fill-color: #C3CCD6;
-  top: 13%;
+  top: 20%;
   left: -200px;
 }
-#humanHeader {
+#leadershipHeader {
 	position: static;
 	margin-left: 5%;
 }
@@ -680,6 +819,10 @@ $greyedOutFilters: #d5d5d5;
 	position: absolute;
 	transition: transform .4s ease-out;
 	display: block;
+}
+
+.shrinkToHide {
+	transform: translate(0, -50%) scale(1, 0) skew(0deg);
 }
 
 .shrinkToHide#FilterContainer, .shrinkToHide#SortContainer {

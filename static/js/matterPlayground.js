@@ -11,35 +11,27 @@ const Events = Matter.Events;
 const Mouse = Matter.Mouse;
 const MouseConstraint = Matter.MouseConstraint;
 const Render = Matter.Render;
+const Runner = Matter.Runner;
 const SVG = Matter.Svg;
 const World = Matter.World;
 
-
-const allPanelData = {
-  landing: {
-    engine: Engine.create(),
-    // To be reset in following loop...
-    render: null,
-    world: null,
-  },
-  design: {
-    engine: Engine.create(),
-    render: null,
-    world: null,
-  },
-};
-
-// create an engine
-// const engine = Engine.create();
-
-// get parent element to place canvas in
-// const canvasContainer = document.querySelector('#canvasContainer');
+const DARK_BLUE = '#354557';
+const LIGHT_BLUE = '#B3BBC5';
+const particleCategory = Body.nextCategory();
 const canvasSize = {
   width: 800,
   height: 600,
 };
-const DARK_BLUE = '#354557';
-const particleCategory = Body.nextCategory();
+
+const allPanelData = {
+  landing: {
+    engine: Engine.create(),
+    runner: Runner.create(),
+    // To be reset in following loop...
+    render: null,
+    world: null,
+  },
+};
 
 const renderProps = {
   // To be reset in following loop...
@@ -52,8 +44,13 @@ const renderProps = {
     // showAxes: true,
     hasBounds: true,
     background: '#dedede',
-    // pixelRatio: 'auto',
+    pixelRatio: 'auto',
   },
+};
+
+// enter colors here for canvas backgrounds
+const canvasColors = {
+  landing: 'black',
 };
 
 function populatePanelData(panelData) {
@@ -64,91 +61,88 @@ function populatePanelData(panelData) {
     // add this engine and contianer for this renderer
     allCanvases[key].world = allCanvases[key].engine.world;
     renderProps.engine = allCanvases[key].engine;
+
+    // get parent element to place canvas in
     renderProps.element = document.querySelector(`#${key}CanvasContainer`);
+    // get appropriate color
+    renderProps.options.background = canvasColors[key];
 
     const newRender = Render.create(renderProps);
     allCanvases[key].render = newRender;
 
-    // TODO: remove and add to listener; only run engine while in view
-    Engine.run(allCanvases[key].engine);
+    Runner.run(allCanvases[key].runner, allCanvases[key].engine);
     Render.run(allCanvases[key].render);
+
+    if (key === 'landing' || key === 'me') {
+      allCanvases[key].world.gravity.y = 0;
+    }
   });
   return allCanvases;
 }
 
 const allCanvases = populatePanelData(allPanelData);
 
-// create a renderer
-// const render = Render.create({
-//   element: canvasContainer,
-//   engine,
-//   options: {
-//     width: canvasSize.width,
-//     height: canvasSize.height,
-//     wireframes: false,
-//     // showAxes: true,
-//     hasBounds: true,
-//     background: '#dedede',
-//     // pixelRatio: 'auto',
-//   },
-// });
-
-// const world = engine.world;
-// // world.gravity.y = 0;
-
-// // run the engine
-// Engine.run(engine);
-
-// // run the renderer
-// Render.run(render);
-
-function createWalls(canvasWidth, canvasHeight) {
+function createWalls(panel, canvasWidth, canvasHeight, walls = 'LRGC') {
   const wallWidth = 100;
   const widthOffset = wallWidth / 2;
+  const createdWalls = [];
 
   // x, y, width, height, options
   // x, y is center of body
-  const leftWall = Bodies.rectangle(
-    -widthOffset,
-    canvasHeight / 2,
-    wallWidth,
-    canvasHeight,
-    { isStatic: true },
-  );
+  if (walls.indexOf('L') !== -1) {
+    const leftWall = Bodies.rectangle(
+      -widthOffset,
+      canvasHeight / 2,
+      wallWidth,
+      canvasHeight,
+      { isStatic: true },
+    );
+    createdWalls.push(leftWall);
+  }
 
-  const rightWall = Bodies.rectangle(
-    canvasWidth + widthOffset,
-    canvasHeight / 2,
-    wallWidth,
-    canvasHeight,
-    { isStatic: true },
-  );
+  if (walls.indexOf('R') !== -1) {
+    const rightWall = Bodies.rectangle(
+      canvasWidth + widthOffset,
+      canvasHeight / 2,
+      wallWidth,
+      canvasHeight,
+      { isStatic: true },
+    );
+    createdWalls.push(rightWall);
+  }
 
-  const ground = Bodies.rectangle(
-    canvasWidth / 2,
-    canvasHeight + widthOffset,
-    canvasWidth,
-    wallWidth,
-    { isStatic: true },
-  );
+  if (walls.indexOf('G') !== -1) {
+    const ground = Bodies.rectangle(
+      canvasWidth / 2,
+      canvasHeight + widthOffset,
+      canvasWidth,
+      wallWidth,
+      { isStatic: true },
+    );
+    createdWalls.push(ground);
+  }
 
-  const ceiling = Bodies.rectangle(
-    canvasWidth / 2,
-    -widthOffset,
-    canvasWidth,
-    wallWidth,
-    { isStatic: true },
-  );
+  if (walls.indexOf('C') !== -1) {
+    const ceiling = Bodies.rectangle(
+      canvasWidth / 2,
+      -widthOffset,
+      canvasWidth,
+      wallWidth,
+      { isStatic: true },
+    );
+    createdWalls.push(ceiling);
+  }
 
-  // World.add(world, [leftWall, rightWall, ground, ceiling]);
-  World.add(world, [rightWall, ceiling, ground]);
+  World.add(panel.world, createdWalls);
 }
 
-function toggleGravity(e, minGravity = 0, maxGravity = 1) {
-  if (world.gravity.y !== maxGravity) {
-    world.gravity.y = maxGravity;
+function toggleGravity(panel, button, minGravity = 0, maxGravity = 1) {
+  if (panel.world.gravity.y !== maxGravity) {
+    panel.world.gravity.y = maxGravity; //eslint-disable-line
+    button.children[0].innerHTML = 'Embrace Inertia'; //eslint-disable-line
   } else {
-    world.gravity.y = minGravity;
+    panel.world.gravity.y = minGravity; //eslint-disable-line
+    button.children[0].innerHTML = 'Drop the Game'; //eslint-disable-line
   }
 }
 
@@ -167,7 +161,22 @@ function getTriangle(x, y, radius, properties) {
   return triangle;
 }
 
-function createRotatedTrianglePyramid(xx, yy, columns, rows, columnGap, rowGap) {
+function getIsoscelesTriangle(x, y, base, height, properties, fromBase = true) { // eslint-disable-line
+  // create an upright isosceles triangle
+  vertices = [
+    // left point
+    { x: x - (base / 2), y },
+    // right point
+    { x: x + (base / 2), y },
+    // top point
+    { x, y: y - height },
+  ];
+  const yCenter = (fromBase) ? y - ((1 / 3) * height) : y;
+  const tri = Bodies.fromVertices(x, yCenter, vertices, properties);
+  return tri;
+}
+
+function createRotatedTrianglePyramid(panel, xx, yy, columns, rows, columnGap, rowGap) {
   // pyramid(xx, yy, columns, rows, columnGap, rowGap, callback)
   // note: this starts from the point shape
   // and the last shape is on the right/positive side
@@ -203,7 +212,7 @@ function createRotatedTrianglePyramid(xx, yy, columns, rows, columnGap, rowGap) 
 
   // and rotate it around that
   Composite.rotate(pyra, Math.PI, centerPos);
-  World.add(world, [pyra]);
+  World.add(panel.world, [pyra]);
 
   return pyra;
 }
@@ -246,6 +255,7 @@ function makeSVGXMLRequest(panel, url, x, y, properties, spin) {
 
       // add these vertices to the world
       const addedSVG = renderAndAddSVG(panel, vertexSets, x, y, properties, spin);
+      // TODO improve this
       if (url === './static/svg/windmillSingle.svg') {
         const windmillConstraint = Constraint.create({
           pointA: { x, y },
@@ -263,25 +273,38 @@ function makeSVGXMLRequest(panel, url, x, y, properties, spin) {
   xhr.send();
 }
 
-function addAllSVGsToCanvas() {
+function addAllSVGsToCanvases() {
   // modify the following object to edit specific SVG data
   const svgs = [
-    // {
-    //   filename: 'Curve.svg',
-    //   x: 700,
-    //   y: 400,
-    //   fillColor: '#B3BBC5',
-    // },
+    // landing curve
+    {
+      filename: 'Curve.svg',
+      x: canvasSize.width * (7 / 8),
+      y: canvasSize.height * (4 / 6),
+      panelName: 'landing',
+      spin: null,
+      properties: {
+        isStatic: true,
+        render: {
+          fillStyle: '#B3BBC5',
+          strokeStyle: '#B3BBC5',
+          lineWidth: 1,
+        },
+      },
+    },
+    // design windmill
     {
       filename: 'windmillSingle.svg',
-      x: 400,
-      y: 300,
-      panelName: 'landing',
+      x: canvasSize.width * 0.20,
+      y: canvasSize.height * 0.55,
       spin: degreesToRadians(-1),
+      panelName: 'design',
       properties: {
+        density: 0.08,
+        slop: 0,
         render: {
-          fillStyle: DARK_BLUE,
-          strokeStyle: DARK_BLUE,
+          fillStyle: '#4F5357',
+          strokeStyle: '#4F5357',
           lineWidth: 1,
         },
         collisionFilter: {
@@ -292,18 +315,36 @@ function addAllSVGsToCanvas() {
 
     {
       filename: 'windmillSingle.svg',
-      x: 400,
-      y: 300,
-      panelName: 'design',
+      x: canvasSize.width * 0.20,
+      y: canvasSize.height * 0.55,
       spin: degreesToRadians(1),
+      panelName: 'design',
       properties: {
+        density: 0.08,
+        slop: 0,
         render: {
-          fillStyle: '#000',
-          strokeStyle: '#000',
+          fillStyle: LIGHT_BLUE,
+          strokeStyle: LIGHT_BLUE,
           lineWidth: 1,
         },
         collisionFilter: {
           mask: particleCategory,
+        },
+      },
+    },
+
+    // single M final panel
+    {
+      filename: 'singleM.svg',
+      x: canvasSize.width / 2,
+      y: canvasSize.height / 2,
+      spin: null,
+      panelName: 'me',
+      properties: {
+        render: {
+          fillStyle: '#434B63',
+          strokeStyle: '#434B63',
+          lineWidth: 1,
         },
       },
     },
@@ -318,7 +359,7 @@ function addAllSVGsToCanvas() {
   });
 }
 
-function teleportBodies(composite, startPoint, axis) {
+function teleportBodies(panel, composite, startPoint, axis) {
   // this function should be put in an Engine event listener to work properly
   // watches bodies from composite variable
   // if they pass the bounds of the indicated axis,
@@ -327,14 +368,14 @@ function teleportBodies(composite, startPoint, axis) {
   // { x: xCoord, y: yCoord }
 
   // error checking
-  if (!startPoint.x || !startPoint.y) console.log('Warning, no startPoint defined in teleportBodies()'); // eslint-disable-line
+  if (startPoint.x === null || startPoint.y === null) console.log('Warning, no startPoint defined in teleportBodies()'); // eslint-disable-line
 
   for (let i = 0; i < composite.bodies.length; ++i) {
     const body = composite.bodies[i];
 
     // if the body goes beyond the axis' bounds
-    if (body.position[axis] < render.bounds.min[axis]
-      || body.position[axis] > render.bounds.max[axis]) {
+    if (body.position[axis] < panel.render.bounds.min[axis]
+      || body.position[axis] > panel.render.bounds.max[axis]) {
       // "teleport" this body to startPoint
       Body.setPosition(body, {
         x: startPoint.x,
@@ -350,127 +391,48 @@ function teleportBodies(composite, startPoint, axis) {
   }
 }
 
-// function spinSpinners(spinner) {
-//   // for (let i = 0; i < spinner.bodies.length; ++i) {
-//   // Body.rotate(spinner.bodies[i], 0.12);
-//   // }
-//   // Composite.rotate(spinner, 0.12, { x: 400, y: 300 });
-//   Body.rotate(spinner, 0.12);
-// }
-
-function getIsoscelesTriangle(x, y, base, height, properties, fromBase = true) {
-  // create an upright isosceles triangle
-  vertices = [
-    // left point
-    { x: x - (base / 2), y },
-    // right point
-    { x: x + (base / 2), y },
-    // top point
-    { x, y: y - height },
-  ];
-  const yCenter = (fromBase) ? y - ((1 / 3) * height) : y;
-  const tri = Bodies.fromVertices(x, yCenter, vertices, properties);
-  return tri;
+function isFullyInViewport(elem) { // eslint-disable-line
+  const bounding = elem.getBoundingClientRect();
+  return (
+    bounding.top >= 0 &&
+    bounding.left >= 0 &&
+    bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
 }
 
-function createWindmill(x, y, innerRadius, outerRadius, spokeBase, fillColor, numSpokes = 3) {
-  const windmill = Composite.create();
-  const triangleCategory = 0x0016;
-  const centerRadius = 25;
-  // get center of windmill to attach spokes to
-  const centerProperties = {
-    collisionFilter: {
-      mask: triangleCategory //eslint-disable-line
-    },
-    // isStatic: true,
-    render: {
-      fillStyle: 'red',
-    },
-  };
-  const circleCenter = Bodies.circle(x, y, centerRadius, centerProperties);
+function isHalfInViewport(elem) {
+  const bounding = elem.getBoundingClientRect();
+  const elemHeight = elem.clientHeight;
+  const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+  const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+  return (
+    bounding.top >= -(elemHeight / 2) &&
+    bounding.left >= 0 &&
+    bounding.bottom <= windowHeight + (elemHeight / 2) &&
+    bounding.right <= windowWidth
+  );
+}
 
-  const centerConstraint = Constraint.create({
-    bodyA: circleCenter,
-    pointB: { x, y },
+function watchStopAndLoadPanels() {
+  // to be used in a listener function
+  // watches all panels and enables the associated runner if it
+  // is at least halfway in the viewport.
+  Object.keys(allCanvases).forEach((panel) => {
+    if (!isHalfInViewport(allCanvases[panel].render.canvas)) {
+      allCanvases[panel].runner.enabled = false;
+    } else {
+      allCanvases[panel].runner.enabled = true;
+    }
   });
-
-  World.add(world, [circleCenter, centerConstraint]);
-  Composite.add(windmill, circleCenter);
-
-  // add spokes
-  let angleDegrees = 0;
-  const angleAddition = 360 / numSpokes;
-  // properties for each spoke
-  const properties = {
-    angle: 0,
-    render: {
-      fillStyle: fillColor,
-    },
-    collisionFilter: {
-      mask: triangleCategory,
-    },
-  };
-
-  for (let i = 0; i < 1; ++i) {
-    // properties.angle = degreesToRadians(angleDegrees);
-    const newSpoke = getIsoscelesTriangle(x, y, spokeBase, outerRadius, properties);
-    const yRelativeToCircleOrigin = innerRadius * Math.sin(degreesToRadians(angleDegrees));
-    const xRelativeToCircleOrigin = innerRadius * Math.cos(degreesToRadians(angleDegrees));
-
-    const centerToBase = (1 / 3) * outerRadius;
-    const halfBase = spokeBase / 2;
-    const centerMiddleConstraint = Constraint.create({
-      bodyA: circleCenter,
-      bodyB: newSpoke,
-      pointB: { x: 0, y: centerToBase - 5 },
-      stiffness: 1,
-      length: 0,
-    });
-
-    const centerLeftConstraint = Constraint.create({
-      bodyA: circleCenter,
-      pointA: { x: -xRelativeToCircleOrigin, y: yRelativeToCircleOrigin },
-      bodyB: newSpoke,
-      pointB: { x: -halfBase, y: centerToBase },
-      stiffness: 1,
-      length: 0,
-    });
-
-    const centerRightConstraint = Constraint.create({
-      bodyA: circleCenter,
-      pointA: { x: xRelativeToCircleOrigin, y: yRelativeToCircleOrigin },
-      bodyB: newSpoke,
-      pointB: { x: halfBase, y: centerToBase },
-      stiffness: 1,
-      length: 0,
-    });
-
-    const centerToTip = -(2 / 3) * outerRadius;
-    const tipConstraint = Constraint.create({
-      bodyA: circleCenter,
-      bodyB: newSpoke,
-      pointB: { x: 0, y: centerToTip },
-      length: outerRadius,
-      stiffness: 1,
-    });
-
-    Composite.add(windmill, [newSpoke, centerMiddleConstraint, centerRightConstraint, centerLeftConstraint]);
-    Body.rotate(newSpoke, degreesToRadians(angleDegrees), { x, y });
-    Body.setVelocity(newSpoke, { x: 0, y: 0 });
-
-    // incremement angle rotation
-    angleDegrees += angleAddition;
-    if (angleDegrees >= 360) angleDegrees -= 360;
-  }
-
-  World.add(world, windmill);
-  return windmill;
 }
 
 function addMouseControl(panel) {
-  // add mouse control
-  const mouse = Mouse.create(render.canvas);
-  const mouseConstraint = MouseConstraint.create(engine, {
+  // add mouse control to the indicated panel
+  // first account forpixelRatio bug. hopefully this will be fixed in the future...
+  Render.setPixelRatio(panel.render, 1);
+  const mouse = Mouse.create(panel.render.canvas);
+  const mouseConstraint = MouseConstraint.create(panel.engine, {
     mouse,
     constraint: {
       stiffness: 0.5,
@@ -486,74 +448,37 @@ function addMouseControl(panel) {
   panel.render.mouse = mouse; //eslint-disable-line
 }
 
-function addListeners(panel) {
-  // const breakButton = document.querySelector('#breakThings');
-  // breakButton.addEventListener('click', toggleGravity);
-
-  Events.on(panel.engine, 'afterUpdate', () => {
-    // const pyraBodiesStartPoint = { x: 650, y: 50 };
-    // teleportBodies(pyraComposite, pyraBodiesStartPoint, 'x');
-    // spinSpinners(spinners);
+function addListeners(pyraComposite) {
+  // all user to cause gravity changes in the first landing figure
+  const breakButton = document.querySelector('#breakThings');
+  breakButton.addEventListener('click', () => {
+    toggleGravity(allCanvases.landing, breakButton);
   });
 
-  // window.addEventListener('mousedown', () => {
-  //   const properties = {
-  //     angle: Math.PI / 2,
-  //     friction: 0,
-  //     frictionStatic: 0,
-  //     restitution: 1,
-  //     render: {
-  //       fillStyle: 'red',
-  //     },
-  //     collisionFilter: {
-  //       category: particleCategory,
-  //     },
-  //   };
-  //   // const tri = getTriangle(mouse.position.x, mouse.position.y + 5, 10, properties);
-  //   const body = Bodies.circle(mouse.position.x, mouse.position.y, 5, properties);
-  //   World.add(world, body);
-  // });
-  // // TODO: maybe put this in landingMatter.js
-  // window.addEventListener('resize', () => {
-  //   if (window.innerWidth > canvasSize.width) {
-  //     render.options.width = canvasSize.width * 2;
-  //     render.options.height = canvasSize.height * 2;
-  //     Render.lookAt(render, {
-  //       min: { x: 0, y: 0 },
-  //       max: { x: canvasSize.width * 2, y: canvasSize.height * 2 },
-  //     });
-  //   }
-  // });
-}
+  // teleport pyramid triangles back to top if they go out of bounds
+  Events.on(allCanvases.landing.engine, 'afterUpdate', () => {
+    const pyraBodiesStartPoint = { x: 650, y: 0 };
+    teleportBodies(allCanvases.landing, pyraComposite, pyraBodiesStartPoint, 'x');
+  });
 
+  // only run runners when in view
+  document.body.addEventListener('load', () => {
+    watchStopAndLoadPanels();
+  });
 
-function createSpinner() {
-  const centerPoint = { x: 400, y: 300 };
-  const circleRadius = 25;
-
-  // const rectangle1 = Bodies.rectangle(400, 300, 300, 10, {
-  //   collisionFilter: {
-  //     mask: triangleCategory, //eslint-disable-line
-  //   },
-  // });
-
-  const triHeight = 300;
-  const triBase = circleRadius * 2;
-  // const triOne = getIsoscelesTriangle(centerPoint.x, centerPoint.y, triBase, triHeight);
-  const windmill = createWindmill(centerPoint.x,
-    centerPoint.y, circleRadius, triHeight, triBase, DARK_BLUE, 3);
-
-  return windmill;
+  window.addEventListener('scroll', () => {
+    watchStopAndLoadPanels();
+  });
 }
 
 // begin main
-// createWalls(canvasSize.width, canvasSize.height);
-addAllSVGsToCanvas();
-// const pyra = createRotatedTrianglePyramid(450, 50, 20, 20, 0, 0);
-// const spinner = createSpinner();
-Object.keys(allCanvases).forEach((panelName) => {
-  addListeners(allCanvases[panelName]);
-});
+// createWalls(allCanvases.landing, canvasSize.width, canvasSize.height, 'RGC');
+// createWalls(allCanvases.me, canvasSize.width, canvasSize.height);
+// addAllSVGsToCanvases();
+// const pyra = createRotatedTrianglePyramid(allCanvases.landing, 450, 50, 20, 20, 0, 0);
+// addListeners(pyra);
+// addMouseControl(allCanvases.me);
+
 
 // fit the render viewport to the scene
 // Render.lookAt(render, {
