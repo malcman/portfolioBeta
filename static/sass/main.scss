@@ -424,6 +424,10 @@ canvas {
   	polygon {
   		fill: white;
   	}
+  	path {
+  		fill: white;
+  		display: none;
+  	}
   }
   canvas {
   	max-width: 100%;
@@ -576,11 +580,14 @@ canvas {
 	a:hover::after {
 		transform: rotate(45deg) translate(5px, -5px);
 	}
-	img {
+	#fullLogo {
 		width: 100%;
 		display: block;
 		max-width: 450px;
+		height: 400px;
 		margin: auto;
+		background-image: url(../img/MalcMaturenFull.png);
+		background-size: contain;
 	}
 }
 
@@ -628,7 +635,7 @@ canvas {
   left: -200px;
 }
 #leadershipHeader {
-	position: static;
+	position: relative;
 	margin-left: 5%;
 }
 

@@ -53,6 +53,19 @@
       .current-page div h2 {
         transform: skew(20deg); }
 
+  #designSection:after {
+    position: absolute;
+    height: 100%;
+    width: 100vw;
+    z-index: -10;
+    background-color: black;
+    content: ''; }
+  #designSection p {
+    width: 40%; }
+
+  #designHeader {
+    margin-right: 30%; }
+
   #homelink img {
     width: 40%;
     height: auto; }
@@ -66,6 +79,9 @@
   #filterGrid, #sortGrid {
     grid-template-columns: repeat(2, 1fr);
     width: 100%; }
+
+  #leadershipHeader {
+    margin-top: -20%; }
 
   .FilterLabel {
     width: 100%;
@@ -145,6 +161,9 @@
 
   #query {
     width: 90%; } }
+@media only screen and (min-width: 800px) {
+  #developSection canvas {
+    min-width: 100vw; } }
 @media only screen and (min-width: 1000px) {
   .desktopSVG {
     display: block; }
@@ -154,6 +173,12 @@
 
   .content {
     margin-bottom: 5%; }
+
+  .content#homeContent {
+    margin-bottom: 0;
+    background-color: #101E2E;
+    position: relative;
+    top: -2px; }
 
   #filterGrid, #sortGrid {
     grid-template-columns: repeat(4, 1fr);
@@ -210,6 +235,125 @@
 
   #homelink img {
     width: 70%; }
+
+  #landingCanvasContainer canvas {
+    max-height: 40vw;
+    max-width: 60vw; }
+
+  #landingCaption {
+    background-color: #101E2E;
+    top: initial;
+    bottom: 0;
+    width: 45vw;
+    margin-left: 0;
+    padding: 5% 0;
+    -webkit-clip-path: polygon(0% 0%, 0 100%, 100% 100%, 80% 0%);
+    clip-path: polygon(0% 0%, 0 100%, 100% 100%, 80% 0%); }
+    #landingCaption h1 {
+      font-size: 2.5em; }
+    #landingCaption h2 {
+      font-size: 2em; }
+    #landingCaption h1, #landingCaption h2, #landingCaption #breakThings {
+      color: white;
+      margin-left: 25%; }
+    #landingCaption #breakThings {
+      border: none;
+      background-color: #B3BBC5;
+      color: #101E2E; }
+
+  #designSection {
+    width: 50vw;
+    height: auto;
+    float: left; }
+    #designSection:after {
+      display: none; }
+    #designSection p {
+      width: 30%; }
+
+  #designCanvasContainer {
+    clip-path: polygon(0% 2%, 0% 100%, 100% 83%, 100% 0%, 15% 0%);
+    -webkit-clip-path: polygon(0% 5%, 0% 100%, 100% 83%, 100% 0%, 7% 0%);
+    width: 100vw;
+    z-index: 0; }
+
+  #designHeader {
+    margin-right: 20%; }
+
+  #developSection {
+    width: 50vw;
+    top: 100px;
+    background-color: #354557;
+    height: 800px; }
+    #developSection:before {
+      display: none; }
+    #developSection canvas {
+      min-width: 50vw;
+      max-height: 800px; }
+    #developSection svg {
+      left: -1px;
+      bottom: -1px; }
+      #developSection svg polygon {
+        display: none; }
+      #developSection svg path {
+        fill: white;
+        fill: #101E2E;
+        display: initial; }
+
+  #developCanvasContainer {
+    width: 50vw;
+    top: 0;
+    top: 15%;
+    border-radius: 15px 0; }
+
+  #leadershipSection {
+    padding-top: 0;
+    width: 60vw;
+    background-color: #B3BBC5;
+    -webkit-clip-path: polygon(0% -42%, 75% 0%, 100% 50%, 80% 100%, 0% 100%);
+    clip-path: polygon(0% -42%, 75% 0%, 100% 50%, 80% 100%, 0% 100%); }
+    #leadershipSection:before {
+      position: absolute;
+      z-index: -20;
+      content: '';
+      top: -500px;
+      height: 500px;
+      width: 60vw;
+      background-color: #B3BBC5; }
+
+  #leadershipHeader {
+    margin-top: 0; }
+
+  #finalLandingSection {
+    top: -100px;
+    color: #B3BBC5; }
+    #finalLandingSection #fullLogo {
+      margin-right: 0;
+      background-image: url(../img/brand/FullLightExploding.png);
+      background-repeat: no-repeat;
+      max-width: 80%;
+      height: 500px; }
+    #finalLandingSection h2 {
+      color: #B3BBC5;
+      display: block;
+      margin: auto;
+      width: -moz-fit-content;
+      width: fit-content;
+      padding-bottom: 0;
+      margin-top: 5%; }
+      #finalLandingSection h2:before {
+        display: none; }
+    #finalLandingSection a {
+      color: #B3BBC5;
+      padding-right: 33%; }
+      #finalLandingSection a:after {
+        border-color: #B3BBC5; }
+
+  #egoSection {
+    width: 66%;
+    margin-left: 20%;
+    background-color: #101E2E;
+    color: white;
+    line-height: 1.4em; }
 
   #titleLink {
     width: 20%; }

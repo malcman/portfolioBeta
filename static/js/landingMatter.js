@@ -550,6 +550,20 @@ function watchStopAndLoadPanels() {
   });
 }
 
+function watchStopAndLoad(panel) {
+  // to be used in a listener function
+  // watches one panel and enables the associated runner if it
+  // is at least halfway in the viewport.
+  let boundingElem = allCanvases[panel].render.canvas;
+  if (panel === 'develop') boundingElem = allCanvases[panel].render.canvas.parentNode;
+
+  if (!isHalfInViewport(boundingElem)) {
+    allCanvases[panel].runner.enabled = false;
+  } else {
+    allCanvases[panel].runner.enabled = true;
+  }
+}
+
 function addMouseControl(panel) {
   // add mouse control to the indicated panel
   // first account forpixelRatio bug. hopefully this will be fixed in the future...
@@ -595,9 +609,7 @@ function addListeners(pyraComposite, bouncingBall, ballStartPoint) {
   });
 
   // only run runners for each panel when in view
-  document.body.addEventListener('load', () => {
-    watchStopAndLoadPanels();
-  });
+  // Object.keys(allCanvases).forEach((panel) => {});
   window.addEventListener('scroll', () => {
     watchStopAndLoadPanels();
   });
@@ -619,6 +631,12 @@ const numBodies = 150;
 createInfiniteWrap(allCanvases.develop, numBodies);
 addListeners(pyra, bouncingCirc, bouncingStart);
 
+
+// debugging
+// Object.keys(allCanvases).forEach((panel) => {
+//   allCanvases[panel].runner.enabled = false;
+//   Matter.Runner.stop(allCanvases[panel].runner);
+// });
 // fit the render viewport to the scene
 // Render.lookAt(render, {
 //   min: { x: 0, y: 0 },
