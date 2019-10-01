@@ -24,7 +24,16 @@
     top: -40px; }
 
   .content p.projDescription {
-    margin-bottom: 15%; } }
+    margin-bottom: 15%; }
+
+  .contactBox button {
+    margin-left: 0; }
+    .contactBox button p {
+      font-size: 1.2em; }
+      .contactBox button p:before {
+        width: 15px;
+        height: 15px;
+        top: 0; } }
 @media only screen and (min-width: 650px) {
   #menu-container {
     width: 80%;
@@ -125,6 +134,22 @@
   #resume h1 {
     font-size: 210%; }
 
+  #contactHeader {
+    font-size: 250%;
+    margin-top: 30px; }
+
+  .contactBox {
+    width: 60%; }
+
+  #emailContact {
+    background-image: url(../svg/contact/email-large.svg);
+    margin-top: 120px; }
+
+  #phoneContact {
+    float: right;
+    background-image: url(../svg/contact/phone-large.svg);
+    padding-bottom: 12%; }
+
   @keyframes shrinkToFullRightmost {
     0% {
       margin: auto;
@@ -186,12 +211,14 @@
 
   .content {
     margin-bottom: 5%; }
-
-  .content#homeContent {
-    margin-bottom: 0;
-    background-color: #101E2E;
-    position: relative;
-    top: -2px; }
+    .content#contactContent {
+      padding: 100px 3%;
+      width: 94%; }
+    .content#homeContent {
+      margin-bottom: 0;
+      background-color: #101E2E;
+      position: relative;
+      top: -2px; }
 
   #filterGrid, #sortGrid {
     grid-template-columns: repeat(4, 1fr);
@@ -379,8 +406,27 @@
   #titleLink {
     width: 20%; }
 
-  footer {
-    margin-top: 10%; } }
+  #contactHeader {
+    padding-left: 82%; }
+
+  .contactBox {
+    width: 40%;
+    box-sizing: border-box;
+    margin: 100px 3% 0; }
+
+  #emailContact {
+    padding-bottom: 7%;
+    margin-top: 100px;
+    margin-right: 0; }
+    #emailContact h2 {
+      margin-top: 20%; }
+
+  #phoneContact {
+    background-position: right bottom;
+    margin-left: 0;
+    margin-right: 7%; }
+    #phoneContact h2 {
+      margin-top: 0; } }
 @media only screen and (min-width: 1200px) {
   #footer-logo {
     width: 20%;

@@ -621,12 +621,6 @@ canvas {
 	&#contactContent {
     padding: 100px 0;
     width: 100%;
-		h1 {
-			float: right;
-			margin-right: 8%;
-			margin-bottom: 30px;
-			font-weight: 300;
-		}
 	}
 	&#homeContent {
 		width: 100%;
@@ -1436,6 +1430,13 @@ $greyedOutFilters: #d5d5d5;
 		width: 20%;
 	}
 }
+
+#contactHeader {
+	float: right;
+	margin-right: 8%;
+	margin-bottom: 30px;
+	font-weight: 300;
+}
 .contactBox {
 	width: 100%;
 	background-repeat: no-repeat;
@@ -1462,14 +1463,7 @@ $greyedOutFilters: #d5d5d5;
     &.copyButton {
     	p {
     		&:before {
-    			content: '';
     			background-image: url(../svg/contact/clipboard-action.svg);
-    			background-repeat: no-repeat;
-    			position: absolute;
-    			width: 20px;
-    			height: 20px;
-    			top: 1px;
-		      left: -25px;
     		}
     	}
     }
@@ -1477,14 +1471,7 @@ $greyedOutFilters: #d5d5d5;
     &.composeButton {
     	p {
     		&:before {
-    			content: '';
     			background-image: url(../svg/contact/compose-action.svg);
-    			background-repeat: no-repeat;
-    			position: absolute;
-    			width: 20px;
-    			height: 20px;
-    			top: 1px;
-		      left: -25px;
     		}
     	}
     }
@@ -1492,14 +1479,8 @@ $greyedOutFilters: #d5d5d5;
     &.callButton {
     	p {
     		&:before {
-    			content: '';
     			background-image: url(../svg/contact/phone-action.svg);
-    			background-repeat: no-repeat;
-    			position: absolute;
-    			width: 20px;
-    			height: 20px;
-    			top: 1px;
-		      left: -25px;
+    			left: -30px;
     		}
     	}
     }
@@ -1514,6 +1495,23 @@ $greyedOutFilters: #d5d5d5;
 			width: -moz-fit-content;
 			width: fit-content;
       margin: auto;
+      text-indent: 0;
+      &:before {
+      	content: '';
+  			background-repeat: no-repeat;
+  			position: absolute;
+  			width: 20px;
+  			height: 20px;
+  			top: 1px;
+	      left: -25px;
+      }
+		}
+	}
+	a {
+		width: 40%;
+		flex-grow: 1;
+		button {
+			width: 100%;
 		}
 	}
 }

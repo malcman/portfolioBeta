@@ -28,8 +28,14 @@ if (projectsEntry) {
 }
 
 function copyToClipboardFallback(text) {
+  // creates a textarea element, quickly selects the text, then deletes node
   const textArea = document.createElement('textarea');
   textArea.value = text;
+  // specify fixed position to viewport so that
+  // adding element to document doesn't affect scroll position
+  textArea.style.position = 'fixed';
+  textArea.style.top = 0;
+  textArea.classList.add('hiddenRight');
   document.body.appendChild(textArea);
   textArea.focus();
   textArea.select();
@@ -42,7 +48,17 @@ function copyToClipboardFallback(text) {
 }
 
 function copyToClipboard(text) {
-  if (!navigator.clipboard) {
+  let clipboardAccess = false;
+  if (navigator.permissions) {
+    navigator.permissions.query({ name: 'clipboard-write' })
+      .then((result) => {
+        if (result.state === 'granted' || result.state === 'prompt') {
+          // granted access
+          clipboardAccess = true;
+        }
+      });
+  }
+  if (!clipboardAccess || !navigator.clipboard) {
     copyToClipboardFallback(text);
     return;
   }
@@ -85,16 +101,16 @@ function enableExpansions() {
   });
 }
 
-function setHeights() {
-  // this function is necessary bc transform needs a height set first in order to work effectively
-  // sike I don't think that's true
-  const expandables = document.querySelectorAll('.expandable');
-  expandables.forEach((expandable) => {
-    const expanding = expandable.querySelector('.expanding');
-    const content = expanding.querySelector('.expandContent');
-    expanding.style.height = `${content.clientHeight}px`;
-  });
-}
+// function setHeights() {
+//   // this function is necessary bc transform needs a height set first in order to work effectively
+//   // sike I don't think that's true
+//   const expandables = document.querySelectorAll('.expandable');
+//   expandables.forEach((expandable) => {
+//     const expanding = expandable.querySelector('.expanding');
+//     const content = expanding.querySelector('.expandContent');
+//     expanding.style.height = `${content.clientHeight}px`;
+//   });
+// }
 
 // enable all non-react expandable sections
 // setHeights();
@@ -107,10 +123,12 @@ ReactDOM.render(
 );
 
 // Copy contact info
-const emailBox = document.getElementById('email-box');
-if (emailBox) {
-  emailBox.addEventListener('click', () => {
-    const emailInfo = document.getElementById('email-info');
-    copyToClipboard(emailInfo.value);
+const copyables = document.querySelectorAll('.copyable');
+if (copyables) {
+  copyables.forEach((copyable) => {
+    copyable.addEventListener('click', () => {
+      const copyText = copyable.getAttribute('copyText');
+      copyToClipboard(copyText);
+    });
   });
 }

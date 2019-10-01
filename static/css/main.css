@@ -488,11 +488,6 @@ canvas {
   .content#contactContent {
     padding: 100px 0;
     width: 100%; }
-    .content#contactContent h1 {
-      float: right;
-      margin-right: 8%;
-      margin-bottom: 30px;
-      font-weight: 300; }
   .content#homeContent {
     width: 100%;
     padding: 0;
@@ -1122,6 +1117,12 @@ canvas {
   .bkg-cell img {
     width: 20%; }
 
+#contactHeader {
+  float: right;
+  margin-right: 8%;
+  margin-bottom: 30px;
+  font-weight: 300; }
+
 .contactBox {
   width: 100%;
   background-repeat: no-repeat; }
@@ -1144,32 +1145,12 @@ canvas {
     border: none;
     padding: 10px; }
     .contactBox button.copyButton p:before {
-      content: '';
-      background-image: url(../svg/contact/clipboard-action.svg);
-      background-repeat: no-repeat;
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      top: 1px;
-      left: -25px; }
+      background-image: url(../svg/contact/clipboard-action.svg); }
     .contactBox button.composeButton p:before {
-      content: '';
-      background-image: url(../svg/contact/compose-action.svg);
-      background-repeat: no-repeat;
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      top: 1px;
-      left: -25px; }
+      background-image: url(../svg/contact/compose-action.svg); }
     .contactBox button.callButton p:before {
-      content: '';
       background-image: url(../svg/contact/phone-action.svg);
-      background-repeat: no-repeat;
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      top: 1px;
-      left: -25px; }
+      left: -30px; }
     .contactBox button p {
       transform: skew(-20deg);
       font-size: 1.9em;
@@ -1179,7 +1160,21 @@ canvas {
       position: relative;
       width: -moz-fit-content;
       width: fit-content;
-      margin: auto; }
+      margin: auto;
+      text-indent: 0; }
+      .contactBox button p:before {
+        content: '';
+        background-repeat: no-repeat;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 1px;
+        left: -25px; }
+  .contactBox a {
+    width: 40%;
+    flex-grow: 1; }
+    .contactBox a button {
+      width: 100%; }
 
 .contactButtons {
   width: 90%;

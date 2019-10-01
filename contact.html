@@ -26,19 +26,23 @@
 <body>
 	<div id="menuEntry"></div>
 	<div class="content" id="contactContent">
-		<h1>Contact</h1>
+		<h1 id="contactHeader">Contact</h1>
 
 		<div class="contactBox" id="emailContact">
 			<h2>Email</h2>
 			<h3>malc@umich.edu</h3>
 			<div class="contactButtons">
-				<button class="copyButton">
+				<button class="copyButton copyable" copyText="malc@umich.edu">
 					<p>Copy</p>
 				</button>
-				<button class="composeButton">
-					<p>Compose</p>
-				</button>
+
+				<a href="mailto:malc@umich.edu">
+					<button class="composeButton">
+						<p>Compose</p>
+					</button>
+				</a>
 			</div>
+		</div>
 
 		<!-- </div>
 				<input
@@ -46,20 +50,21 @@
 					type="text"
 					value="malc@umich.edu"
 					disabled>
-			<a href="tel:1-231-823-4022">
-			</a>
 		</div> -->
 
 		<div class="contactBox" id="phoneContact">
 			<h2>Phone</h2>
 			<h3>231.823.4022</h3>
 			<div class="contactButtons">
-				<button class="copyButton">
-					<p>Copy</p>
-				</button>
-				<button class="callButton">
-					<p>Call</p>
-				</button>
+					<button class="copyButton copyable" copyText="(231) 823 4022">
+						<p>Copy</p>
+					</button>
+
+				<a href="tel:1-231-823-4022">
+					<button class="callButton">
+						<p>Call</p>
+					</button>
+				</a>
 			</div>
 		</div>
 
