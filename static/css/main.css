@@ -111,8 +111,8 @@ button {
     z-index: 5; } }
 #menuEntry {
   z-index: 20;
-  position: relative;
-  top: -15px; }
+  position: absolute;
+  top: 0; }
 
 .fixedHeader {
   animation: headerFadeIn 500ms forwards;
@@ -481,16 +481,18 @@ canvas {
 .content {
   transition: all 400ms;
   width: 80%;
-  padding: 15% 10%; }
+  padding: 150px 10%; }
   .content p {
     width: 100%;
     text-indent: 5%; }
   .content#contactContent {
-    width: 100vw;
-    margin: 0;
-    margin-top: 15%; }
-    .content#contactContent h3 {
-      margin-left: 10vw; }
+    padding: 100px 0;
+    width: 100%; }
+    .content#contactContent h1 {
+      float: right;
+      margin-right: 8%;
+      margin-bottom: 30px;
+      font-weight: 300; }
   .content#homeContent {
     width: 100%;
     padding: 0;
@@ -538,7 +540,7 @@ canvas {
   margin-left: 5%; }
 
 #resume {
-  padding: 100px 10%; }
+  padding: 150px 10%; }
   #resume h1 {
     font-weight: 300;
     font-size: 250%;
@@ -917,49 +919,6 @@ canvas {
 #languages {
   margin-left: 10%; }
 
-#footer-logo {
-  display: inline-block;
-  margin: auto;
-  width: 30%;
-  position: absolute;
-  bottom: 15%;
-  left: 30%; }
-
-#cpp-box {
-  background: url(../img/cpp.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center; }
-
-#python-box {
-  background-image: url(../img/Python.png); }
-
-#html-box {
-  background-image: url(../img/html5.png);
-  margin-top: 5px;
-  height: 60%; }
-
-#css-box {
-  background-image: url(../img/sass.png); }
-
-#js-box {
-  background-image: url(../img/JavaScript-logo.png); }
-
-#ai-box {
-  background-image: url(../img/illustratorLogo.png);
-  height: 65%; }
-
-#ps-box {
-  background-image: url(../img/photoshop.png);
-  height: 65%; }
-
-#sql-box {
-  background-image: url(../img/sqlIcon.png);
-  height: 65%; }
-
-#phone-box {
-  background-image: url(../img/phoneIcon.png); }
-
 .titleBar {
   box-sizing: border-box;
   display: inline-block;
@@ -1098,9 +1057,6 @@ canvas {
   .disp-grid #skills-grid {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(1fr, 8); }
-  .disp-grid #contact-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(1fr, 2); }
 
 .two-disp-grid {
   grid-row-gap: 10px;
@@ -1166,43 +1122,77 @@ canvas {
   .bkg-cell img {
     width: 20%; }
 
-.footer-nav {
-  width: 40%;
-  margin: 3%; }
-  .footer-nav ul {
-    list-style-type: none; }
-    .footer-nav ul li {
-      padding: 1px; }
-
-.footer-info {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  padding: 5px;
-  margin: 3%;
-  text-align: right;
-  line-height: 100%; }
-
-footer {
-  box-sizing: border-box;
-  position: relative;
-  background-color: #FFF;
-  border-style: solid;
-  border-color: #434B63;
-  border-width: 0px;
-  border-top-width: 1px;
+.contactBox {
   width: 100%;
-  color: #434B63;
-  font-family: 'Montserrat', 'Lato', sans-serif;
-  font-size: 10pt;
-  margin: auto;
-  margin-top: 20%; }
-  footer img {
-    display: inline-block;
-    margin: auto;
-    width: 30%;
-    position: absolute;
-    bottom: 15%;
-    left: 30%; }
+  background-repeat: no-repeat; }
+  .contactBox h2 {
+    color: #434B63;
+    font-weight: 400;
+    margin: 15% 0 5% 5%;
+    font-size: 1.8em; }
+  .contactBox h3 {
+    color: black;
+    font-weight: 400;
+    margin-left: 5%; }
+  .contactBox button {
+    transform: skew(20deg);
+    background-color: #D8DCDF;
+    border-radius: 0;
+    box-sizing: border-box;
+    width: 40%;
+    flex-grow: 1;
+    border: none;
+    padding: 10px; }
+    .contactBox button.copyButton p:before {
+      content: '';
+      background-image: url(../svg/contact/clipboard-action.svg);
+      background-repeat: no-repeat;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 1px;
+      left: -25px; }
+    .contactBox button.composeButton p:before {
+      content: '';
+      background-image: url(../svg/contact/compose-action.svg);
+      background-repeat: no-repeat;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 1px;
+      left: -25px; }
+    .contactBox button.callButton p:before {
+      content: '';
+      background-image: url(../svg/contact/phone-action.svg);
+      background-repeat: no-repeat;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 1px;
+      left: -25px; }
+    .contactBox button p {
+      transform: skew(-20deg);
+      font-size: 1.9em;
+      color: #434B63;
+      font-family: 'Montserrat', 'Lato', sans-serif;
+      font-weight: 400;
+      position: relative;
+      width: -moz-fit-content;
+      width: fit-content;
+      margin: auto; }
+
+.contactButtons {
+  width: 90%;
+  display: flex;
+  margin: 5% auto; }
+
+#emailContact {
+  background-image: url(../svg/contact/email-mobile.svg); }
+
+#phoneContact {
+  background-image: url(../svg/contact/phone-mobile.svg);
+  background-position: right -45px bottom 5px;
+  padding-bottom: 20%;
+  background-size: 60%; }
 
 /*# sourceMappingURL=main.css.map */

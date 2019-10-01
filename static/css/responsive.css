@@ -166,10 +166,6 @@
   .two-disp-grid {
     grid-template-columns: 1fr 1fr; }
 
-  #contact-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, 1fr); }
-
   #titleLink {
     width: 20%; }
 
@@ -261,7 +257,7 @@
     background-color: #101E2E;
     top: initial;
     bottom: 0;
-    width: 45vw;
+    width: 50vw;
     margin-left: 0;
     padding: 5% 0;
     -webkit-clip-path: polygon(0% 0%, 0 100%, 100% 100%, 80% 0%);
@@ -383,22 +379,8 @@
   #titleLink {
     width: 20%; }
 
-  #contact-grid {
-    grid-template-rows: 0.25fr 1fr;
-    grid-template-columns: 1fr 1fr; }
-    #contact-grid h4 {
-      grid-row: 1 / 2; }
-    #contact-grid a {
-      grid-column: 1 / 2;
-      grid-row: 2 / 3; }
-    #contact-grid a:nth-of-type(2) {
-      grid-column: 2; }
-
   footer {
-    margin-top: 10%; }
-
-  #footer-logo {
-    top: 15px; } }
+    margin-top: 10%; } }
 @media only screen and (min-width: 1200px) {
   #footer-logo {
     width: 20%;

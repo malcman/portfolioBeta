@@ -150,8 +150,8 @@ button {
 
 #menuEntry {
   z-index: 20;
-  position: relative;
-  top: -15px;
+  position: absolute;
+  top: 0;
 }
 
 .fixedHeader{
@@ -613,17 +613,19 @@ canvas {
 .content {
 	transition: all 400ms;
 	width: 80%;
-	padding: 15% 10%;
+  padding: 150px 10%;
 	p{
 		width: 100%;
 		text-indent: 5%;
 	}
 	&#contactContent {
-		width: 100vw;
-		margin: 0;
-		margin-top: 15%;
-		h3 {
-			margin-left: 10vw;
+    padding: 100px 0;
+    width: 100%;
+		h1 {
+			float: right;
+			margin-right: 8%;
+			margin-bottom: 30px;
+			font-weight: 300;
 		}
 	}
 	&#homeContent {
@@ -679,7 +681,7 @@ canvas {
 }
 
 #resume{
-	padding: 100px 10%;
+	padding: 150px 10%;
 	h1 {
 		font-weight: 300;
 		font-size: 250%;
@@ -1180,64 +1182,6 @@ $greyedOutFilters: #d5d5d5;
 	margin-left: 10%;
 }
 
-
-#footer-logo{
-	display: inline-block;
-	margin: auto;
-	width: 30%;
-	position: absolute;
-	bottom: 15%;
-	left: 30%;
-}
-
-#cpp-box{
-	background: url(../img/cpp.png);
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center center;
-}
-
-#python-box{
-	background-image: url(../img/Python.png);
-}
-
-#html-box{
-	background-image: url(../img/html5.png);
-	margin-top: 5px;
-	height: 60%;
-}
-
-#css-box{
-	background-image: url(../img/sass.png);
-}
-
-#js-box{
-	background-image: url(../img/JavaScript-logo.png);
-}
-
-#ai-box{
-	background-image: url(../img/illustratorLogo.png);
-	height: 65%;
-}
-
-#ps-box{
-	background-image: url(../img/photoshop.png);
-	height: 65%;
-}
-
-#sql-box{
-	background-image: url(../img/sqlIcon.png);
-	height: 65%;
-}
-
-#phone-box{
-	background-image: url(../img/phoneIcon.png);
-}
-
-#email-box{
-	// background-image: url(../img/gmailIcon.png);
-}
-
 .titleBar{
 	box-sizing: border-box;
 	display: inline-block;
@@ -1395,7 +1339,6 @@ $greyedOutFilters: #d5d5d5;
 	background-color: #FFF;
 }
 
-
 #searchBar:hover {
 	background-color: lighten($mainLight, 15%);
 }
@@ -1411,10 +1354,6 @@ $greyedOutFilters: #d5d5d5;
 	#skills-grid{
 		grid-template-columns: 1fr;
 		grid-template-rows: repeat(1fr, 8);
-	}
-	#contact-grid{
-		grid-template-columns: 1fr;
-		grid-template-rows: repeat(1fr, 2);
 	}
 }
 
@@ -1497,50 +1436,101 @@ $greyedOutFilters: #d5d5d5;
 		width: 20%;
 	}
 }
+.contactBox {
+	width: 100%;
+	background-repeat: no-repeat;
+	h2 {
+		color: $mainDark;
+		font-weight: 400;
+    margin: 15% 0 5% 5%;
+    font-size: 1.8em;
+	}
+	h3 {
+		color: black;
+		font-weight: 400;
+		margin-left: 5%;
+	}
+	button {
+		transform: skew(20deg);
+		background-color: #D8DCDF;
+		border-radius: 0;
+		box-sizing: border-box;
+		width: 40%;
+    flex-grow: 1;
+    border: none;
+    padding: 10px;
+    &.copyButton {
+    	p {
+    		&:before {
+    			content: '';
+    			background-image: url(../svg/contact/clipboard-action.svg);
+    			background-repeat: no-repeat;
+    			position: absolute;
+    			width: 20px;
+    			height: 20px;
+    			top: 1px;
+		      left: -25px;
+    		}
+    	}
+    }
 
-.footer-nav{
-	width: 40%;
-	margin: 3%;
-	ul{
-		list-style-type: none;
-		li{
-			padding: 1px;
+    &.composeButton {
+    	p {
+    		&:before {
+    			content: '';
+    			background-image: url(../svg/contact/compose-action.svg);
+    			background-repeat: no-repeat;
+    			position: absolute;
+    			width: 20px;
+    			height: 20px;
+    			top: 1px;
+		      left: -25px;
+    		}
+    	}
+    }
+
+    &.callButton {
+    	p {
+    		&:before {
+    			content: '';
+    			background-image: url(../svg/contact/phone-action.svg);
+    			background-repeat: no-repeat;
+    			position: absolute;
+    			width: 20px;
+    			height: 20px;
+    			top: 1px;
+		      left: -25px;
+    		}
+    	}
+    }
+
+		p {
+			transform: skew(-20deg);
+			font-size: 1.9em;
+			color: $mainDark;
+			font-family: 'Montserrat', 'Lato', sans-serif;
+			font-weight: 400;
+			position: relative;
+			width: -moz-fit-content;
+			width: fit-content;
+      margin: auto;
 		}
 	}
 }
 
-.footer-info{
-	position: absolute;
-	right: 0px;
-	top: 0px;
-	padding: 5px;
-	margin: 3%;
-	text-align: right;
-	line-height: 100%;
+.contactButtons {
+	width: 90%;
+	display: flex;
+  margin: 5% auto;
 }
 
-footer{
-	box-sizing: border-box;
-	position: relative;
-	background-color: #FFF;
-	border-style: solid;
-	border-color: $mainDark;
-	border-width: 0px;
-	border-top-width: 1px;
-	width: 100%;
-	color: $mainDark;
-	font-family: 'Montserrat', 'Lato', sans-serif;
-	font-size: 10pt;
-	margin: auto;
-	margin-top: 20%;
+#emailContact {
+	background-image: url(../svg/contact/email-mobile.svg);
+}
 
-	img{
-		display: inline-block;
-		margin: auto;
-		width: 30%;
-		position: absolute;
-		bottom: 15%;
-		left: 30%;
-	}
-
+#phoneContact {
+	background-image: url(../svg/contact/phone-mobile.svg);
+  background-position: right -45px bottom 5px;
+  padding-bottom: 20%;
+  background-size: 60%;
 }

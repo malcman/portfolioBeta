@@ -25,26 +25,44 @@
 </head>
 <body>
 	<div id="menuEntry"></div>
-	<div class="content" id="contactContent"><br>
-		<h3>Contact</h3><br>
-		<div class="disp-grid" id="contact-grid">
-			<div class="wide-grid-cell" id="emailCell">
+	<div class="content" id="contactContent">
+		<h1>Contact</h1>
+
+		<div class="contactBox" id="emailContact">
+			<h2>Email</h2>
+			<h3>malc@umich.edu</h3>
+			<div class="contactButtons">
+				<button class="copyButton">
+					<p>Copy</p>
+				</button>
+				<button class="composeButton">
+					<p>Compose</p>
+				</button>
+			</div>
+
+		<!-- </div>
 				<input
 					id="email-info"
 					type="text"
 					value="malc@umich.edu"
 					disabled>
-				<h4>Email</h4>
-			</div>
-			<h4>Phone:</h4><br>
 			<a href="tel:1-231-823-4022">
-				<div class="grid-cell">
-					<div class="bkg-cell" id="phone-box"></div>
-					<div class="sub-grid-cell">Click to call</div>
-				</div><br>
 			</a>
+		</div> -->
+
+		<div class="contactBox" id="phoneContact">
+			<h2>Phone</h2>
+			<h3>231.823.4022</h3>
+			<div class="contactButtons">
+				<button class="copyButton">
+					<p>Copy</p>
+				</button>
+				<button class="callButton">
+					<p>Call</p>
+				</button>
+			</div>
 		</div>
-	</div>
+
 	<script src="./static/js/bundle.js"></script>
 </body>
 </html>
