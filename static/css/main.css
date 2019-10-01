@@ -8,10 +8,22 @@ body {
 
 a {
   text-decoration: none; }
-  a [href$=".pdf"] {
-    background-image: url(./static/img/pdf-icon); }
-  a :hover {
-    text-decoration: underline; }
+  a[download] {
+    margin-left: 35px;
+    position: relative;
+    color: #434B63;
+    font-size: 1.2em; }
+    a[download]:hover {
+      text-decoration: underline; }
+    a[download]:before {
+      content: '';
+      background-image: url(../img/icon/downloadIconDark.png);
+      position: absolute;
+      height: 30px;
+      width: 30px;
+      background-size: cover;
+      left: -35px;
+      bottom: -4px; }
 
 p, div {
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
@@ -41,6 +53,11 @@ header {
 
 h1, h2 {
   font-family: 'Montserrat', 'Lato', sans-serif; }
+
+h1 {
+  color: #434B63;
+  font-size: 210%;
+  font-weight: 400; }
 
 h3 {
   color: #434B63;
@@ -405,7 +422,7 @@ canvas {
     opacity: 0;
     transition: opacity 0.3s linear 0.5s; }
 
-.expanded #egoHeader:after {
+.expanded #egoHeader:after, .expanded .resumeHeader:after {
   transform: rotate(45deg); }
 .expanded .expanding {
   transform: translateY(0) scaleY(1); }
@@ -461,16 +478,33 @@ canvas {
     background-image: url(../img/MalcMaturenFull.png);
     background-size: contain; }
 
-.content .landingSection {
-  position: relative;
-  padding: 5% 0; }
-  .content .landingSection p {
-    width: 60%;
-    padding: 0 10%;
-    text-indent: 0; }
-  .content .landingSection h4 {
-    position: absolute;
-    font-size: 36pt; }
+.content {
+  transition: all 400ms;
+  width: 80%;
+  padding: 15% 10%; }
+  .content p {
+    width: 100%;
+    text-indent: 5%; }
+  .content#contactContent {
+    width: 100vw;
+    margin: 0;
+    margin-top: 15%; }
+    .content#contactContent h3 {
+      margin-left: 10vw; }
+  .content#homeContent {
+    width: 100%;
+    padding: 0;
+    margin-top: -5px; }
+  .content .landingSection {
+    position: relative;
+    padding: 5% 0; }
+    .content .landingSection p {
+      width: 60%;
+      padding: 0 10%;
+      text-indent: 0; }
+    .content .landingSection h4 {
+      position: absolute;
+      font-size: 36pt; }
 
 #homeContent p {
   font-family: 'Red Hat Text'; }
@@ -502,6 +536,117 @@ canvas {
 #leadershipHeader {
   position: relative;
   margin-left: 5%; }
+
+#resume {
+  padding: 100px 10%; }
+  #resume h1 {
+    font-weight: 300;
+    font-size: 250%;
+    float: right; }
+
+.resumeHeader {
+  width: 100%;
+  text-decoration: none;
+  font-family: 'Montserrat', 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 2em;
+  border: 1px solid #C3CCD6;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  border-width: 1px 0 0 0; }
+  .resumeHeader:after {
+    content: '+';
+    float: right;
+    padding-right: 10px;
+    transition: transform 0.5s;
+    font-size: 22pt; }
+  .resumeHeader:hover {
+    cursor: pointer; }
+
+.resumeExpandable {
+  width: 100%; }
+
+.resumeContent {
+  width: 100%;
+  border: 4px solid #434B63;
+  border-width: 0 0 0 4px;
+  margin-left: 5px;
+  padding-left: 15px;
+  margin-top: 15px; }
+  .resumeContent ul {
+    margin-left: 3em;
+    margin-bottom: 20px; }
+  .resumeContent li:before {
+    content: "";
+    border-color: transparent #434B63;
+    border-style: solid;
+    border-width: 0.35em 0 0.35em 0.45em;
+    display: block;
+    height: 0;
+    width: 0;
+    left: -1em;
+    top: 0.9em;
+    position: relative; }
+  .resumeContent h3 {
+    margin: 10px 0 10px 5px;
+    width: 90%;
+    border: 2px solid #B3BBC5;
+    border-width: 0 0 3px 0;
+    padding-bottom: 5px; }
+  .resumeContent h3:not(:first-of-type) {
+    margin-top: 35px; }
+  .resumeContent h4, .resumeContent h5 {
+    margin-left: 5px;
+    text-decoration: none; }
+  .resumeContent h5 {
+    margin-top: 5px;
+    color: #1C242E; }
+  .resumeContent p {
+    text-indent: 0;
+    margin: 15px 0 0 5px;
+    width: 85%; }
+
+#languagesContainer .resumeContent {
+  margin-top: 0; }
+
+#misson-cnt {
+  position: relative;
+  margin: 20px 0; }
+
+#mission {
+  background-color: #434B63;
+  color: white;
+  width: 80vw;
+  position: relative;
+  left: -10vw;
+  padding: 0 10vw;
+  -webkit-clip-path: polygon(0% 0, 100% 0%, 85% 92%, 3% 92%, 0% 100%);
+  clip-path: polygon(0% 0, 100% 0%, 85% 92%, 3% 92%, 0% 100%); }
+
+#missionBKG {
+  background-color: #393f54;
+  width: 110%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -10vw;
+  z-index: -1;
+  -webkit-clip-path: polygon(0% 0, 100% 0%, 85% 100%, 0% 100%);
+  clip-path: polygon(0% 0, 100% 0%, 85% 100%, 0% 100%); }
+
+#missionHeader {
+  font-weight: 300;
+  font-size: 2.5em;
+  margin: 15px 0px;
+  margin-left: -5vw; }
+
+#missionText {
+  margin-bottom: 30px;
+  line-height: 1.4em;
+  margin-left: -5vw; }
+
+.skillSection {
+  display: block; }
 
 #filterGrid, #sortGrid {
   display: grid;
@@ -769,34 +914,8 @@ canvas {
   width: 90%;
   max-width: 310px; }
 
-#resume {
-  height: 70vh;
-  margin-bottom: 20vh; }
-
-#resume-embed {
-  width: 100%;
-  height: 100%; }
-
-#resume-footer {
-  margin-top: 30%; }
-
 #languages {
   margin-left: 10%; }
-
-#thoughts-header {
-  text-align: center;
-  color: #000; }
-
-#thoughts-header-ctn {
-  background-image: url(../img/penPaper.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  width: 100%;
-  height: 50%;
-  line-height: 35vh;
-  margin-bottom: 10%;
-  border-radius: 10px; }
 
 #footer-logo {
   display: inline-block;
@@ -929,33 +1048,6 @@ canvas {
 
 .openNav {
   right: 0px; }
-
-.content {
-  transition: all 400ms;
-  width: 80%;
-  padding: 15% 10%; }
-  .content #profpic {
-    position: relative;
-    float: right;
-    width: 40%;
-    margin-left: 5%;
-    max-width: 330px; }
-    .content #profpic img {
-      width: 100%;
-      border-radius: 5px; }
-  .content p {
-    width: 100%;
-    text-indent: 5%; }
-  .content#contactContent {
-    width: 100vw;
-    margin: 0;
-    margin-top: 15%; }
-    .content#contactContent h3 {
-      margin-left: 10vw; }
-  .content#homeContent {
-    width: 100%;
-    padding: 0;
-    margin-top: -5px; }
 
 #ProjectComponent {
   width: 100%; }

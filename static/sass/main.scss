@@ -21,11 +21,24 @@ body {
 
 a{
 	text-decoration: none;
-	[href$= ".pdf"]{
-		background-image: url(./static/img/pdf-icon);
-	}
-	:hover {
-		text-decoration: underline;
+	&[download] {
+		margin-left: 35px;
+		position: relative;
+		color: $mainDark;
+		font-size: 1.2em;
+		&:hover {
+			text-decoration: underline;
+		}
+		&:before {
+			content: '';
+			background-image: url(../img/icon/downloadIconDark.png);
+	    position: absolute;
+	    height: 30px;
+	    width: 30px;
+	    background-size: cover;
+	    left: -35px;
+	    bottom: -4px;
+		}
 	}
 }
 
@@ -62,6 +75,12 @@ header{
 
 h1, h2 {
 	font-family: 'Montserrat', 'Lato', sans-serif;
+}
+
+h1 {
+	color: $mainDark;
+	font-size: 210%;
+	font-weight: 400;
 }
 
 h3{
@@ -517,7 +536,7 @@ canvas {
 }
 
 .expanded {
-  #egoHeader {
+  #egoHeader, .resumeHeader {
     &:after {
       // turns '+' into 'x'
       transform: rotate(45deg);
@@ -592,6 +611,26 @@ canvas {
 }
 
 .content {
+	transition: all 400ms;
+	width: 80%;
+	padding: 15% 10%;
+	p{
+		width: 100%;
+		text-indent: 5%;
+	}
+	&#contactContent {
+		width: 100vw;
+		margin: 0;
+		margin-top: 15%;
+		h3 {
+			margin-left: 10vw;
+		}
+	}
+	&#homeContent {
+		width: 100%;
+		padding: 0;
+		margin-top: -5px;
+	}
 	.landingSection {
 		position: relative;
 		padding: 5% 0;
@@ -637,6 +676,141 @@ canvas {
 #leadershipHeader {
 	position: relative;
 	margin-left: 5%;
+}
+
+#resume{
+	padding: 100px 10%;
+	h1 {
+		font-weight: 300;
+		font-size: 250%;
+		float: right;
+	}
+}
+
+.resumeHeader {
+  width: 100%;
+  text-decoration: none;
+  font-family: 'Montserrat', 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 2em;
+  border: 1px solid $lightGrey;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  border-width: 1px 0 0 0;
+	&:after {
+  	content: '+';
+  	float: right;
+    padding-right: 10px;
+    transition: transform 0.5s;
+    // transform: translateY(-5px);
+    font-size: 22pt;
+  }
+  &:hover {
+  	cursor: pointer;
+  }
+}
+
+.resumeExpandable {
+	width: 100%;
+}
+
+.resumeContent {
+	width: 100%;
+	border: 4px solid $mainDark;
+	border-width: 0 0 0 4px;
+	margin-left: 5px;
+  padding-left: 15px;
+  margin-top: 15px;
+	ul {
+		margin-left: 3em;
+    margin-bottom: 20px;
+	}
+	li:before {
+    content: "";
+    border-color: transparent $mainDark;
+    border-style: solid;
+    border-width: 0.35em 0 0.35em 0.45em;
+    display: block;
+    height: 0;
+    width: 0;
+    left: -1em;
+    top: 0.9em;
+    position: relative;
+	}
+	h3 {
+		margin: 10px 0 10px 5px;
+		width: 90%;
+    border: 2px solid #B3BBC5;
+    border-width: 0 0 3px 0;
+    padding-bottom: 5px;
+	}
+	h3:not(:first-of-type) {
+		margin-top: 35px;
+	}
+	h4, h5 {
+    margin-left: 5px;
+    text-decoration: none;
+	}
+	h5 {
+		margin-top: 5px;
+		color: #1C242E;
+	}
+	p {
+		text-indent: 0;
+    margin: 15px 0 0 5px;
+    width: 85%;
+	}
+}
+
+#languagesContainer {
+	.resumeContent {
+		margin-top: 0;
+	}
+}
+
+#misson-cnt {
+	position: relative;
+  margin: 20px 0;
+}
+
+#mission {
+	background-color: $mainDark;
+	color: white;
+  width: 80vw;
+  position: relative;
+  left: -10vw;
+  padding: 0 10vw;
+  -webkit-clip-path: polygon(0% 0, 100% 0%, 85% 92%, 3% 92%, 0% 100%);
+  clip-path: polygon(0% 0, 100% 0%, 85% 92%, 3% 92%, 0% 100%);
+}
+
+#missionBKG {
+	background-color: darken($mainDark, 5%);
+	width: 110%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+  left: -10vw;
+  z-index: -1;
+  -webkit-clip-path: polygon(0% 0, 100% 0%, 85% 100%, 0% 100%);
+  clip-path: polygon(0% 0, 100% 0%, 85% 100%, 0% 100%);
+}
+
+#missionHeader {
+	font-weight: 300;
+  font-size: 2.5em;
+  margin: 15px 0px;
+  margin-left: -5vw;
+}
+
+#missionText {
+	margin-bottom: 30px;
+	line-height: 1.4em;
+	margin-left: -5vw;
+}
+
+.skillSection {
+	display: block;
 }
 
 // grid that holds filtering options
@@ -1002,40 +1176,10 @@ $greyedOutFilters: #d5d5d5;
 }
 // end specific cover image adjustments
 
-#resume{
-	height: 70vh;
-	margin-bottom: 20vh;
-}
-
-#resume-embed{
-	width: 100%;
-	height: 100%;
-}
-
-#resume-footer{
-	margin-top: 30%;
-}
-
 #languages{
 	margin-left: 10%;
 }
 
-#thoughts-header{
-	text-align: center;
-	color: #000;
-}
-
-#thoughts-header-ctn{
-	background-image: url(../img/penPaper.jpg);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center center;
-	width: 100%;
-	height: 50%;
-	line-height: 35vh;
-	margin-bottom: 10%;
-	border-radius: 10px;
-}
 
 #footer-logo{
 	display: inline-block;
@@ -1207,40 +1351,6 @@ $greyedOutFilters: #d5d5d5;
 
 .openNav {
 	right: 0px;
-}
-
-.content{
-	transition: all 400ms;
-	width: 80%;
-	padding: 15% 10%;
-	#profpic{
-		position: relative;
-		float: right;
-		width: 40%;
-		margin-left: 5%;
-		max-width: 330px;
-		img{
-			width: 100%;
-			border-radius: 5px;
-		}
-	}
-	p{
-		width: 100%;
-		text-indent: 5%;
-	}
-	&#contactContent {
-		width: 100vw;
-		margin: 0;
-		margin-top: 15%;
-		h3 {
-			margin-left: 10vw;
-		}
-	}
-	&#homeContent {
-		width: 100%;
-		padding: 0;
-		margin-top: -5px;
-	}
 }
 
 #ProjectComponent {

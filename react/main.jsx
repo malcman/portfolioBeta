@@ -60,13 +60,13 @@ function expand(expandableEl, expandingEl) {
   } else {
     expandableEl.classList.add('expanded');
     // determine appropriate distance to push following elements down
-    const marginSize = expandingEl.clientHeight;
+    const marginSize = expandingEl.clientHeight + 10;
     const marginPxStr = `${marginSize}px`;
     // apply
     expandableEl.style.marginBottom = marginPxStr; //eslint-disable-line
-    setTimeout(() => {
-      window.scrollTo(0, expandableEl.offsetTop, { behavior: 'smooth' });
-    }, 400);
+    // setTimeout(() => {
+    //   window.scrollTo(0, expandableEl.offsetTop, { behavior: 'smooth' });
+    // }, 400);
   }
 }
 
@@ -76,8 +76,10 @@ function enableExpansions() {
   expandables.forEach((expandable) => {
     // get associated child elements that do the actual expanding
     const expanding = expandable.querySelector('.expanding');
+    const header = expandable.children[0];
     // add click listeners to all
-    expandable.addEventListener('click', () => {
+    // only allow clicks on the header bars
+    header.addEventListener('click', () => {
       expand(expandable, expanding);
     });
   });
@@ -85,6 +87,7 @@ function enableExpansions() {
 
 function setHeights() {
   // this function is necessary bc transform needs a height set first in order to work effectively
+  // sike I don't think that's true
   const expandables = document.querySelectorAll('.expandable');
   expandables.forEach((expandable) => {
     const expanding = expandable.querySelector('.expanding');
@@ -94,7 +97,7 @@ function setHeights() {
 }
 
 // enable all non-react expandable sections
-setHeights();
+// setHeights();
 enableExpansions();
 
 // Render Menu and Navigator
