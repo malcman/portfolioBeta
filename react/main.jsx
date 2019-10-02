@@ -27,27 +27,49 @@ if (projectsEntry) {
   ReactDOM.render(<ProjectPage />, projectsEntry);
 }
 
-function copyToClipboardFallback(text) {
-  // creates a textarea element, quickly selects the text, then deletes node
+
+function displayCopyConfirm(copyText, container) {
+  // displays a temporary message at the end of container
+  // confirming that copyText was copied to clipboard
+  const displayTimeMS = 5000;
+  const confirmEl = document.createElement('div');
+  confirmEl.classList.add('copyConfirm');
+  confirmEl.innerHTML = `${copyText} copied to clipboard.`;
+  // display
+  container.appendChild(confirmEl);
+  // fade out after a few seconds with CSS
+  // remove entirely from DOM
+  setTimeout(() => {
+    container.removeChild(confirmEl);
+  }, displayTimeMS);
+}
+
+function copyToClipboardFallback(text, container) {
+  // creates a textarea element, quickly selects & copies the text, then deletes node
   const textArea = document.createElement('textarea');
   textArea.value = text;
   // specify fixed position to viewport so that
   // adding element to document doesn't affect scroll position
   textArea.style.position = 'fixed';
   textArea.style.top = 0;
+  // hide off to the side with CSS
   textArea.classList.add('hiddenRight');
   document.body.appendChild(textArea);
   textArea.focus();
   textArea.select();
   try {
     document.execCommand('copy');
+    displayCopyConfirm(text, container);
   } catch (err) {
-    console.log('Oops, unable to copy'); // eslint-disable-line
+    displayCopyConfirm('Oops, unable to copy.', container);
   }
   document.body.removeChild(textArea);
 }
 
-function copyToClipboard(text) {
+function copyToClipboard(text, container) {
+  // attemps copying to clipboard with modern navigator.clipboard first
+  // if not available or no permissions, uses fallback
+  // displays confirmation message either way
   let clipboardAccess = false;
   if (navigator.permissions) {
     navigator.permissions.query({ name: 'clipboard-write' })
@@ -59,10 +81,11 @@ function copyToClipboard(text) {
       });
   }
   if (!clipboardAccess || !navigator.clipboard) {
-    copyToClipboardFallback(text);
+    copyToClipboardFallback(text, container);
     return;
   }
   navigator.clipboard.writeText(text);
+  displayCopyConfirm(text, container);
 }
 
 function expand(expandableEl, expandingEl) {
@@ -102,7 +125,8 @@ function enableExpansions() {
 }
 
 // function setHeights() {
-//   // this function is necessary bc transform needs a height set first in order to work effectively
+//   // this function is necessary bc transform needs
+//   // a height set first in order to work effectively
 //   // sike I don't think that's true
 //   const expandables = document.querySelectorAll('.expandable');
 //   expandables.forEach((expandable) => {
@@ -128,7 +152,9 @@ if (copyables) {
   copyables.forEach((copyable) => {
     copyable.addEventListener('click', () => {
       const copyText = copyable.getAttribute('copyText');
-      copyToClipboard(copyText);
+      // const container = copyable.parentNode.parentNode;
+      const container = copyable;
+      copyToClipboard(copyText, container);
     });
   });
 }

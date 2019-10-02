@@ -1143,7 +1143,8 @@ canvas {
     width: 40%;
     flex-grow: 1;
     border: none;
-    padding: 10px; }
+    padding: 10px;
+    position: relative; }
     .contactBox button.copyButton p:before {
       background-image: url(../svg/contact/clipboard-action.svg); }
     .contactBox button.composeButton p:before {
@@ -1180,6 +1181,30 @@ canvas {
   width: 90%;
   display: flex;
   margin: 5% auto; }
+
+@keyframes fadeOut {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+.copyConfirm {
+  transform: skew(-20deg);
+  width: 190%;
+  position: absolute;
+  bottom: -35px;
+  left: -10px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 1.2em;
+  background-color: #2e3445;
+  color: white;
+  -webkit-animation: fadeOut 500ms forwards 4s;
+  animation: fadeOut 500ms forwards 4s; }
 
 #emailContact {
   background-image: url(../svg/contact/email-mobile.svg); }

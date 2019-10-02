@@ -1440,6 +1440,7 @@ $greyedOutFilters: #d5d5d5;
 .contactBox {
 	width: 100%;
 	background-repeat: no-repeat;
+	// position: relative;
 	h2 {
 		color: $mainDark;
 		font-weight: 400;
@@ -1460,6 +1461,7 @@ $greyedOutFilters: #d5d5d5;
     flex-grow: 1;
     border: none;
     padding: 10px;
+    position: relative;
     &.copyButton {
     	p {
     		&:before {
@@ -1520,6 +1522,41 @@ $greyedOutFilters: #d5d5d5;
 	width: 90%;
 	display: flex;
   margin: 5% auto;
+}
+
+@keyframes fadeOut {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes fadeOut {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+.copyConfirm {
+	$fadeAnim: fadeOut 500ms forwards 4s;
+	transform: skew(-20deg);
+	width: 190%;
+	position: absolute;
+	bottom: -35px;
+	left: -10px;
+	border-radius: 5px;
+	padding: 5px 10px;
+	font-size: 1.2em;
+
+	background-color: darken($mainDark, 10%);
+	color: white;
+	-webkit-animation: $fadeAnim;
+	animation: $fadeAnim;
 }
 
 #emailContact {
