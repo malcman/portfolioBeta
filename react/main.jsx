@@ -10,7 +10,7 @@ function getPage() {
   let page;
 
   if (matches !== null) {
-    // The result can be accessed through the `m`-variable.
+    // The result can be accessed through the `match`-variable.
     matches.forEach((match, groupIndex) => {
       if (groupIndex === 1) {
         page = match;
@@ -124,20 +124,7 @@ function enableExpansions() {
   });
 }
 
-// function setHeights() {
-//   // this function is necessary bc transform needs
-//   // a height set first in order to work effectively
-//   // sike I don't think that's true
-//   const expandables = document.querySelectorAll('.expandable');
-//   expandables.forEach((expandable) => {
-//     const expanding = expandable.querySelector('.expanding');
-//     const content = expanding.querySelector('.expandContent');
-//     expanding.style.height = `${content.clientHeight}px`;
-//   });
-// }
-
 // enable all non-react expandable sections
-// setHeights();
 enableExpansions();
 
 // Render Menu and Navigator
@@ -152,7 +139,6 @@ if (copyables) {
   copyables.forEach((copyable) => {
     copyable.addEventListener('click', () => {
       const copyText = copyable.getAttribute('copyText');
-      // const container = copyable.parentNode.parentNode;
       const container = copyable;
       copyToClipboard(copyText, container);
     });

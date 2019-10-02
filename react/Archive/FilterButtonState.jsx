@@ -5,12 +5,17 @@ const classNames = require('classnames');
 class FilterButton extends React.Component {
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      selected: true,
+    };
+    this.changeHandler = this.changeHandler.bind(this);
   }
 
-  handleChange(e) {
-    e.preventDefault();
-    this.props.handleCheckboxChange();
+  changeHandler(e) {
+    this.setState(prevState => ({
+      selected: !prevState.selected,
+    }));
+    this.props.handleCheckboxChange(e);
   }
 
   render() {
@@ -23,10 +28,10 @@ class FilterButton extends React.Component {
         <input
           className="filterCheckbox"
           type="checkbox"
-          checked={this.props.isSelected}
+          checked={this.state.selected}
           value={this.props.category}
           id={inputID}
-          onChange={this.props.handleCheckboxChange}
+          onChange={this.changeHandler}
           disabled={this.props.disable}
         />
         <div className="FilterBKG">

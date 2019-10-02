@@ -42,7 +42,7 @@ class ProjectPage extends React.Component {
   }
 
   fetchProjects(fetchURL) {
-    this.categories = [];
+    const categories = [];
     fetch(fetchURL, { credentials: 'same-origin' })
       .then((response) => {
         if (!response.ok) throw Error(response.statusText);
@@ -59,15 +59,15 @@ class ProjectPage extends React.Component {
           projects.push(newProj);
           // update list of all categories
           proj.tags.forEach((tag) => {
-            if (this.categories.indexOf(tag) === -1) {
-              this.categories.push(tag);
+            if (categories.indexOf(tag) === -1) {
+              categories.push(tag);
             }
           });
         });
         this.setState({
           projects,
           // set all checkboxes to selected
-          checkboxes: this.categories.reduce(
+          checkboxes: categories.reduce(
             (options, option) => ({
               ...options,
               // concat new key with previous version of 'options'
@@ -155,7 +155,6 @@ class ProjectPage extends React.Component {
       <div id="ProjectComponent">
         <h3>Projects</h3>
         <FilterManager
-          categories={this.categories}
           filters={this.state.checkboxes}
           currentSort={this.state.currentSort}
           filtersOpen={this.state.filtersOpen}

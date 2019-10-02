@@ -1,6 +1,11 @@
 import React from 'react';
 import FilterButton from './FilterButton';
 
+function checkListSort(a, b) {
+  if (a.props.catNoWhitespace < b.props.catNoWhitespace) return -1;
+  else if (a.props.catNoWhitespace > b.props.catNoWhitespace) return 1;
+  return 0;
+}
 
 class FilterForm extends React.Component {
   constructor(props) {
@@ -48,9 +53,10 @@ class FilterForm extends React.Component {
   createCategoryChecklist() {
     // create new filter button for each category in the data
     const filterButtons = [];
-    this.props.categories.forEach((category) => {
+    Object.keys(this.props.filters).forEach((category) => {
       // remove whitespace from categories for id and key
       const catNoWhitespace = category.replace(/\s/g, '');
+      const selected = this.props.filters[category];
 
       const newCategory = (
         <FilterButton
@@ -58,6 +64,7 @@ class FilterForm extends React.Component {
           category={category}
           catNoWhitespace={catNoWhitespace}
           handleCheckboxChange={this.props.handleCheckboxChange}
+          isSelected={selected}
         />
       );
       filterButtons.push(newCategory);
@@ -71,11 +78,13 @@ class FilterForm extends React.Component {
 
   render() {
     const managementButtons = this.createFilterManagementButtons();
+    const checklist = this.createCategoryChecklist();
+    checklist.sort(checkListSort);
 
     return (
       <form id="filterForm">
         <div id="filterGrid">
-          {this.checklist}
+          {checklist}
           {managementButtons}
         </div>
       </form>
