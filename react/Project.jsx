@@ -37,7 +37,7 @@ class Project extends React.Component {
             >
               <Flipped inverseFlipId={this.props.title}>
                 <div>
-                  <ProjInfo {...this.props} />
+                  <ProjInfo isOpen={this.state.fullScreen} {...this.props} />
                 </div>
               </Flipped>
             </div>

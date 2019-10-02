@@ -336,6 +336,7 @@ function makeSVGXMLRequest(panel, url, x, y, properties, spin) {
     // Process our return data
     if (xhr.status >= 200 && xhr.status < 300) {
       // Successful request
+      console.log(xhr)
       const paths = xhr.responseXML.getElementsByTagName('path');
 
       // convert each path to a set of vertices

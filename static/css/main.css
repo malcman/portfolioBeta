@@ -56,8 +56,8 @@ h1, h2 {
 
 h1 {
   color: #434B63;
-  font-size: 210%;
-  font-weight: 400; }
+  font-size: 250%;
+  font-weight: 300; }
 
 h3 {
   color: #434B63;
@@ -812,12 +812,15 @@ canvas {
     box-shadow: 0px 5px 6px #cacedb; }
     .proj:hover .projReadMore {
       text-decoration: underline; }
-  .proj h4, .proj p {
+  .proj h2, .proj p {
     margin-left: 5%;
     margin-top: 2%; }
-  .proj h4 {
+  .proj h2 {
     width: 80%;
-    font-size: 18pt; }
+    font-size: 18pt;
+    color: #434B63;
+    font-family: 'Montserrat', 'Lato', sans-serif;
+    font-weight: 400; }
   .proj div[data-inverse-flip-id] {
     width: 100%; }
   .proj .projInfo {
@@ -871,6 +874,10 @@ canvas {
     bottom: -1px;
     right: 5px;
     color: #434B63; }
+  .proj object {
+    height: inherit;
+    width: inherit;
+    margin-top: 20px; }
 
 .proj.expanded {
   position: fixed;

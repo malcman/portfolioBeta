@@ -79,8 +79,8 @@ h1, h2 {
 
 h1 {
 	color: $mainDark;
-	font-size: 210%;
-	font-weight: 400;
+	font-size: 250%;
+  font-weight: 300;
 }
 
 h3{
@@ -1045,13 +1045,16 @@ $greyedOutFilters: #d5d5d5;
 		}
 	}
 
-  h4, p {
+  h2, p {
 		margin-left: 5%;
 		margin-top: 2%;
 	}
-	h4 {
+	h2 {
 		width: 80%;
 		font-size: 18pt;
+    color: #434B63;
+    font-family: 'Montserrat', 'Lato', sans-serif;
+    font-weight: 400;
 	}
 
 	div[data-inverse-flip-id] {
@@ -1117,6 +1120,11 @@ $greyedOutFilters: #d5d5d5;
 	  right: 5px;
 	  color: $mainDark;
 	}
+  object {
+    height: inherit;
+    width: inherit;
+    margin-top: 20px;
+  }
 }
 
 .proj.expanded {

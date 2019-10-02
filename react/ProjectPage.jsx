@@ -153,7 +153,7 @@ class ProjectPage extends React.Component {
     const activeFilters = this.getActiveFilters();
     return (
       <div id="ProjectComponent">
-        <h3>Projects</h3>
+        <h1>Projects</h1>
         <FilterManager
           filters={this.state.checkboxes}
           currentSort={this.state.currentSort}

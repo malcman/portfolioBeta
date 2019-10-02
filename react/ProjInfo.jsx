@@ -1,6 +1,8 @@
 import React from 'react';
 import { Flipper, Flipped } from 'react-flip-toolkit';
 
+const classNames = require('classnames');
+
 class ProjInfo extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +27,7 @@ class ProjInfo extends React.Component {
   render() {
     const altText = `${this.props.titleShort} cover image`;
     const imgID = `${this.props.titleShort}CoverIMG`;
+    const contentClass = classNames({ hidden: !this.props.isOpen });
     const tags = this.getTags();
 
     return (
@@ -47,9 +50,11 @@ class ProjInfo extends React.Component {
               className="projCoverPhoto"
             />
           </div>
-          <h4 className="projTitle">{this.props.title}</h4>
+          <h2 className="projTitle">{this.props.title}</h2>
           {tags}
-          <p className="projDescription">{this.props.description}</p>
+          <object className={contentClass} data={this.props.docURI} type="text/html">
+            Sorry, your browser does not support the object tag.
+          </object>
           <aside className="projReadMore">Read More</aside>
         </section>
       </Flipped>
