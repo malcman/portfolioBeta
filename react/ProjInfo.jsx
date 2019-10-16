@@ -7,6 +7,30 @@ class ProjInfo extends React.Component {
   constructor(props) {
     super(props);
     this.getTags = this.getTags.bind(this);
+    this.getDocContents = this.getDocContents.bind(this);
+    this.docContents = { __html: '' };
+    this.state = {
+      doc: { __html: '' },
+    };
+  }
+
+  componentDidMount() {
+    this.docContents = this.getDocContents();
+  }
+
+  getDocContents() {
+    // sets this.state.doc to string containing contents of project document
+    fetch(this.props.docURI, { credentials: 'same-origin', 'Content-Type': 'text/html' })
+      .then((response) => {
+        if (!response.ok) throw Error(response.statusText);
+        return response.text();
+      })
+      .then((text) => {
+        this.setState({
+          doc: { __html: text },
+        });
+      })
+      .catch(error => console.log(error)); // eslint-disable-line no-console
   }
 
   getTags() {
@@ -27,7 +51,7 @@ class ProjInfo extends React.Component {
   render() {
     const altText = `${this.props.titleShort} cover image`;
     const imgID = `${this.props.titleShort}CoverIMG`;
-    const contentClass = classNames({ hidden: !this.props.isOpen });
+    const contentClass = classNames('projContent', { hidden: !this.props.isOpen });
     const tags = this.getTags();
 
     return (
@@ -52,9 +76,9 @@ class ProjInfo extends React.Component {
           </div>
           <h2 className="projTitle">{this.props.title}</h2>
           {tags}
-          <object className={contentClass} data={this.props.docURI} type="text/html">
-            Sorry, your browser does not support the object tag.
-          </object>
+          {/* using innerHTML because I know I am writing these docs
+          DO NOT repeat unless entirely confident no XSS is happening. */}
+          <div className={contentClass} dangerouslySetInnerHTML={this.state.doc} />
           <aside className="projReadMore">Read More</aside>
         </section>
       </Flipped>

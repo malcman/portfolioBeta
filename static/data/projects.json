@@ -10,7 +10,7 @@
       "title": "Ember - Activism App Prototype",
       "titleShort": "ember",
       "date": "11/01/18",
-      "tags": ["Interaction Design", "Graphic Design"],
+      "tags": ["Interaction Design", "Graphic Design", "Mobile Apps"],
       "docURI": "./static/data/projectDocs/ember.html",
       "tools": [],
       "coverIMG": "./static/img/EmberCover3.jpg",
@@ -33,7 +33,7 @@
     {
       "title": "Fooya! Capstone Project",
       "titleShort": "fooya",
-      "tags": ["UX Research", "Waste of Time"],
+      "tags": ["UX Research", "Mobile Apps", "Interaction Design", "Graphic Design"],
       "docURI": "./static/data/projectDocs/fooya.html",
       "date": "05/01/19",
       "coverIMG": "./static/img/FooyaCover.jpg",

@@ -617,6 +617,9 @@ canvas {
 	p{
 		width: 100%;
 		text-indent: 5%;
+    &.noIndent {
+      text-indent: 0;
+    }
 	}
 	&#contactContent {
     padding: 100px 0;
@@ -1120,10 +1123,126 @@ $greyedOutFilters: #d5d5d5;
 	  right: 5px;
 	  color: $mainDark;
 	}
-  object {
-    height: inherit;
-    width: inherit;
-    margin-top: 20px;
+  .projContent {
+    $contentPadding: 5%;
+    width: 100%;
+    padding: 0 $contentPadding;
+    margin-top: 5%;
+    // & * {
+    //   margin-left: $contentPadding;
+    // }
+    a {
+      font-weight: bold;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    h3 {
+      font-weight: normal;
+      margin-top: 5%;
+    }
+    h4 {
+      font-size: 300%;
+      font-style: italic;
+      color: $midGray;
+      -webkit-text-fill-color: $midGray;
+    }
+    h5 {
+      color: $mainDark;
+      text-decoration: none;
+      font-family: 'Montserrat', 'Lato', sans-serif;
+      font-size: 1.4em;
+      margin-top: 5%;
+    }
+    iframe {
+      margin-top: 5%;
+    }
+    img {
+      position: relative;
+      left: -6%;
+      width: 106%;
+      margin-top: 5%;
+    }
+    ul {
+      list-style-type: none;
+    }
+    ul li:before {
+      content: "";
+      border-color: transparent #434B63;
+      border-style: solid;
+      border-width: 0.35em 0 0.35em 0.45em;
+      display: block;
+      height: 0;
+      width: 0;
+      left: -1em;
+      top: 1em;
+      position: relative;
+    }
+
+    .processList {
+      list-style: none;
+      counter-reset: listCounter;
+    }
+    .processList > li {
+      counter-increment: listCounter;
+      margin-top: 10%;
+      width: 95%;
+    }
+    .processList > li::before {
+      content: counter(listCounter) ". ";
+      color: #434B63;
+      font-weight: bold;
+      font-size: 400%;
+    }
+    .processStep:last-of-type {
+      margin-bottom: 20%;
+    }
+
+    ul {
+      margin-left: 5%;
+    }
+    p {
+      margin-left: 0;
+      width: 85%;
+      margin-top: 4%;
+    }
+
+    .processHeader {
+      font-size: 3.7em;
+      position: relative;
+      z-index: 0;
+      margin-top: 15%;
+      &:before {
+        $processHeaderShape: polygon(18% 19%, 0% 86%, 100% 12%);
+        content: '';
+        position: absolute;
+        left: -50px;
+        bottom: -1.5em;
+        width: 100%;
+        max-width: 550px;
+        height: 3.5em;
+        z-index: -1;
+        background-color: rgba(185, 197, 202, 0.6);
+        -webkit-clip-path: $processHeaderShape;
+        clip-path: $processHeaderShape;
+      }
+    }
+
+    .NDA {
+      font-size: 1.5em;
+      float: right;
+      color: white;
+      background-color: #951003;
+      border-radius: 5px;
+      padding: 5px;
+    }
+    .emberLink {
+      $emberOrange: #EA450E;
+      color: $emberOrange;
+      h5 {
+        color: $emberOrange;
+      }
+    }
   }
 }
 
@@ -1135,6 +1254,9 @@ $greyedOutFilters: #d5d5d5;
   height: 100vh;
   cursor: default;
   z-index: 20;
+  h2 {
+    width: 90%;
+  }
   .coverPhotoContainer {
 		width: 100%;
 		height: auto;

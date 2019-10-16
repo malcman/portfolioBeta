@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <head>
-  <link rel="stylesheet" href="../../css/projectInfo.css">
 </head>
 <body>
   <h3 class="roleHeader">Roles:</h3>
-  <p>Project Manager, Interaction Designer, Graphic Designer</p>
+  <ul>
+    <li>Project Manager</li>
+    <li>Interaction Designer</li>
+    <li>Grpahic Designer</li>
+  </ul>
   <h3 class="toolsHeader">Tools used:</h3>
   <ul class="toolsList">
     <li class="toolsListEl">Adobe XD</li>
@@ -12,12 +15,72 @@
     <li class="toolsListEl">Pencil & Paper</li>
   </ul>
   <h3 class="resultHeader">Result (TL;DR):</h3>
-  <p class="resultText">Our team of five successfully created a full proof-of-concept Hi-Fi interactive prototype for a mobile app focused on generating activism in local politics.</p>
+  <p class="resultText">Our team of five successfully created a full proof-of-concept Hi-Fi interactive prototype for a mobile app focused on generating activism in local politics.</p><br>
+  <a class="emberLink" href="https://xd.adobe.com/view/c336f1dc-972a-41a2-4444-1c3a7dabe165-b507/">View final interactive digital prototype here.</a>
   <h3 class="processHeader">Process</h3>
+  <!-- <div class="processBKG"></div> -->
   <ol class="processList">
-    <img class="processStepIMG" src="" alt="">
     <li class="processStep">
-      <p></p>
+      <h4>Brainstorming</h4>
+      <p>Our first step was to figure out how we were going to tackle the prompt: create something that engaged a community. This prompt was inspired by the <a target="_blank" href="https://chi2018.acm.org/">CHI 2018</a> theme. Narrowing down on a passion that many in our group shared, we decided we wanted to focus on informing and motivating voters on local politics. This part of the process was mostly done shooting ideas back and forth across the circle, keeping track of common passions amongst ourselves. This was also our first opportunity to get to know the team, allowing me to take note of everyone's personal motivations and approaches to problem solving. <a target="_blank" href="https://docs.google.com/document/d/19EHnLT_WgYiymdo18Hcpv2c_S5xwoSGDtqw2MVvYweM/edit?usp=sharing">View the complete problem statement here.</a></p>
+    </li>
+    <li class="processStep">
+      <h4>Personas & Scenarios</h4>
+      <p>From here, we developed personas and scenarios to help us understand the utility of our platform from the perspective of a range of users. Normally, these would developed on the tail-end of the user research phase, and be backed by data. Because of the time period and purposes of this class (which was focused more on interaction design), we instead brainstormed and asked peers basic questions regarding their political involvement. This approach lends itself to generalization and internal bias, which should obviously be avoided in empathetic design process.</p>
+      <p>Despite lacking substantive research data, this stage helped us contemplate the scope of our application with greater insight. For example, personas revealed that we would have potential users across the scale of involvement, and even those that are similar in that front could have entirely different motivations.</p>
+      <h5>Uninspired Voter Example Persona</h5>
+      <p class="noIndent">(Shoutout <a target="_blank" href="https://xtensio.com/user-persona/">Xtensio</a> for offering a free tier)</p>
+      <img src="./static/data/img/ember/Nancy Witherspoon.png" alt="Uninspired Voter Example Persona">
+
+
+      <p class="noIndent">Our team created a list of the following personas:</p>
+        <ul class="innerList">
+          <li>Uninspired Voter</li>
+          <li>Uninformed Voter</li>
+          <li>The Troll</li>
+          <li>Political Activist</li>
+        </ul>
+      <p>Using these, we were able to better understand use cases for the application, and how our design would need to accomodate varying levels of motivation and prior experience. For example, the uninspired voter would need more approachable and low-investment material in order to find utility in the platform, while a seasoned political activist would require more powerful community organization tools. The scenarios that were completed based on the above personas gave us even more insight into the moment-to-moment interactions for each respective user. <a target="_blank" href="https://docs.google.com/document/d/1gq0XEWjTGBxJ9KeDqecz4x4P0f0QKINDqeViuXkaBT4/edit?usp=sharing">See the uninspired voter scenario here.</a></p>
+    </li>
+    <li class="processStep">
+      <h4>Sketches & Storyboards</h4>
+      <p>We did all of the previous work before determining the specifics of the application, such as platform, language, or medium. Again, this was due to the fact that this was for an interaction design course, and would not necessarily be a possibility in "real life."</p>
+      <p>That being said, we now needed to determine which space our application was going to exist in. We each independently brainstormed roughly 40 ideas, regardless of their implementation feasibility in 2018. We brainstormed independently in order to reduce group-think contaminating our creativity. The purpose was to get ideas out, and worry about refining them (visually and theoretically) later on. My sketches are pictured below. I took the liberty of making several ideas mini storyboards in order to more effectively return to them later on.</p>
+      <h5>Idea Sketches</h5>
+      <img src="./static/data/img/ember/Maturen482Sketches.jpg" alt="Forty rough idea sketches">
+      <p>Having completed these, we returned as a team and each pitched our favorite individual ideas. Some of these included less conventional ideas such as a city-wide, gamified Pokémon-Go! type platform, interactive boards at the voting polls and public hotspots, or using not-currently-existent AR glasses to provide overlay information while walking around a city. Others were simpler, matching users to local candidates in a quiz-based format, or facilitating local coffee-shop meet ups.</p>
+      <p>After reviewing the team's ideas, we decided to focus on the "Tinfo" (we didn't stay with that name, don't worry) idea. This would be a mobile application that matched users to propositions and candidates, presenting content in a digestible format. Though not as revolutionary(?) as interactive MMOG politics, this was chosen to keep scope appropriate for the course while still bringing value to users. A group storyboard for "Tinfo" idea is pictured below.</p>
+      <h5>Starting Storyboard</h5>
+      <img src="./static/data/img/ember/Tinfo.jpg" alt="Storyboard for starting informational matching application.">
+    </li>
+    <li class="processStep">
+      <h4>QOC Analysis</h4>
+      <p>QOC stands for Questions, Options, and Criteria. This analysis method is a helpful and basically zero-cost strategy that allows human cognitive functions and application interactions to be considered and evaluated before any money or time is spent on development.</p>
+      <p>First, a single question is established. This is usually associated with a user interaction, and tries to reveal <i>how</i> they would go about performing a task. For example, "How will the homepage be displayed?"</p>
+
+      <p>Next, a set of options/solutions are presented in response to the question. Three options for the homepage that we chose were grid view, list view, and single-card focus. At this stage is is important to sketch/wireframe the options, so as to reduce ambiguity pertaining to how each option would look and function.</p>
+
+      <p>Parallel to the options, a set of criteria should be established. This is a little more of an art form, and it is difficult if not impossible to construct an exhaustive set of criteria for any one question. These are usually factors of usability or satisfaction. Criteria we chose for the homepage question were Easy to Read, Agency of Choice, Comprehensive, and Provides Overview of Options.</p>
+
+      <p>From here, a positive or negative association is drawn from each option to each criterion. A positive association satisfies the criteria, and vice versa. The criteria can be weighted if you choose, but we opted to skip that. Below is a complete QOC of the example. Note of course one can (and  should) do this with pen and paper to save time and make more associations visually distinct.</p>
+      <h5>Complete QOC</h5>
+      <img src="./static/data/img/ember/homepageQOC.png" alt="Complete example QOC">
+      <p>From here, pros and cons of each option could be discussed around a central basis of agreement. Multiple QOCs were performed. It was at this stage that incongruities within the team regarding the application's purpose came more fully apparent. Though there were a few longer meetings than normal, this stage ultimately proved integral in helping us define our purpose more clearly.</p>
+      <p>It's also important to note that the QOC does not have to be the dictator of design. It's a tool. Though the Grid View has more positive associations than Single Card, we ultimately opted to focus on a single card view. It was our hope that putting focus on one single thing would encourage users to inform themselves on issues across the spectrum, and reduce selective filtering that is particularly prevalent when regarding politics.</p>
+    </li>
+    <li class="processStep">
+      <h4>Paper Prototype</h4>
+      <p>With our ideas more refined and unified, we took to making a paper prototype with a few key screens and "buttons" that could be layered on top. We used these to demonstrate user flow, and later, to conduct simple usability tests. One team member facilitated the tests, while others recorded video and a defect log. Below are prepared screens for a user test.</p>
+      <!-- <iframe src="https://drive.google.com/file/d/1ITXlTk2D3tXwCmMVyo-mQ0vCw_9mAuMe/preview" width="440" height="280"></iframe> -->
+
+      <h5>Paper Prototype for Testing</h5>
+      <img src="./static/data/img/ember/Wireframe_FindInstance.jpg" alt="Paper prototype preapred for testing">
+    </li>
+    <li class="processStep">
+      <h4>Digital Prototype</h4>
+      <p>Thus began the extremely iterative cycle of developing a digital interactive prototype. The team elected to work with Adobe XD for its cross-platform compatibility, free-tier pricing (we were college students after all), and our familiarity with the Adobe ecosystem. The largest downside of this proved to be collaboration and merging work amongst ourselves, as XD did not offer an easy collaboration service at the time.</p>
+      <p>Long story short, we each designed sections, merged, did basic testing, noted problems, refined, and repeated the cycle again. Let democracy commence.</p>
+      <a class="emberLink" href="https://xd.adobe.com/view/c336f1dc-972a-41a2-4444-1c3a7dabe165-b507/"><h5>Click to view the complete digital prototype.</h5></a>
     </li>
   </ol>
 </body>
