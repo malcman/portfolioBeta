@@ -881,8 +881,12 @@ canvas {
     padding: 0 5%;
     margin-top: 5%; }
     .proj .projContent a {
-      font-weight: bold; }
+      font-weight: bold;
+      color: #2e3445; }
       .proj .projContent a:hover {
+        text-decoration: underline; }
+      .proj .projContent a:visited:not(.emberLink) {
+        color: #586281;
         text-decoration: underline; }
     .proj .projContent h3 {
       font-weight: normal;
@@ -942,7 +946,7 @@ canvas {
       font-size: 3.7em;
       position: relative;
       z-index: 0;
-      margin-top: 15%; }
+      margin: 15% 0; }
       .proj .projContent .processHeader:before {
         content: '';
         position: absolute;
@@ -955,13 +959,17 @@ canvas {
         background-color: rgba(185, 197, 202, 0.6);
         -webkit-clip-path: polygon(18% 19%, 0% 86%, 100% 12%);
         clip-path: polygon(18% 19%, 0% 86%, 100% 12%); }
-    .proj .projContent .NDA {
-      font-size: 1.5em;
-      float: right;
-      color: white;
-      background-color: #951003;
-      border-radius: 5px;
-      padding: 5px; }
+      .proj .projContent .processHeader[NDA]:after {
+        content: 'NDA';
+        font-size: 0.5em;
+        float: right;
+        color: white;
+        background-color: #951003;
+        border-radius: 5px;
+        padding: 5px;
+        margin-right: 10%;
+        position: relative;
+        top: 15px; }
     .proj .projContent .emberLink {
       color: #EA450E; }
       .proj .projContent .emberLink h5 {

@@ -1133,7 +1133,12 @@ $greyedOutFilters: #d5d5d5;
     // }
     a {
       font-weight: bold;
+      color: darken($mainDark, 10%);
       &:hover {
+        text-decoration: underline;
+      }
+      &:visited:not(.emberLink) {
+        color: lighten($mainDark, 10%);
         text-decoration: underline;
       }
     }
@@ -1211,7 +1216,7 @@ $greyedOutFilters: #d5d5d5;
       font-size: 3.7em;
       position: relative;
       z-index: 0;
-      margin-top: 15%;
+      margin: 15% 0;
       &:before {
         $processHeaderShape: polygon(18% 19%, 0% 86%, 100% 12%);
         content: '';
@@ -1226,16 +1231,28 @@ $greyedOutFilters: #d5d5d5;
         -webkit-clip-path: $processHeaderShape;
         clip-path: $processHeaderShape;
       }
+      &[NDA]:after {
+        content: 'NDA';
+        font-size: 0.5em;
+        float: right;
+        color: white;
+        background-color: #951003;
+        border-radius: 5px;
+        padding: 5px;
+        margin-right: 10%;
+        position: relative;
+        top: 15px;
+      }
     }
 
-    .NDA {
-      font-size: 1.5em;
-      float: right;
-      color: white;
-      background-color: #951003;
-      border-radius: 5px;
-      padding: 5px;
-    }
+    // .NDA {
+    //   font-size: 1.5em;
+    //   float: right;
+    //   color: white;
+    //   background-color: #951003;
+    //   border-radius: 5px;
+    //   padding: 5px;
+    // }
     .emberLink {
       $emberOrange: #EA450E;
       color: $emberOrange;
