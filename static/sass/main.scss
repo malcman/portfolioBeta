@@ -1128,9 +1128,8 @@ $greyedOutFilters: #d5d5d5;
     width: 100%;
     padding: 0 $contentPadding;
     margin-top: 5%;
-    // & * {
-    //   margin-left: $contentPadding;
-    // }
+    & * {
+    }
     a {
       font-weight: bold;
       color: darken($mainDark, 10%);
@@ -1169,6 +1168,8 @@ $greyedOutFilters: #d5d5d5;
       margin-top: 5%;
     }
     ul {
+      width: 85%;
+      margin-left: 5%;
       list-style-type: none;
     }
     ul li:before {
@@ -1201,10 +1202,6 @@ $greyedOutFilters: #d5d5d5;
     }
     .processStep:last-of-type {
       margin-bottom: 20%;
-    }
-
-    ul {
-      margin-left: 5%;
     }
     p {
       margin-left: 0;
@@ -1245,14 +1242,6 @@ $greyedOutFilters: #d5d5d5;
       }
     }
 
-    // .NDA {
-    //   font-size: 1.5em;
-    //   float: right;
-    //   color: white;
-    //   background-color: #951003;
-    //   border-radius: 5px;
-    //   padding: 5px;
-    // }
     .emberLink {
       $emberOrange: #EA450E;
       color: $emberOrange;
@@ -1318,6 +1307,11 @@ $greyedOutFilters: #d5d5d5;
 	max-width: 310px;
 }
 // end specific cover image adjustments
+
+#sortedAffinityHeader {
+  float: right;
+  padding-right: 5%;
+}
 
 #languages{
 	margin-left: 10%;
@@ -1398,6 +1392,15 @@ $greyedOutFilters: #d5d5d5;
 	display: none;
 }
 
+.downArrowOutline {
+  display: block;
+  height: 100px;
+  width: 100px;
+  background-image: url(../img/icon/downArrowDarkOutline.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 35%;
+}
 
 .hidden {
 	display: none;

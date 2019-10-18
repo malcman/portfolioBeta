@@ -910,6 +910,8 @@ canvas {
       width: 106%;
       margin-top: 5%; }
     .proj .projContent ul {
+      width: 85%;
+      margin-left: 5%;
       list-style-type: none; }
     .proj .projContent ul li:before {
       content: "";
@@ -936,8 +938,6 @@ canvas {
       font-size: 400%; }
     .proj .projContent .processStep:last-of-type {
       margin-bottom: 20%; }
-    .proj .projContent ul {
-      margin-left: 5%; }
     .proj .projContent p {
       margin-left: 0;
       width: 85%;
@@ -1016,6 +1016,10 @@ canvas {
   width: 90%;
   max-width: 310px; }
 
+#sortedAffinityHeader {
+  float: right;
+  padding-right: 5%; }
+
 #languages {
   margin-left: 10%; }
 
@@ -1077,6 +1081,15 @@ canvas {
   opacity: 0;
   transition: opacity 1s;
   display: none; }
+
+.downArrowOutline {
+  display: block;
+  height: 100px;
+  width: 100px;
+  background-image: url(../img/icon/downArrowDarkOutline.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 35%; }
 
 .hidden {
   display: none; }

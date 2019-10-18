@@ -15,9 +15,23 @@ class Project extends React.Component {
 
   toggleFullScreen(e) {
     e.stopPropagation();
+    // if open and a close button wasn't hit, don't do anyting
+    const isCloser = e.target.classList.contains('projClose') || e.target.classList.contains('singleToggleLine');
+    if (this.state.fullScreen && !isCloser) {
+      return;
+    }
     this.setState(prevState => ({
       fullScreen: !prevState.fullScreen,
-    }));
+    }), () => {
+      if (this.state.fullScreen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'visible';
+      }
+    });
+    // console.log(this.state.fullScreeen);
+    // const scrollEl = document.scrollingElement || document.documentElement;
+    // console.log(scrollEl);
   }
 
   render() {
@@ -37,7 +51,11 @@ class Project extends React.Component {
             >
               <Flipped inverseFlipId={this.props.title}>
                 <div>
-                  <ProjInfo isOpen={this.state.fullScreen} {...this.props} />
+                  <ProjInfo
+                    handleExpandToggle={this.toggleFullScreen}
+                    isOpen={this.state.fullScreen}
+                    {...this.props}
+                  />
                 </div>
               </Flipped>
             </div>

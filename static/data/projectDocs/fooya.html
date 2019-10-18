@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+  <meta charset='utf-8'>
 </head>
 <body>
   <h3 class="roleHeader">Roles:</h3>
@@ -11,12 +12,12 @@
   <h3 class="toolsHeader">Tools used:</h3>
   <ul class="toolsList">
     <li class="toolsListEl">Adobe Illustrator</li>
-    <li class="toolsListEl">Adobe Indesign</li>
+    <li class="toolsListEl">Adobe InDesign</li>
     <li class="toolsListEl">Unity 3D</li>
     <li class="toolsListEl">Google Suite</li>
   </ul>
   <h3 class="resultHeader">Result (TL;DR):</h3>
-  <p class="resultText">Our capstone team worked with a remote startup, FriendsLearn Inc., to improve the user experience of their application, <i>Fooya!</i>. We completed target user research, redesigned key interactions, and laid a framework for the compnay's future UX development.</p>
+  <p class="resultText">Our capstone team worked with a remote startup, FriendsLearn Inc., to improve the user experience of their application, <i>Fooya!</i>. We completed target user research, redesigned key interactions, and laid a framework for the company's future UX development.</p>
   <h3 class="processHeader" NDA>Process</h3>
   <!-- <h4 class="NDA">NDA</h4> -->
   <ol class="processList">
@@ -40,16 +41,64 @@
     </li>
     <li class="processStep">
       <h4>User Research</h4>
-      <p>Due to our client's resources and target user group (2nd graders and similar ages)</p>
+      <p>Due to our client's resources and target user group (2nd graders and similar ages), finding willing participants to test with was not an easy task. I ended up reaching out to the local public library, and they were kind enough to allow us to set up shop for an afternoon. We conducted usability tests on interested volunteers, having them play the first ten minutes of the game and perform some specific tasks. We thanked them for their participation with a clementine because healthy food baby. 🍊 </p>
+      <p>For each participant, one team member facilitated the test, another took notes, and a third recorded video of the interaction. These videos were later used to transcribe each test in an excel document. In order to easily return to important statements, each cell was then color-coded according to the following categories:</p>
+      <ul>
+        <li>Confusion</li>
+        <li>Enjoyment</li>
+        <li>Pain Point</li>
+        <li>Question</li>
+        <li>Unimpressed</li>
+        <li>Aversion</li>
+        <li>Clear Understanding</li>
+      </ul>
+      <h5>Affinity Map</h5>
+      <p>We used this information to build an affinity map. Important, statements from the previous coding were written on post-it notes, this time color-coded by participant. We then searched for trends in the statements, grouping them by similar themes. Sometimes these had to do with a specific area of the game, but others were more general, such as general difficulties establishing a mental model. Part of this process is shown below, but contents are blurred due to NDA.</p>
+      <h5>Before sorting...</h5>
+      <img src="./static/data/img/fooya/affinityMapUnsorted.png" alt="Unsorted affinity map, grouped by participant.">
+      <h5 id="sortedAffinityHeader">and sorted.</h5>
+      <img src="./static/data/img/fooya/affinityMapSorted.png" alt="affinity map sorted by themes.">
+      <p>We combined these findings with those of our heuristic analysis to determine the main areas we as a team should focus our attention on. We determined our main UX Requirements were the following:</p>
+      <h5 id="uxRequirements">UX Requirements</h5>
+      <ul>
+        <li>Establish better mental models of game mechanics & items</li>
+        <li>Increase mobility and modernize navigation</li>
+        <li>Decrease system inconsistencies and lay framework for future Fooya! UX development.</li>
+      </ul>
     </li>
     <li class="processStep">
       <h4>Reassessing Scope</h4>
+      <p>This is not a glamorous step to include, but I believe it is one worth mentioning. Re-scoping is rarely desirable, but it is a necessary ability that we have to employ from time to time. At this point in our project, our team was experiencing member involvement issues that were impacting our progress beyond a manageable level. On top of that, our research phase had fully revealed the plethora of work that could tackled.</p>
+      <p>As a result, the other involved team members and I had to sit down and determine reasonable but valuable re-scoping. Instead of developing Unity 3D prototypes (my original goal), I would focus on doing a majority of the design work. We would also develop a style guide for the application and clearly document our research processes for FriendsLearn. This would be a expandable central resource to reduce design inconsistencies and increase empathetic design in their future work flow. We worked with the client during the second half of these discussions in order to ensure they would still be receiving something valuable.</p>
     </li>
     <li class="processStep">
       <h4>Design</h4>
+      <p class="noIndent">Due to NDA agreements I cannot post any of our designs for this project online.</p>
+      <h5>Constraints</h5>
+      <p>Since our team was no longer doing Unity implementation and FriendsLearn was working with constrained development resources, it was important that our redesigns would visually mesh with the majority of the existing art style. At the same time, they needed to bring a fresh coat of paint. There was only a very thin zone within which I could work.</p>
+      <h5>Establishing Consistencies</h5>
+      <p>I began by identifying key colors and UI elements that were already present in the application. After boiling the color palette down to two primary colors and three secondary colors, I slightly adjusted them to be more in line with those of the Fooya! logo. I then established semantic meaning to some of the colors. This had the benefit of reducing future design time for me, while subliminally building mental models for users. </p>
+      <img src="./static/data/img/fooya/fooyaColorSemantics.jpg" alt="establishing Fooya color semantics.">
+      <p>I established other visual invariants such as button styling, element padding, and more. While helping me finding my space in that thin zone between the existing style and modern redesign, this also laid the groundwork for the handoff style guide.</p>
+      <h5>Wireframes</h5>
+      <p>Having found a proper and fun aesthetic for the redesigns, I began addressing problem screens we had identified in our research phase. Starting with pencil and paper, I created about three to five simple wireframes for each screen. After consulting with the team on composition and utility, I would translate our favorite to a wireframe in Illustrator.</p>
+      <h5>Hi-fi Redesigns</h5>
+      <p>With the style guide mostly already established, translating the digital wireframes to colored mockups was not such a long process. As I had to make small adjustments, I would ensure that they "worked" in all places that the assets were used, and note my changes. I find it important to note that I had also played with Unity 3D a fair amount at this point (in anticipation of development...) and took care to guarantee that all design changes would be possible with the engine's current features.</p>
+      <h5>Style Guide</h5>
+      <p>During creation of the hi-fi mockups, I kept documentation for all assets in a central style guide. When I made alterations to assets in a mockup, I would do the same in the style guide. After finishing the screen redesigns, I polished the style guide, and exported it to multiple editable forms. It was our hope that it would not only be used to guide implementation of our redesigns, but act as a working document/template for future years. Documentation was very comprehensive, with examples including color palette, scroll bar styling/placement, and minimum button margins (shown below).</p>
+      <img src="./static/data/img/fooya/navElementSizing.jpg" alt="Button minimum padding specification">
     </li>
     <li class="processStep">
       <h4>Validation</h4>
+      <p>Now that we did all this work, we needed to prove it was actually valuable. Our team created an A/B between-subject test focused on the main screens we redesigned. 16 of our peers were selected, as child participant recruiting at the needed scale was not feasible within our time constraints. Each team member tested two participants with the original Fooya! screens, and two others with the redesigned versions.</p>
+      <p>For each screen, participants were asked questions pertaining to scanning, navigation, comprehension, and confidence. These were all linked to our <a href="#uxRequirements">original three UX requirements.</a> Some responses were graded qualitatively, while others were task-based and could be timed.</p>
+      <p>We analyzed and coded our test responses in a manner similar to the first round of research (though without the affinity map). These codings revealed a clear trend; participants assessing our screens demonstrated faster task completion time, increased comprehension, and greater confidence.</p>
+      <p>Getting perspective from a few new pairs of eyes, we were also able to reveal some areas in our redesigns that needed more attention. Most of these had to do with verbiage, but it was yet another opportunity to improve our work, we quickly integrated new solutions to further our work.</p>
+    </li>
+    <li class="processStep">
+      <h4>Handoff</h4>
+      <p>All of this work would be for naught if we didn't pass it off in a manner that was useful to the client. During the course of our project, we had regular calls with FriendsLearn's Lead Designer to ensure that we understood the team's stack and workflow.</p>
+      <p>The specifics aren't worth getting into, but at the end of our work, they had raw assets, a solid framework for future UX development, and clear (also pretty) documentation on all of our work. It was a pleasure working with Bhargav Prakash (CEO) and the Fooya! team, and we really hope we brought some value to their endeavor. Catch our designs in the world's first digital vaccine.</p>
     </li>
   </ol>
 </body>

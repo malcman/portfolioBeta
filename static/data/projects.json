@@ -9,49 +9,18 @@
     {
       "title": "Ember - Activism App Prototype",
       "titleShort": "ember",
-      "date": "11/01/18",
-      "tags": ["Interaction Design", "Graphic Design", "Mobile Apps"],
-      "docURI": "./static/data/projectDocs/ember.html",
-      "tools": [],
       "coverIMG": "./static/img/EmberCover3.jpg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      "role": "did most of it",
-      "result": "It rocked",
-      "future": "implement",
-      "imgs":
-        [
-          {
-            "src": "./static/img/filename",
-            "description": "stuff"
-          },
-          {
-            "src": "./static/img/filename2",
-            "description": "stuff2"
-          }
-        ]
+      "date": "11/01/18",
+      "docURI": "./static/data/projectDocs/ember.html",
+      "tags": ["Interaction Design", "Graphic Design", "Mobile Apps"]
     },
     {
       "title": "Fooya! Capstone Project",
       "titleShort": "fooya",
-      "tags": ["UX Research", "Mobile Apps", "Interaction Design", "Graphic Design"],
-      "docURI": "./static/data/projectDocs/fooya.html",
-      "date": "05/01/19",
       "coverIMG": "./static/img/FooyaCover.jpg",
-      "description": "Lorem ipsum boopity bopily",
-      "role": "did most of it",
-      "result": "It rocked",
-      "future": "implement",
-      "imgs":
-        [
-          {
-            "src": "./static/img/filename",
-            "description": "stuff"
-          },
-          {
-            "src": "./static/img/filename2",
-            "description": "stuff2"
-          }
-        ]
+      "date": "05/01/19",
+      "docURI": "./static/data/projectDocs/fooya.html",
+      "tags": ["UX Research", "Mobile Apps", "Interaction Design", "Graphic Design"]
     }
   ]
 }
