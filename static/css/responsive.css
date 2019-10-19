@@ -33,7 +33,10 @@
       .contactBox button p:before {
         width: 15px;
         height: 15px;
-        top: 0; } }
+        top: 0; }
+
+  .proj.expanded button.projClose .ClosingX {
+    padding-right: 5px; } }
 @media only screen and (min-width: 650px) {
   #menu-container {
     width: 80%;
@@ -123,11 +126,13 @@
 
   .proj {
     width: 100%; }
+    .proj .projContent .metaContainer {
+      grid-template-columns: 1fr 1fr; }
+    .proj .projContent .NDAinfo {
+      bottom: 15%; }
 
   .projGridCell {
     width: 40vw; }
-    .projGridCell:nth-child(even) .project.expanded {
-      animation: shrinkToFullRightmost 0.5s cubic-bezier(0.1, 0.34, 0.97, 0.08) forwards; }
     .projGridCell .projFlipper {
       width: 100%; }
 
@@ -147,17 +152,6 @@
     background-image: url(../svg/contact/phone-large.svg);
     padding-bottom: 12%; }
 
-  @keyframes shrinkToFullRightmost {
-    0% {
-      margin: auto;
-      left: 0; }
-    50% {
-      transform: scale(0.8, 0.75); }
-    100% {
-      transform: scale(1, 1);
-      min-height: 100vh;
-      min-width: 100vw;
-      left: calc(-50vw - 15px); } }
   #toggle {
     display: none; }
 
@@ -237,23 +231,25 @@
 
   .projGridCell {
     width: 40vw; }
-    .projGridCell:nth-child(odd) .project {
-      transform-origin: top left; }
-    .projGridCell:nth-child(even) .project {
-      transform-origin: top right; }
-    .projGridCell .project {
-      -moz-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.65s, top 0.65s;
-      -webkit-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.65s, top 0.65s;
-      transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.65s, top 0.65s; }
 
-  .project.expanded {
+  .proj .projContent {
+    padding-left: 10%; }
+    .proj .projContent img {
+      left: 0;
+      width: 85%; }
+    .proj .projContent p {
+      width: 70%; }
+
+  .proj.expanded {
     background-color: transparent;
+    background-color: #C3CCD6;
+    background-color: rgba(195, 204, 214, 0.3);
     box-shadow: none; }
-    .project.expanded .projInfo {
+    .proj.expanded .projInfo {
       background-color: white;
       width: 80vw;
       left: 10vw; }
-    .project.expanded + .projBodyCover {
+    .proj.expanded + .projBodyCover {
       display: inline-block;
       opacity: 1; }
 

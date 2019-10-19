@@ -1,5 +1,6 @@
 $mainDark: #434B63;
 $mainLight: #B3BBC5;
+$lightGrey: #C3CCD6;
 
 @media only screen and (max-width: 400px){
 	.content {
@@ -49,6 +50,9 @@ $mainLight: #B3BBC5;
 				}
 			}
 		}
+	}
+	.proj.expanded button.projClose .ClosingX {
+		padding-right: 5px;
 	}
 }
 
@@ -167,19 +171,19 @@ $mainLight: #B3BBC5;
 	}
 	.proj {
 		width: 100%;
+		.projContent {
+			.metaContainer {
+				grid-template-columns: 1fr 1fr;
+			}
+			.metaList {
+			}
+			.NDAinfo {
+		    bottom: 15%;
+			}
+		}
 	}
 	.projGridCell {
 		width: 40vw;
-		&:nth-child(odd){
-			.project.expanded {
-			// left: -10vw;
-			}
-		}
-		&:nth-child(even){
-			.project.expanded {
-				animation: shrinkToFullRightmost 0.5s cubic-bezier(0.1, 0.34, 0.97, 0.08) forwards;
-			}
-		}
 		.projFlipper {
 			width: 100%;
 		}
@@ -201,22 +205,6 @@ $mainLight: #B3BBC5;
 		float: right;
 		background-image: url(../svg/contact/phone-large.svg);
 		padding-bottom: 12%;
-	}
-
-	@keyframes shrinkToFullRightmost {
-		0% {
-			margin: auto;
-			left: 0;
-		}
-		50% {
-			transform: scale(0.8, 0.75);
-		}
-		100% {
-			transform: scale(1, 1);
-			min-height: 100vh;
-			min-width: 100vw;
-	    left: calc(-50vw - 15px);
-		}
 	}
 
 	#toggle{
@@ -330,30 +318,26 @@ $mainLight: #B3BBC5;
 
 	.projGridCell {
 		width: 40vw;
-	&:nth-child(odd){
-		.project {
-			transform-origin: top left;
-		}
-	}
-	&:nth-child(even){
-		.project {
-			transform-origin: top right;
-		}
-	}
-	.project {
-		-moz-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.65s, top 0.65s;
-		-webkit-transition: transform 0.5s ease-in-out, min-height 0.5s, min-width 0.5s, left 0.65s, top 0.65s;
-		transition:
-			transform 0.5s ease-in-out,
-			min-height 0.5s,
-			min-width 0.5s,
-			left 0.65s,
-			top 0.65s ;
-	}
 	}
 
-	.project.expanded {
+	.proj .projContent {
+		padding-left: 10%;
+		img {
+	    left: 0;
+	    width: 85%;
+		}
+		p {
+			width: 70%;
+		}
+		.NDAinfo {
+			// bottom: 0;
+		}
+	}
+
+	.proj.expanded {
 		background-color: transparent;
+		background-color: $lightGrey;
+		background-color: rgba(195, 204, 214, 0.3);
 		box-shadow: none;
 		.projInfo{
 			background-color: white;

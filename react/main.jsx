@@ -124,8 +124,39 @@ function enableExpansions() {
   });
 }
 
+function toggleNDADisplay(el) {
+  el.classList.toggle('fullOpacity');
+}
+
+function addNDAListeners() {
+  // get all process headers that have NDA attribute attached
+  const NDANodes = document.querySelectorAll('h3[NDA]');
+  NDANodes.forEach((nda) => {
+    // get the descriptor text (hidden by default)
+    const ndaInfo = nda.nextElementSibling;
+    nda.addEventListener('click', () => {
+      toggleNDADisplay(ndaInfo);
+    });
+    nda.addEventListener('mouseover', () => {
+      if (!ndaInfo.classList.contains('fullOpacity')) {
+        toggleNDADisplay(ndaInfo);
+      }
+    });
+    nda.addEventListener('mouseout', () => {
+      if (ndaInfo.classList.contains('fullOpacity')) {
+        toggleNDADisplay(ndaInfo);
+      }
+    });
+  });
+}
+
 // enable all non-react expandable sections
 enableExpansions();
+
+// enable NDA additional info. allow time for doc to fill
+setTimeout(() => {
+  addNDAListeners();
+}, 1000);
 
 // Render Menu and Navigator
 ReactDOM.render(

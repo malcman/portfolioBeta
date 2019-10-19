@@ -17,21 +17,23 @@ class Project extends React.Component {
     e.stopPropagation();
     // if open and a close button wasn't hit, don't do anyting
     const isCloser = e.target.classList.contains('projClose') || e.target.classList.contains('singleToggleLine');
-    if (this.state.fullScreen && !isCloser) {
-      return;
-    }
+    // hacky way to tell if this is the present on either side when in desktop view
+    // must continue to be a "Flipped" component around the project for this to work
+    const isCover = window.innerWidth > 1000 && e.target.getAttribute('data-inverse-flip-id');
+
+    // if not any of the "acceptable" UX ways to close this, ignore the event
+    if (this.state.fullScreen && !isCloser && !isCover) return;
+
     this.setState(prevState => ({
       fullScreen: !prevState.fullScreen,
     }), () => {
+      // stop the body from scrolling underneath this module
       if (this.state.fullScreen) {
         document.body.style.overflow = 'hidden';
       } else {
         document.body.style.overflow = 'visible';
       }
     });
-    // console.log(this.state.fullScreeen);
-    // const scrollEl = document.scrollingElement || document.documentElement;
-    // console.log(scrollEl);
   }
 
   render() {

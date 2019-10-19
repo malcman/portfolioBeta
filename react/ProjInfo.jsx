@@ -1,5 +1,6 @@
 import React from 'react';
-import { Flipper, Flipped } from 'react-flip-toolkit';
+import { Flipped } from 'react-flip-toolkit';
+import ClosingX from './ClosingX';
 
 const classNames = require('classnames');
 
@@ -8,14 +9,14 @@ class ProjInfo extends React.Component {
     super(props);
     this.getTags = this.getTags.bind(this);
     this.getDocContents = this.getDocContents.bind(this);
-    this.docContents = { __html: '' };
+    // dangerouslySetInnerHTML attr requires this weird key structure
     this.state = {
       doc: { __html: '' },
     };
   }
 
   componentDidMount() {
-    this.docContents = this.getDocContents();
+    this.getDocContents();
   }
 
   getDocContents() {
@@ -52,20 +53,13 @@ class ProjInfo extends React.Component {
     const altText = `${this.props.titleShort} cover image`;
     const imgID = `${this.props.titleShort}CoverIMG`;
     const contentClass = classNames('projContent', { hidden: !this.props.isOpen });
+    const closeButtonClass = classNames('projClose', { hidden: !this.props.isOpen });
     const tags = this.getTags();
 
     return (
       <Flipped flipId={`${this.props.title}Info`} translate>
         <section className="projInfo">
-          <div
-            className="projClose"
-            onClick={this.props.handleExpandToggle}
-            role="button"
-            tabIndex="0"
-          >
-            <div className="singleToggleLine negFortyFive" />
-            <div className="singleToggleLine posFortyFive" />
-          </div>
+          <ClosingX closerClass="projClose" closerToggle={this.props.handleExpandToggle} />
           <div className="coverPhotoContainer">
             <img
               id={imgID}
@@ -77,9 +71,17 @@ class ProjInfo extends React.Component {
           <h2 className="projTitle">{this.props.title}</h2>
           {tags}
           {/* using innerHTML because I know I am writing these docs
-          DO NOT repeat unless entirely confident no XSS is happening. */}
+          DO NOT repeat unless entirely confident no XSS is happening.
+          aka find a better way to do this */}
           <div className={contentClass} dangerouslySetInnerHTML={this.state.doc} />
           <aside className="projReadMore">Read More</aside>
+          <button
+            className={closeButtonClass}
+            onClick={this.props.handleExpandToggle}
+          >
+            <p className="projClose">Close Project</p>
+            <ClosingX closerClass="projClose" closerToggle={this.props.handleExpandToggle} />
+          </button>
         </section>
       </Flipped>
     );
