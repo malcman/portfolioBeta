@@ -208,8 +208,7 @@
     .content#homeContent {
       margin-bottom: 0;
       background-color: #101E2E;
-      position: relative;
-      top: -2px; }
+      position: relative; }
 
   #filterGrid, #sortGrid {
     grid-template-columns: repeat(4, 1fr);

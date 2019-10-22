@@ -15,6 +15,14 @@
       "tags": ["Interaction Design", "Graphic Design", "Mobile Apps"]
     },
     {
+      "title": "XRSS - AR/VR Styling Study",
+      "titleShort": "xrss",
+      "coverIMG": "./static/img/proj/XRSSCover.png",
+      "date": "04/30/19",
+      "docURI": "./static/data/projectDocs/xrss.html",
+      "tags": ["Interaction Design", "Web Development"]
+    },
+    {
       "title": "Fooya! Capstone Project",
       "titleShort": "fooya",
       "coverIMG": "./static/img/FooyaCover.jpg",

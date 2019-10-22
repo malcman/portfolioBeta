@@ -277,6 +277,7 @@ canvas {
 
 #landingFigure {
   position: relative;
+  top: 2px;
   width: 100vw; }
   #landingFigure img {
     vertical-align: middle; }
@@ -886,7 +887,7 @@ canvas {
       color: #2e3445; }
       .proj .projContent a:hover {
         text-decoration: underline; }
-      .proj .projContent a:visited:not(.emberLink) {
+      .proj .projContent a:visited:not(.customColor) {
         color: #586281;
         text-decoration: underline; }
     .proj .projContent h3 {
@@ -1000,6 +1001,12 @@ canvas {
         font-size: 130%; }
       .proj .projContent .emberLink h5 {
         color: #EA450E; }
+    .proj .projContent .xrssLink {
+      color: #EC3160; }
+      .proj .projContent .xrssLink:first-of-type {
+        font-size: 130%; }
+      .proj .projContent .xrssLink h5 {
+        color: #EC3160; }
 
 .proj.expanded {
   position: fixed;
@@ -1057,7 +1064,7 @@ canvas {
       text-align: left; }
     .proj.expanded button.projClose:hover .ClosingX {
       transform: scale(1, 1) skew(-20deg); }
-  .proj.expanded #emberCoverIMG, .proj.expanded #fooyaCoverIMG {
+  .proj.expanded #emberCoverIMG, .proj.expanded #fooyaCoverIMG, .proj.expanded #xrssCoverIMG {
     max-width: none; }
 
 #emberCoverIMG {
@@ -1068,6 +1075,10 @@ canvas {
 #fooyaCoverIMG {
   width: 90%;
   max-width: 310px; }
+
+#xrssCoverIMG {
+  float: right;
+  max-width: 375px; }
 
 #sortedAffinityHeader {
   float: right;

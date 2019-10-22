@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+  <div class="metaContainer">
+    <div class="metaList">
+      <h3 class="toolsHeader">Tools used:</h3>
+      <ul class="toolsList">
+        <a href="https://aframe.io"><li class="toolsListEl">A-Frame</li></a>
+        <li class="toolsListEl">three.js</li>
+        <li class="toolsListEl">Microsoft Hololens</li>
+      </ul>
+    </div>
+  </div>
+  <h3 class="resultHeader">Result (TL;DR):</h3>
+  <p class="resultText">Working under <a href="http://www.michael-nebeling.de/">Professor Michael Nebeling</a>, we explored layout styling metaphors that could be helpful to AR/VR web developers. Of the ideas I came up with and translated from existing CSS metaphors, "magnet faces," planar grids, and isometric grids proved to be the most robust and extensible.</p><br>
+  <a class="xrssLink customColor" href="https://glitch.com/~a-frame-layouts">View the complete source code and demos on glitch.</a><br>
+  <p class="resultText noIndent">The full demo is on the <a href="https://a-frame-layouts.glitch.me/lab.html">lab.html</a> page, but it may be helpful to view the independent demo pieces first.</p><br>
+  <a href="https://docs.google.com/presentation/d/1sT_x32EKDiUVRF1bHfI71Rgc3Gq4M7baON342YkoNF8/edit?usp=sharing">View project slide deck on Google Slides.</a>
+  <h3 class="processHeader">Process</h3>
+  <ol class="processList">
+    <li class="processStep">
+      <h4>Play & Ideation</h4>
+      <p>Not having developed AR or VR applications before, I began simply playing with existing technologies to familiarize myself with the opportunity space. One of the first things I noticed while playing with Hololens was that moving AR objects around the room, well, kind of sucked. If you managed to properly select it, effectively orienting it in the room you were in was basically impossible. This seemed like a great place to jump in. I came up with the following idea of "magnet faces," which could be used to snap sides of a bounding box to real objects.</p>
+      <h5>Magnet Faces Ideation</h5>
+      <img src="./static/data/img/xrss/magnetFacesSketch.jpeg" alt="magnet faces sketch">
+      <p>I used this as a development goal while becoming familiar with A-Frame and Entity-Component-System development. As I learned the tech, I also reflected on other current layout metaphors that are present in current CSS, and if they could be of any use. My research partner Hussain Alafaireet and I would end up exploring many of these, like the box-model and grid layout, throughout the semester.</p>
+
+      <p>Due to the powerful nature of ECS development, I could use this "magnet face" idea in conjunction with these other layout explorations, saving development time while verifying the utility of the magnet face specification.</p>
+    </li>
+    <li class="processStep">
+      <h4>Placement by Tag</h4>
+      <p>AR web developers do/will not have any knowledge about the use environment. The user could be in a crowded coffee shop or a quiet office. A gym or a library. It's like varying screen sizes, but 10x the headache and also comes with back pain.</p>
+      <p>One of the first ideas I came up with to address this was placement by common tags. This would've relied on a global standard and very robust scanning systems, which are not small assumptions to make. Basically, there would exist common tags, such as &lt;table&gt; or &lt;window&gt;. A user or developer could specify an order of preference. For example, put the weather app by the nearest &lt;window&gt;. This would then be transferrable between environments. A sketch from the ideation period is shown below.</p>
+      <h5>Placement by Tag Ideation Sketch</h5>
+      <img src="./static/data/img/xrss/tagPlacement.png" alt="Placement by Tag Ideation Sketch">
+      <p>This was a good place to start, but there are lots of problems with this. First off, there is no clear limit to the amount of predetermined tags like &lt;window&gt; that could end up existing, resulting in unmanagable amounts of maintenance for developers that want to keep their apps comprehensive.</p>
+      <p>Furthermore, this specification lacks any clear heuristic to maintain if the specified tag is not present in the room. This suggests, that if there was value in this idea over time,it should be optional and best implemented with a machine learning algorithm that took note of the user's habits over time.</p>
+      <p>Finally, the technical implementation was difficult to perform well with my still novice-level knowledge of A-Frame at the time. With the existing APIs there was no easy way to determine bounds of complex isometric objects, as possible permutations of world-space rotation values could render a wide array of possible shapes with the same dimensions. Since we ultimately determined this was not the most valuable idea to pursue, I saved development time and moved on to more robust specifications.</p>
+    </li>
+    <li class="processStep">
+      <h4>Planar Grid</h4>
+      <p>One of my personal favorite parts of the CSS3 specification is the grid display. Along with other tools, it makes responsive design so easy there's no excuses left anymore. Since A-Frame development time is greatly increased by the only positioning options being in absolute units, I thought this would be a worthy addition.</p>
+    </li>
+    <li class="processStep">
+      <h4>Isometric Grid</h4>
+    </li>
+    <li class="processStep">
+      <h4>Bringing it Together</h4>
+    </li>
+  </ol>
+</body>
