@@ -16,37 +16,53 @@
   <p class="resultText">Working under <a href="http://www.michael-nebeling.de/">Professor Michael Nebeling</a>, we explored layout styling metaphors that could be helpful to AR/VR web developers. Of the ideas I came up with and translated from existing CSS metaphors, "magnet faces," planar grids, and isometric grids proved to be the most robust and extensible.</p><br>
   <a class="xrssLink customColor" href="https://glitch.com/~a-frame-layouts">View the complete source code and demos on glitch.</a><br>
   <p class="resultText noIndent">The full demo is on the <a href="https://a-frame-layouts.glitch.me/lab.html">lab.html</a> page, but it may be helpful to view the independent demo pieces first.</p><br>
-  <a href="https://docs.google.com/presentation/d/1sT_x32EKDiUVRF1bHfI71Rgc3Gq4M7baON342YkoNF8/edit?usp=sharing">View project slide deck on Google Slides.</a>
+  <a href="https://docs.google.com/presentation/d/1sT_x32EKDiUVRF1bHfI71Rgc3Gq4M7baON342YkoNF8/edit?usp=sharing">View project slide deck (with component specifications) on Google Slides.</a>
   <h3 class="processHeader">Process</h3>
   <ol class="processList">
     <li class="processStep">
       <h4>Play & Ideation</h4>
       <p>Not having developed AR or VR applications before, I began simply playing with existing technologies to familiarize myself with the opportunity space. One of the first things I noticed while playing with Hololens was that moving AR objects around the room, well, kind of sucked. If you managed to properly select it, effectively orienting it in the room you were in was basically impossible. This seemed like a great place to jump in. I came up with the following idea of "magnet faces," which could be used to snap sides of a bounding box to real objects.</p>
       <h5>Magnet Faces Ideation</h5>
-      <img src="./static/data/img/xrss/magnetFacesSketch.jpeg" alt="magnet faces sketch">
-      <p>I used this as a development goal while becoming familiar with A-Frame and Entity-Component-System development. As I learned the tech, I also reflected on other current layout metaphors that are present in current CSS, and if they could be of any use. My research partner Hussain Alafaireet and I would end up exploring many of these, like the box-model and grid layout, throughout the semester.</p>
+      <img src="./static/data/img/xrss/magnetFacesSketch.jpeg" alt="magnet faces sketch" style="max-width: 550px;" class="bigImage">
+      <p>I used this as a development goal while becoming familiar with A-Frame and Entity-Component-System development. Though we were using A-Frame as our main prototyping software and A-Frame is currently just VR, the study would not be constrained to VR. As I learned the tech, I also reflected on other current layout metaphors that are present in current CSS, and if they could be of any use. My research partner Hussain Alafaireet and I would end up exploring many of these, like the box-model and grid layout, throughout the semester.</p>
 
       <p>Due to the powerful nature of ECS development, I could use this "magnet face" idea in conjunction with these other layout explorations, saving development time while verifying the utility of the magnet face specification.</p>
     </li>
     <li class="processStep">
       <h4>Placement by Tag</h4>
       <p>AR web developers do/will not have any knowledge about the use environment. The user could be in a crowded coffee shop or a quiet office. A gym or a library. It's like varying screen sizes, but 10x the headache and also comes with back pain.</p>
-      <p>One of the first ideas I came up with to address this was placement by common tags. This would've relied on a global standard and very robust scanning systems, which are not small assumptions to make. Basically, there would exist common tags, such as &lt;table&gt; or &lt;window&gt;. A user or developer could specify an order of preference. For example, put the weather app by the nearest &lt;window&gt;. This would then be transferrable between environments. A sketch from the ideation period is shown below.</p>
+      <p>One of the first ideas I came up with to address this was placement by common tags. This would've relied on a global standard and very robust scanning systems, which are not small assumptions to make. Basically, there would exist common tags, such as &lt;table&gt; or &lt;window&gt;. A user or developer could specify an order of preference. For example, put the weather app by the nearest &lt;window&gt;. This would then be transferable between environments. A sketch from the ideation period is shown below.</p>
       <h5>Placement by Tag Ideation Sketch</h5>
-      <img src="./static/data/img/xrss/tagPlacement.png" alt="Placement by Tag Ideation Sketch">
-      <p>This was a good place to start, but there are lots of problems with this. First off, there is no clear limit to the amount of predetermined tags like &lt;window&gt; that could end up existing, resulting in unmanagable amounts of maintenance for developers that want to keep their apps comprehensive.</p>
+      <img src="./static/data/img/xrss/tagPlacement.png" alt="Placement by Tag Ideation Sketch" style="max-width: 550px;" class="bigImage">
+      <p>This was a good place to start, but there are lots of problems with this. First off, there is no clear limit to the amount of predetermined tags like &lt;window&gt; that could end up existing, resulting in unmanageable amounts of maintenance for developers that want to keep their apps comprehensive.</p>
       <p>Furthermore, this specification lacks any clear heuristic to maintain if the specified tag is not present in the room. This suggests, that if there was value in this idea over time,it should be optional and best implemented with a machine learning algorithm that took note of the user's habits over time.</p>
       <p>Finally, the technical implementation was difficult to perform well with my still novice-level knowledge of A-Frame at the time. With the existing APIs there was no easy way to determine bounds of complex isometric objects, as possible permutations of world-space rotation values could render a wide array of possible shapes with the same dimensions. Since we ultimately determined this was not the most valuable idea to pursue, I saved development time and moved on to more robust specifications.</p>
     </li>
     <li class="processStep">
       <h4>Planar Grid</h4>
-      <p>One of my personal favorite parts of the CSS3 specification is the grid display. Along with other tools, it makes responsive design so easy there's no excuses left anymore. Since A-Frame development time is greatly increased by the only positioning options being in absolute units, I thought this would be a worthy addition.</p>
+      <p>One of my personal favorite parts of the CSS3 specification is the grid display. Along with other tools, it makes responsive design so easy there's no excuses left anymore. Since A-Frame development time is greatly increased by positioning options only available in absolute units, I thought this would be a worthy addition to our study.</p>
+      <p>The ability to automatically center objects within a space without knowing the associated units ended up greatly reducing development time. The planar grid eliminated the need for relative adjustments of child/dynamic objects even if the dimensions of the reference object changed. For instance, placing an AR clock on a wall with the grid component ensures consistent relative placement even if wall dimensions (or the wall itself) change(s).</p>
+      <img style="max-width: 300px;" class="bigImage" src="./static/data/img/xrss/planarGridDemo.gif" alt="Planar Grid Demo">
+      <p>I also envisioned a use case in which planar grid structure could augment existing workstations to create a mobile pro-level experience. If an AR grid surrounds a traditional monitor, auxiliary windows could supplement the primary content, and snap freely to different squares within the grid for easy window management. A rough visual of this is seen in the <a href="https://a-frame-layouts.glitch.me/lab.html">lab.html</a> demo.</p>
     </li>
     <li class="processStep">
       <h4>Isometric Grid</h4>
+      <p>Since the planar grid component proved so useful, I wanted to extend the metaphor to 3D space. This was slightly more technically complex to implement, but by then I was now quite comfortable working in A-Frame and had even begun to play with the underlying three.js pieces a little bit.</p>
+      <img style="max-width: 300px;" class="bigImage" src="./static/data/img/xrss/isoGridDemo.gif" alt="Planar Grid Demo">
+      <p>In this component, each available "cell" is represented with a translucent sphere than becomes fully opaque on hover. The utility of this is not well-represented with the above gif moving a simple box around. After exploring this more in our study, we believed this would be most useful in creating complex, pro-level layouts.</p>
+      <p>Note: the current implementation is built to be attached to a plane-based entity. In the future I would clean the component up to be attached to a box-like or 3D entity. This would not necessarily make the component more functional, but it likely would be more intuitive and mesh better with a-priori mental models.</p>
     </li>
     <li class="processStep">
       <h4>Bringing it Together</h4>
+      <p>While I had been exploring the above options, my partner Hussain had been exploring some of his own. These included translating the idea of the HTML box model to something called the "room model," introducing a specified gravity center that all AR objects would start near, and varying spring/distance constraints.</p>
+      <h5>Playground</h5>
+      <p>As each of our ideas were initially explored independently, we needed a common place more rooted in real-world layouts and needs to truly explore the utility of our ideas. Professor Nebeling suggested creating a playground based on our lab, using our components to set up the room and aid in possible tasks. This is when I developed the aforementioned <a href="https://a-frame-layouts.glitch.me/lab.html">lab.html demo.</a></p>
+      <p>Though this playground displayed the large amount of potential for some of these ideas, we did not yet feel we had enough validation data for a paper, as there was not enough time in the semester to perform testing with external users.</p>
+    </li>
+    <li class="processStep">
+      <h4>Future Work</h4>
+      <p>Professor Nebeling has stated the work may appear in a CHI (or similar interaction design conference) paper in the future, but wants to continue to explore it further.</p>
+      <p>I also believe it is difficult to fully and properly assess needs for an industry that is not even past infancy. We need to see what AR developers want to make, and which environments they find the most use in, before telling them what constraints they need to work within. Though it is difficult to remove our preconceived notions, we need to make sure we take only the necessary parts of current CSS to web AR/VR, and do not constrict 3D creativity to 2D metaphors. I can't 100% confidently say that "magnet faces" are the answer, but novel ideas such as that need to be explored when venturing into developing alongside real-world space, and all of the variance that comes with.</p>
     </li>
   </ol>
 </body>

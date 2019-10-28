@@ -5,6 +5,45 @@ import Project from './Project';
 
 const classNames = require('classnames');
 
+const sortFunctions = {
+  recent: {
+    func: (a, b) => {
+      const aDate = new Date(a.props.date);
+      const bDate = new Date(b.props.date);
+      if (aDate > bDate) return -1;
+      if (aDate < bDate) return 1;
+      return 0;
+    },
+    displayName: 'Date: Recent',
+  },
+  oldest: {
+    func: (a, b) => {
+      const aDate = new Date(a.props.date);
+      const bDate = new Date(b.props.date);
+      if (aDate < bDate) return -1;
+      if (aDate > bDate) return 1;
+      return 0;
+    },
+    displayName: 'Date: Oldest',
+  },
+  alphaNormal: {
+    func: (a, b) => {
+      if (a.props.title < b.props.title) return -1;
+      if (a.props.title > b.props.title) return 1;
+      return 0;
+    },
+    displayName: 'A - Z',
+  },
+  alphaReverse: {
+    func: (a, b) => {
+      if (a.props.title > b.props.title) return -1;
+      if (a.props.title < b.props.title) return 1;
+      return 0;
+    },
+    displayName: 'Z - A',
+  },
+};
+
 class ProjectPage extends React.Component {
   constructor(props) {
     super(props);
@@ -75,6 +114,9 @@ class ProjectPage extends React.Component {
             // start accumulator as empty object
             }), {}),
         });
+        // sort the projects now that they're loaded
+        const currSort = this.state.currentSort;
+        this.handleSortChange(currSort, sortFunctions[currSort].func);
       })
       .catch(error => console.log(error)); // eslint-disable-line no-console
   }

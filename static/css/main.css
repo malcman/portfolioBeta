@@ -911,6 +911,10 @@ canvas {
       left: -6%;
       width: 117%;
       margin-top: 5%; }
+    .proj .projContent .bigImage {
+      display: block;
+      margin: auto;
+      margin-top: 5%; }
     .proj .projContent ul {
       width: 85%;
       margin-left: 5%;
@@ -943,7 +947,8 @@ canvas {
     .proj .projContent p {
       margin-left: 0;
       width: 85%;
-      margin-top: 4%; }
+      margin-top: 4%;
+      cursor: auto; }
     .proj .projContent .processContainer {
       width: 100%;
       position: relative; }
@@ -1078,7 +1083,14 @@ canvas {
 
 #xrssCoverIMG {
   float: right;
-  max-width: 375px; }
+  max-width: 375px;
+  top: -30%; }
+
+#migrantsCoverIMG {
+  top: -20%;
+  max-width: 350px;
+  margin: auto;
+  display: block; }
 
 #sortedAffinityHeader {
   float: right;

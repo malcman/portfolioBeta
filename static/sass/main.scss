@@ -1173,6 +1173,11 @@ $projHeight: 300px;
       width: 117%;
       margin-top: 5%;
     }
+    .bigImage {
+      display: block;
+      margin: auto;
+      margin-top: 5%;
+    }
     ul {
       width: 85%;
       margin-left: 5%;
@@ -1213,6 +1218,7 @@ $projHeight: 300px;
       margin-left: 0;
       width: 85%;
       margin-top: 4%;
+      cursor: auto;
     }
     $NDAred: #951003;
     .processContainer {
@@ -1390,6 +1396,13 @@ $projHeight: 300px;
 #xrssCoverIMG {
   float: right;
   max-width: 375px;
+  top: -30%;
+}
+#migrantsCoverIMG {
+  top: -20%;
+  max-width: 350px;
+  margin: auto;
+  display: block;
 }
 // end specific cover image adjustments
 

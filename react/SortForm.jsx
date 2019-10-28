@@ -4,16 +4,20 @@ import SortButton from './SortButton';
 const sortFunctions = {
   recent: {
     func: (a, b) => {
-      if (a.props.date > b.props.date) return -1;
-      if (a.props.date < b.props.date) return 1;
+      const aDate = new Date(a.props.date);
+      const bDate = new Date(b.props.date);
+      if (aDate > bDate) return -1;
+      if (aDate < bDate) return 1;
       return 0;
     },
     displayName: 'Date: Recent',
   },
   oldest: {
     func: (a, b) => {
-      if (a.props.date < b.props.date) return -1;
-      if (a.props.date > b.props.date) return 1;
+      const aDate = new Date(a.props.date);
+      const bDate = new Date(b.props.date);
+      if (aDate < bDate) return -1;
+      if (aDate > bDate) return 1;
       return 0;
     },
     displayName: 'Date: Oldest',
