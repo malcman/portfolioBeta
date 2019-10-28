@@ -25,9 +25,17 @@
     {
       "title": "Memories of the Mediterranean",
       "titleShort": "migrants",
-      "coverIMG": "./static/img/proj/migrantsCoverLight.png",
+      "coverIMG": "./static/img/proj/migrantsCoverBigGold.png",
       "date": "11/30/18",
       "docURI": "./static/data/projectDocs/migrants.html",
+      "tags": ["Graphic Design"]
+    },
+    {
+      "title": "Plenti Farms - Modernism vs. Postmodernism",
+      "titleShort": "oysters",
+      "coverIMG": "./static/img/proj/oystersCoverSlant.png",
+      "date": "09/30/18",
+      "docURI": "./static/data/projectDocs/oysters.html",
       "tags": ["Graphic Design"]
     },
     {

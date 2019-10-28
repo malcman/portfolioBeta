@@ -1069,8 +1069,11 @@ canvas {
       text-align: left; }
     .proj.expanded button.projClose:hover .ClosingX {
       transform: scale(1, 1) skew(-20deg); }
-  .proj.expanded #emberCoverIMG, .proj.expanded #fooyaCoverIMG, .proj.expanded #xrssCoverIMG {
+  .proj.expanded #emberCoverIMG, .proj.expanded #fooyaCoverIMG, .proj.expanded #xrssCoverIMG, .proj.expanded #oystersCoverIMG {
     max-width: none; }
+  .proj.expanded #migrantsCoverIMG {
+    max-width: none;
+    margin-right: 40px; }
 
 #emberCoverIMG {
   max-width: 310px;
@@ -1089,8 +1092,8 @@ canvas {
 #migrantsCoverIMG {
   top: -20%;
   max-width: 350px;
-  margin: auto;
-  display: block; }
+  display: block;
+  float: right; }
 
 #sortedAffinityHeader {
   float: right;

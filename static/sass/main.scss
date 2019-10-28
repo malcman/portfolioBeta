@@ -1377,9 +1377,13 @@ $projHeight: 300px;
   }
 
 	// begin specific cover image adjustments
-	#emberCoverIMG, #fooyaCoverIMG, #xrssCoverIMG {
+	#emberCoverIMG, #fooyaCoverIMG, #xrssCoverIMG, #oystersCoverIMG {
 		max-width: none;
 	}
+  #migrantsCoverIMG {
+    max-width: none;
+    margin-right: 40px;
+  }
 	// end specific cover image adjustments
 }
 
@@ -1401,8 +1405,12 @@ $projHeight: 300px;
 #migrantsCoverIMG {
   top: -20%;
   max-width: 350px;
-  margin: auto;
   display: block;
+  float: right;
+}
+#oystersCoverIMG {
+  // top: 0;
+  // max-width: 250px;
 }
 // end specific cover image adjustments
 
