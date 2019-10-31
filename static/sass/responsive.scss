@@ -180,8 +180,26 @@ $lightGrey: #C3CCD6;
 			.NDAinfo {
 		    bottom: 15%;
 			}
+			#dreamOnSoundsGrid {
+	      grid-template-columns: repeat(2, 1fr);
+	      img {
+		      width: auto;
+		      height: 92%;
+	      }
+	    }
+	    #dreamOnDiaryGrid, #dreamOnDreamGrid {
+	    	grid-template-columns: repeat(2, 1fr);
+	    	.mobileMockupCell:last-child {
+	    		grid-column: 1 / 3;
+	    	}
+	    }
 		}
 	}
+	#improvedDreamOnStep {
+    $improvedClipPath: polygon(0% 0%, 0% 100%, 100% 98%, 100% 2.5%);
+    -webkit-clip-path: $improvedClipPath;
+    clip-path: $improvedClipPath;
+  }
 	.projGridCell {
 		width: 40vw;
 		.projFlipper {
@@ -333,6 +351,26 @@ $lightGrey: #C3CCD6;
 		.NDAinfo {
 			// bottom: 0;
 		}
+		.mobileMockupCell:not(:only-child) {
+			margin-right: 5px;
+			img {
+				height: auto;
+				width: 95%;
+			}
+		}
+		#dreamOnD1Grid, #dreamOnDiaryGrid, #dreamOnDreamGrid {
+      grid-template-columns: repeat(3, 1fr);
+      .mobileMockupCell:last-child {
+	    		grid-column: auto;
+	    	}
+    }
+	}
+	#improvedDreamOnStep {
+		$improvedClipPath: polygon(0% 0%, 0% 100%, 100% 98%, 100% 5%);
+		left: -12%;
+    width: 108%;
+    -webkit-clip-path: $improvedClipPath;
+    clip-path: $improvedClipPath;
 	}
 
 	.proj.expanded {

@@ -915,6 +915,10 @@ canvas {
       display: block;
       margin: auto;
       margin-top: 5%; }
+    .proj .projContent .currentDreamOnIMG {
+      display: inline-block;
+      width: 32%;
+      position: static; }
     .proj .projContent ul {
       width: 85%;
       margin-left: 5%;
@@ -1012,6 +1016,38 @@ canvas {
         font-size: 130%; }
       .proj .projContent .xrssLink h5 {
         color: #EC3160; }
+    .proj .projContent .mobileMockupContainer {
+      display: grid;
+      grid-template-columns: 1fr; }
+    .proj .projContent #dreamOnSoundsGrid {
+      margin-bottom: 10%; }
+    .proj .projContent .mobileMockupCell {
+      height: 100vh;
+      display: block; }
+      .proj .projContent .mobileMockupCell img {
+        width: auto;
+        left: 0;
+        height: 90%;
+        display: block;
+        margin: auto;
+        margin-top: 5%; }
+
+#improvedDreamOnStep {
+  color: white;
+  background: black;
+  position: relative;
+  left: -6%;
+  width: 102%;
+  padding: 10% 5%;
+  -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 98%, 100% 1%);
+  clip-path: polygon(0% 0%, 0% 100%, 100% 98%, 100% 1%); }
+  #improvedDreamOnStep::before, #improvedDreamOnStep h5 {
+    color: #5c7796; }
+  #improvedDreamOnStep h4 {
+    color: #B3BBC5;
+    -webkit-text-fill-color: #B3BBC5; }
+  #improvedDreamOnStep p {
+    line-height: 1.4em; }
 
 .proj.expanded {
   position: fixed;
@@ -1074,6 +1110,9 @@ canvas {
   .proj.expanded #migrantsCoverIMG {
     max-width: none;
     margin-right: 40px; }
+  .proj.expanded #dreamonCoverIMG {
+    max-width: none;
+    top: 0; }
 
 #emberCoverIMG {
   max-width: 310px;
@@ -1094,6 +1133,10 @@ canvas {
   max-width: 350px;
   display: block;
   float: right; }
+
+#dreamonCoverIMG {
+  max-width: 300px;
+  top: -20px; }
 
 #sortedAffinityHeader {
   float: right;

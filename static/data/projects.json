@@ -31,12 +31,20 @@
       "tags": ["Graphic Design"]
     },
     {
-      "title": "Plenti Farms - Modernism vs. Postmodernism",
+      "title": "Oyster Wars - Modernism vs. Postmodernism",
       "titleShort": "oysters",
       "coverIMG": "./static/img/proj/oystersCoverSlant.png",
       "date": "09/30/18",
       "docURI": "./static/data/projectDocs/oysters.html",
       "tags": ["Graphic Design"]
+    },
+    {
+      "title": "DreamOn - Emotional Redesign",
+      "titleShort": "dreamon",
+      "coverIMG": "./static/img/proj/dreamOnCover.png",
+      "date": "12/05/18",
+      "docURI": "./static/data/projectDocs/dreamon.html",
+      "tags": ["Graphic Design", "Interaction Design"]
     },
     {
       "title": "Fooya! Capstone Project",

@@ -130,6 +130,19 @@
       grid-template-columns: 1fr 1fr; }
     .proj .projContent .NDAinfo {
       bottom: 15%; }
+    .proj .projContent #dreamOnSoundsGrid {
+      grid-template-columns: repeat(2, 1fr); }
+      .proj .projContent #dreamOnSoundsGrid img {
+        width: auto;
+        height: 92%; }
+    .proj .projContent #dreamOnDiaryGrid, .proj .projContent #dreamOnDreamGrid {
+      grid-template-columns: repeat(2, 1fr); }
+      .proj .projContent #dreamOnDiaryGrid .mobileMockupCell:last-child, .proj .projContent #dreamOnDreamGrid .mobileMockupCell:last-child {
+        grid-column: 1 / 3; }
+
+  #improvedDreamOnStep {
+    -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 98%, 100% 2.5%);
+    clip-path: polygon(0% 0%, 0% 100%, 100% 98%, 100% 2.5%); }
 
   .projGridCell {
     width: 40vw; }
@@ -238,6 +251,21 @@
       width: 85%; }
     .proj .projContent p {
       width: 70%; }
+    .proj .projContent .mobileMockupCell:not(:only-child) {
+      margin-right: 5px; }
+      .proj .projContent .mobileMockupCell:not(:only-child) img {
+        height: auto;
+        width: 95%; }
+    .proj .projContent #dreamOnD1Grid, .proj .projContent #dreamOnDiaryGrid, .proj .projContent #dreamOnDreamGrid {
+      grid-template-columns: repeat(3, 1fr); }
+      .proj .projContent #dreamOnD1Grid .mobileMockupCell:last-child, .proj .projContent #dreamOnDiaryGrid .mobileMockupCell:last-child, .proj .projContent #dreamOnDreamGrid .mobileMockupCell:last-child {
+        grid-column: auto; }
+
+  #improvedDreamOnStep {
+    left: -12%;
+    width: 108%;
+    -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 98%, 100% 5%);
+    clip-path: polygon(0% 0%, 0% 100%, 100% 98%, 100% 5%); }
 
   .proj.expanded {
     background-color: transparent;

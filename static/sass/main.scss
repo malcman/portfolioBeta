@@ -1178,6 +1178,11 @@ $projHeight: 300px;
       margin: auto;
       margin-top: 5%;
     }
+    .currentDreamOnIMG {
+      display: inline-block;
+      width: 32%;
+      position: static;
+    }
     ul {
       width: 85%;
       margin-left: 5%;
@@ -1302,7 +1307,47 @@ $projHeight: 300px;
         color: $aframePink;
       }
     }
+    .mobileMockupContainer {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    #dreamOnSoundsGrid {
+      margin-bottom: 10%;
+    }
+    .mobileMockupCell {
+      height: 100vh;
+      display: block;
+      img {
+        width: auto;
+        left: 0;
+        height: 90%;
+        display: block;
+        margin: auto;
+        margin-top: 5%;
+      }
+    }
   }
+}
+#improvedDreamOnStep {
+    $improvedClipPath: polygon(0% 0%, 0% 100%, 100% 98%, 100% 1%);
+    color: white;
+    background: black;
+    position: relative;
+    left: -6%;
+    width: 102%;
+    padding: 10% 5%;
+    -webkit-clip-path: $improvedClipPath;
+    clip-path: $improvedClipPath;
+    &::before, h5 {
+      color: lighten($darkBlue, 20%);
+    }
+    h4 {
+      color: $mainLight;
+      -webkit-text-fill-color: $mainLight;
+    }
+    p {
+      line-height: 1.4em;
+    }
 }
 
 .proj.expanded {
@@ -1384,6 +1429,10 @@ $projHeight: 300px;
     max-width: none;
     margin-right: 40px;
   }
+  #dreamonCoverIMG {
+    max-width: none;
+    top: 0;
+  }
 	// end specific cover image adjustments
 }
 
@@ -1411,6 +1460,11 @@ $projHeight: 300px;
 #oystersCoverIMG {
   // top: 0;
   // max-width: 250px;
+}
+#dreamonCoverIMG {
+  // top: 0;
+  max-width: 300px;
+  top: -20px;
 }
 // end specific cover image adjustments
 
