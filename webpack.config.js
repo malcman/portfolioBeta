@@ -1,9 +1,9 @@
 const path = require('path');
 
 module.exports = {
-  entry: './react/main.jsx',
+  entry: './milkman/react/main.jsx',
   output: {
-    path: path.join(__dirname, '/static/js/'),
+    path: path.join(__dirname, '/milkman/static/js/'),
     filename: 'bundle.js',
   },
   module: {

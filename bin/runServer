@@ -1,0 +1,14 @@
+#!/bin/bash
+# runServer
+
+# Stop on errors
+set -e
+
+export FLASK_DEBUG=True
+echo "+ export FLASK_DEBUG=True"
+export FLASK_APP=milkman
+echo "+ export FLASK_APP=milkman"
+export MILKMAN_SETTINGS=config.py
+echo "+ export MILKMAN_SETTINGS=config.py"
+flask run --host 0.0.0.0 --port 8000
+echo "+ flask run --host 0.0.0.0 --port 8000"

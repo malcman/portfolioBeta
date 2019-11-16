@@ -7,3 +7,7 @@ designResources/
 manipulationEx.js
 terrain.js
 collisionFiltering.js
+env/
+milkman.egg-info
+ogHTML
+__pycache__

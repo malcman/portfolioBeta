@@ -23,6 +23,17 @@ class MenuNav extends React.Component {
     return `${pageName.toLowerCase()}.html`;
   }
 
+  static getEndpoint(pageName) {
+    // helper function for creating Link components
+    // assumes pageName is one word
+    // returns './pageName'
+    // if pageName is 'Home' returns '/'
+    if (pageName === 'Home') {
+      return '/';
+    }
+    return `/${pageName.toLowerCase()}`;
+  }
+
   static getNavID(pageName) {
     // helper function for creating Link components
     // assumes pageName is one word
@@ -44,7 +55,7 @@ class MenuNav extends React.Component {
     // iterate through known existing pageNames
     this.pageNames.forEach((pageName) => {
       const navID = MenuNav.getNavID(pageName);
-      const fileName = MenuNav.getHTMLFileName(pageName);
+      const fileName = MenuNav.getEndpoint(pageName);
       const className = this.getClassName(pageName);
       let handler = () => {};
       if (pageName === 'Contact') {

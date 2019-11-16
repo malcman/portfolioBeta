@@ -126,7 +126,7 @@ class MenuBar extends React.Component {
           <polygon className="desktopSVG" points="0,0 0,200 40,200 120,120 1500,85 1500,0" />
         </svg>
         <div id="titleLink">
-          <a href="index.html" id="homelink" tabIndex="1">
+          <a href="/" id="homelink" tabIndex="1">
             <img
               src={imgSRC}
               alt="Malcolm Maturen Logo"
