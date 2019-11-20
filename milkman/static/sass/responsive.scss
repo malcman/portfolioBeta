@@ -193,6 +193,9 @@ $lightGrey: #C3CCD6;
 	    		grid-column: 1 / 3;
 	    	}
 	    }
+			.stickersGrid {
+				grid-template-columns: 1fr 1fr;
+			}
 		}
 	}
 	#improvedDreamOnStep {
@@ -291,6 +294,15 @@ $lightGrey: #C3CCD6;
 			min-width: 100vw;
 		}
 	}
+	.proj .projContent {
+		.subProcess {
+    	img.wideBoi {
+    		left: 0;
+		    width: 100%;
+		    height: auto;
+    	}
+    }
+	}
 }
 
 @media only screen and (min-width: 1000px){
@@ -318,6 +330,9 @@ $lightGrey: #C3CCD6;
 		grid-template-columns: repeat(4, 1fr);
 		grid-column-gap: 6px;
     padding-right: 5px;
+	}
+	#filterGrid {
+		grid-template-columns: repeat(3, 1fr);
 	}
 	.gallery.pushedDown {
 		top: 115px;
@@ -363,6 +378,11 @@ $lightGrey: #C3CCD6;
       .mobileMockupCell:last-child {
 	    		grid-column: auto;
 	    	}
+    }
+    .subProcess {
+    	img.wideBoi {
+    		// left: -6%;
+    	}
     }
 	}
 	#improvedDreamOnStep {

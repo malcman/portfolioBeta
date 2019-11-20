@@ -103,6 +103,9 @@ class ProjectPage extends React.Component {
             }
           });
         });
+        // sort the projects now that they're loaded
+        const currSort = this.state.currentSort;
+        projects.sort(sortFunctions[currSort].func);
         this.setState({
           projects,
           // set all checkboxes to selected
@@ -114,9 +117,6 @@ class ProjectPage extends React.Component {
             // start accumulator as empty object
             }), {}),
         });
-        // sort the projects now that they're loaded
-        const currSort = this.state.currentSort;
-        this.handleSortChange(currSort, sortFunctions[currSort].func);
       })
       .catch(error => console.log(error)); // eslint-disable-line no-console
   }

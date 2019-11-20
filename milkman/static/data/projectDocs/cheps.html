@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+  <div class="metaContainer">
+    <div class="metaList">
+      <h3 class="roleHeader">Roles:</h3>
+      <ul>
+        <li>Lead Designer</li>
+        <li>Full-Stack Developer</li>
+        <li>Student Project Lead</li>
+      </ul>
+    </div>
+    <div class="metaList">
+      <h3 class="toolsHeader">Tools used:</h3>
+      <ul class="toolsList">
+        <li class="toolsListEl">Adobe Illustrator</li>
+        <li class="toolsListEl">Adobe InDesign</li>
+        <li class="toolsListEl">Python</li>
+        <li class="toolsListEl">Flask</li>
+        <li class="toolsListEl">React.js</li>
+        <li class="toolsListEl">MySQL</li>
+        <li class="toolsListEl">Excel</li>
+      </ul>
+    </div>
+  </div>
+  <h3 class="resultHeader">Result (TL;DR):</h3>
+  <p class="resultText">Working with multidisciplinary teams across Michigan Medicine, one of the nation's largest medical systems, I contributed to the ongoing research projects of the <a href="https://cheps.engin.umich.edu/">Center for Healthcare Engineering and Patient Safety.</a> My contributions included needs assessment, devleopment of full-stack web apps, marketing, data management, and patient relations. My work demonstrated the value of good design in the healthcare industry (in which it is particularly absent), and the Center has made it a focus to have UX developers since my departure. The projects are still ongoing.</p>
+  <div class="processContainer">
+    <h3 class="processHeader" NDA>Process</h3>
+    <div class="NDAinfo">I am only legally able to discuss parts of the process, and cannot reveal specific designs or code snippets.</div>
+  </div>
+  <h4 id="chepsContents">Contents</h4>
+  <ul>
+    <a href="#surgIns"><li>Surgical Instruments</li></a>
+    <a href="#mSafety"><li>M-Safety</li></a>
+    <a href="#glaucoma"><li>Glaucoma Clinic</li></a>
+  </ul>
+  <ol class="processList">
+
+    <li class="processStep" id="surgIns">
+      <h4>Surgical Instruments</h4>
+      <p>This was one of CHEPS' largest projects at the time, working with the department of Michigan Medicine that cleans and maintains surgical instrument sets. A large majority of it was spent on schedule optimization and cleaning efficiency, and I did not have much of a role in these branches of the project.</p>
+      <p> The cleaning team's level of output was often inconsistent, and part of this was due to a large variance in the steps necessary to clean different instruments. Working with another developer, Muhammed Ugur, our goal was set for us well before our arrival; to develop a dashboard that would facilitate easier management of surgical sets and instruments. This dashboard's utility would be centered around a "cleanability index," a metric indicating the level of cleaning difficulty for each relevant piece. This would allow the cleaning department's managers to manage workflow and staffing more efficiently and effectively.</p>
+      <ol class="subProcess">
+        <li>
+          <h5>Getting Started</h5>
+          <p>Much of the difficulty associated with this project was that the initial idea had been pitched over a year before Muhammed and I joined the team. Furthermore, the small amount of source code that was available was outdated and disorganized, not built to support the complex front-end interactions necessary for dashboard-style management.</p>
+          <p>Despite neither of us being familiar with React at the time, we decided to start from the ground up with a Flask & React application. We could learn. First, however, we of course needed to know what we needed to build.</p>
+        </li>
+        <li>
+          <h5>Gathering Requirements</h5>
+          <p>Yet another difficulty surrounding this project was suffering communication dynamic between CHEPS and the instrument management team. This is not a roast; they had a lot on their plate, and our project was mostly going to be a bonus on top of their existing operations. There was not a lot of objective reason for them to devote a lot of time to us. That being said, we had to adapt to thrive with limited or little information from them. In such a slow-moving and private industry as health care, this could be quite destructive if one lets limited communication dictate their productivity.</p>
+          <p>We were able to secure a one-hour meeting with one of the department managers. In an ideal situation, of course, you would have a room full of multiple stakeholders, all with a clear idea of what they need. In reality, that rarely happens, and as assistants with minimal influence, we had to take what we could get.</p>
+          <p>As the one in the room with the most interaction design experience, I led the discussion to synthesize the requirements for our application. Among other details, I had the manager walk me through use cases, gathering details about environment, range of (anticipated) users, when this application would be used, and features the application would need to have to justify integrating it into their workflow.</p>
+          <p>This one meeting with this one person was all we ended up having available to us, which is far from optimal in establishing requirements for a complex application. However, there were plenty of other parts of this project that were not complete, including the development and verification of the "cleanability index" itself (which a separate team was working on). Even if we did not have enough to build the full app, we had enough to deliver some value at the beginning stages. We decided to focus on set management and display, which would be necessary regardless of how the application's requirements developed over time.</p>
+        </li>
+        <li>
+          <h5>Name Development</h5>
+          <p>This wasn't really a step per-say, but it's part of how I work. If I have the illusion of minimal authority, I like to give weird working names to projects that I can maybe nose laugh about while I'm working on it. Keeps my spirits mildly afloat, ya know? Muhammed and I tossed around a bunch of ridiculous names, but eventually settled on SICdash (Surgical Instruments Cleanability Dashboard). You're supposed to place verbal emphasis on how SICK this app is. Ironically, as far as I know they're still using this name, but it was initially intended mostly as a joke/placeholder name. So, note that going forward I guess..</p>
+        </li>
+        <li>
+          <h5>Wireframes, Mockups, & APIs</h5>
+          <p>Working with the information we gathered from our meeting, Muhammed and I could begin creation. I began developing wireframes to guide our development, while he focused on server-side APIs that would communicate with both our front-end and the surgical instruments database. At a high glance, the application would show instruments on the majority of the screen, and the sets would be displayed on the right. Clicking either a set or an instrument would expand to display relevant information that contributes the instrument's cleanability.</p>
+          <h6>Expanded Instrument Info</h6>
+          <img class="wideBoi" src="./static/data/img/cheps/SICdash/AllExpandedColor.png" alt="expanded sets and instruments - color">
+          <p class="noIndent">New sets and instruments could also be created on the fly, starting with features from existing instruments or creating an entirely new specification.</p>
+          <h6>New Instrument</h6>
+          <img class="wideBoi" src="./static/data/img/cheps/SICdash/NewInstrumentColor.png" alt="new instrument - color">
+          <p>At the time, we were using a staging metaphor, similar to that present in git version control, to allow for powerful instrument management. Users could add multiple instruments to the "stage," and perform creation, deletion, and updates to entire groups at once. This would also have the benefit of allowing users to simplify the catalog of hundreds of instruments to something more relevant to their current task.</p>
+          <p> This is <i>definitely</i> a feature that I would've like to run extensive user testing on to optimize, but as stated before, that was unfortunately not available to us at the time. At this stage, we instead used feedback from the project team and other CHEPs members to refine our ideas. The instrument management team approved of our late-stage mockups, and with this stamp, we began development.</p>
+        </li>
+
+        <li>
+          <h5>Development</h5>
+          <p>Once we had solidified our ideas in wireframes (and colored mockups, pictured above), we began development. Conveniently, I wanted to work with the interface, and  Muhammed wanted to work with the server, so division of labor was both clear and easy. He did all of the work setting up the server configurations, connecting to Michigan Medicine's instrument database, and routing the application endpoints. In turn, I focused on learning React (that learning curve steep tho) and building the UI. There were moments, of course, in which needed to bounce ideas off each other, and we each had enough general experience to help the other when necessary. We used github to keep our files synced.</p>
+        </li>
+        <li>
+          <h5>Future</h5>
+          <p>On top of the refinement of the "cleanability index" itself, it is my hope that communication with the surgical instrument team improved and the team was able to test the interface with stakeholders. In retrospect, I would've been much more hesitant moving forward with such a small amount of research-backed data, but sometimes you have to take the small amount of ambiguous information you have.</p>
+
+          <p>At the time of my departure, the application was not finished. The next members of the development team, however, were set up for success with modular React components that allowed for easy filtering and search, a robust instrument API, and a more modern, extensible application structure, and documentation. As of 2019, the application is still in development, though I am no longer involved.</p><br>
+          <a href="#chepsContents">Return to Contents</a>
+        </li>
+      </ol>
+    </li>
+
+    <li class="processStep" id="mSafety">
+      <h4>M-Safety</h4>
+      <p>Unfortunately, though this is the project I was most invested in, would like to talk about the most, and served as the student team lead on, it is also under the strictest NDA.</p>
+      <ol class="subProcess">
+        <li>
+          <h5>Picking Up</h5>
+          <p>Like many other CHEPs projects, M-Safety was a research project that took place over multiple years and across departments. This one in particular was particularly large, which resulted in a need to keep track of lots of moving pieces, a plethora of research to be up-to-date on, and various technical on-boarding hurdles to overcome. The project's goal was to improve awareness of catheters and skin wounds. Despite being almost entirely preventable, a large amount of patients still experience varying levels of health complications in the hospital from these infections. You can read more about <a href="https://cheps.engin.umich.edu/projects/additional-projects/m-safety/">the project on CHEP's website.</a></p>
+        </li>
+
+        <li>
+          <h5>Design</h5>
+          <p>When I was first assigned to this project, I was not officially on-boarded by the external team for a couple weeks. I was really itching to get started, however, and I had access to the previous developers' work. During this startup void, I assessed the existing interface of the project's application, decided most of it was not appropriate for the context I was aware of, and redesigned it to be more user-friendly and digestible at a glance. Unfortunately, I can't show you these designs. 😕 Though I wasn't even sure if they'd be used, I wanted to bring something to my first meeting with the project manager. She loved them, the primary researcher loved them, and we quickly decided to move forward with the new interface.</p>
+
+          <p>We spent a few weeks iterating on these designs, making smaller and smaller improvements as we narrowed down on an optimal design. These iterations were informed by feedback from medical professionals, HCI experts, and the research team as a whole.</p>
+          <p> During this time, I learned an integral rule of design; never use color (or any indicator, for that matter) to convey information across different categories/spectra. Seems obvious, but since putting words to it, I've seen plenty of violations. For example, red is often used to convey severity. Say you have two categories of things, foo and bar. You want to make sure a user can distinguish between foo and bar when in a normal state, but it doesn't really matter if they're severe; they need attention nonetheless. It may be tempting to make normal foo blue and normal bar green, then any severe foo or bar becomes red. With this method, the user only has to contemplate one scale of change (color) between units.</p>
+          <h6>Poor Use of Color (Different Meanings)</h6>
+          <img class="bigImage" style="max-width: 500px;" src="./static/data/img/cheps/msafety/colorConstructsWrong.jpg" alt="visual demonstration of incorrect color use">
+          <p>This actually disrupts a user's mental models more than simplifying them. In a "normal" state, color is conveying type (foo vs. bar.) When state becomes variable, however, color is being used to convey whether something is an emergency or not. And you DEFINITELY don't wanna mess with mental models in an emergency situation. A better solution to this would be to make foo a square and bar a circle (or an equivalent variance on a different spectrum), then reserve color for conveying state.</p>
+          <h6>Improved Use of Color</h6>
+          <img class="bigImage" style="max-width: 500px;" src="./static/data/img/cheps/msafety/colorConstructsRight.jpg" alt="visual demonstration of correct color use">
+        </li>
+
+        <li>
+          <h5>Development</h5>
+          <p>As I mentioned, previous development work had been done prior to my arrival. Though it was in PHP 😬, it still greatly reduced the amount of development I had to do. Another student developer, Kristine Wang, also joined the team as the design phase was wrapping up, which helped things move even faster.</p>
+          <p>We were able to use the majority of the existing PHP as it was, which made queries in a Michigan Medicine database for the necessary display information. Considering the logistical hurdles this project often faced, this was a notable win. Kristine and I could then focus on developing the front-end of the application.</p>
+          <p>At the time of my departure, the interface was easily digestible at a moment's glance, the application was passing all tests, had been stored on a secure server, and was ready to be used in the next stage of research. I really enjoyed working on this project, as the work I was doing had a direct connection to patient well-being and improving provider workflow.</p><br>
+          <a href="#chepsContents">Return to Contents</a>
+        </li>
+      </ol>
+    </li>
+
+    <li class="processStep" id="glaucoma">
+      <h4>Glaucoma Clinic</h4>
+      <p>This project was/is in collaboration with Kellogg Eye Center. Patients at the Kellogg Glaucoma clinic often experience extremely long wait times due to provider constraints, waiting for dilation, and a series of visual field tests. In order to help improve patients' experience and satisfaction with their care, CHEPS teamed up with Dr. Paula Anne Newman-Casey to launch a large-scale scheduling optimization study (Dr. Amy Cohn's specialty). You can read more about the study in <a href="https://ihpi.umich.edu/news/tiny-digital-tags-improve-eye-care-tracking-every-step">this article published by the UMich Institute for Healthcare Policy and Innovation.</a></p>
+      <p class="noIndent"> Since this is a long, large study and we were in a data-gathering phase during my involvement, there is not as much process to describe; our work was more along the lines of regular maintenance. </p>
+      <h5>Patient Recruitment</h5>
+      <p>To gather the data, we used MySQL HIPPA-compliant databases populated with RFID data from the clinic. In order to gather RFID data, patients had to consent to wearing an RFID tag during their visit. This tag would keep track of their location within the clinic, and how long they were at each spot.</p>
+      <p>Thing is, most people are often not in the most altruistic mood when they are being forced to wait around for three hours. On top of that, most people are (rightfully) uneasy about giving away personal location data even when they ARE feeling altruistic. When I joined, one of my first tasks was to clean recruitment data. I quickly noticed that patient recruitment was suffering, and thus data gathering was losing momentum. This needed to be remedied.</p>
+
+      <p>We decided to try to launch a recruitment campaign that did not rely on the already busy clinic workers to convey the utility of our study. I created a brochure (pictured below) that we had printed and placed around the clinic for patients to read during their ample waiting time. All members of the team also shadowed a couple participants a week. This had the benefit of allowing RFID data validation and improving patient relations at the same time.</p>
+      <h5>Brochure (Exterior)</h5>
+      <img src="./static/data/img/cheps/glaucoma/recruitmentBrochure2.jpg" alt="recruitment brochure side exterior">
+      <h5>Brochure (Interior)</h5>
+      <img src="./static/data/img/cheps/glaucoma/recruitmentBrochure.jpg" alt="recruitment brochure side interior">
+      <h5>Progress Poster</h5>
+      <p>During our shadowing, we found that many patients were wondering why they had to wear a tag numerous times, and how much longer we were going to be asking them to do so. One of the team's proposed solutions to addressing this was a poster in a central location that would indicate the progress of the study. I designed the following poster using the same design language I'd established in the brochure.</p>
+       <div class="mobileMockupContainer">
+        <div class="mobileMockupCell">
+          <img src="./static/data/img/cheps/glaucoma/ProgressPosterGuided.jpg" alt="glaucoma clinic progress poster">
+        </div>
+      </div>
+      <p class="noIndent">Our efforts were worthwhile; though I don't have a percentage, recruitment numbers were higher at a more consistent rate over the weeks following distribution of the materials.</p>
+      <h5>Data Flow and Management</h5>
+      <p>With large amounts of data from different sources, being in healthcare, and interdisciplinary partnerships, this project had a lot of moving parts (too many, some may argue) (some like me). In order to help team members keep track of data flow, I composed a central document that listed input and output, contact points, and other restrictions for every data source and piece of the project. Though it was outside of my abilities and time constraints to reduce the complexity of the project, I aimed to at least reduce possible confusion that may contribute to it.</p><br>
+      <a href="#chepsContents">Return to Contents</a>
+    </li>
+  </ol>
+</body>

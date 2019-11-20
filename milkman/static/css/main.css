@@ -990,6 +990,30 @@ canvas {
       grid-template-columns: 1fr; }
     .proj .projContent .metaList {
       width: 100%; }
+    .proj .projContent .subProcess {
+      margin-left: 5%;
+      list-style: none;
+      counter-reset: subProcessCounter; }
+      .proj .projContent .subProcess > li {
+        counter-increment: subProcessCounter; }
+        .proj .projContent .subProcess > li:before {
+          content: counter(subProcessCounter) ". ";
+          color: #696969;
+          font-size: 150%; }
+      .proj .projContent .subProcess h5 {
+        color: #434B63;
+        font-weight: 600;
+        font-style: italic;
+        font-size: 1.5em;
+        margin-top: 5%;
+        display: inline-block; }
+      .proj .projContent .subProcess h6 {
+        font-size: 1.6em;
+        color: #434B63;
+        margin-top: 5%; }
+      .proj .projContent .subProcess img.wideBoi {
+        width: 100vw;
+        left: -11%; }
     .proj .projContent .NDAinfo {
       background-color: #951003;
       color: white;
@@ -1031,6 +1055,16 @@ canvas {
         display: block;
         margin: auto;
         margin-top: 5%; }
+    .proj .projContent .stickersGrid {
+      display: grid;
+      grid-template-columns: 1fr;
+      width: 100%;
+      position: relative;
+      grid-gap: 5px;
+      margin-top: 5%; }
+      .proj .projContent .stickersGrid img {
+        width: 100%;
+        left: 0; }
 
 #improvedDreamOnStep {
   color: white;
@@ -1113,6 +1147,17 @@ canvas {
   .proj.expanded #dreamonCoverIMG {
     max-width: none;
     top: 0; }
+  .proj.expanded #chepsCoverIMG {
+    top: 0;
+    display: block;
+    margin: auto;
+    width: 80%;
+    height: auto; }
+  .proj.expanded #stickersCoverIMG {
+    max-width: 600px; }
+  .proj.expanded #umsiSiteCoverIMG {
+    max-width: 500px;
+    top: 0; }
 
 #emberCoverIMG {
   max-width: 310px;
@@ -1138,9 +1183,29 @@ canvas {
   max-width: 300px;
   top: -20px; }
 
+#chepsCoverIMG {
+  top: 0;
+  display: block;
+  margin: auto;
+  width: auto;
+  height: 100%; }
+
+#stickersCoverIMG {
+  top: 0;
+  max-width: 350px; }
+
+#umsiSiteCoverIMG {
+  max-width: 70%;
+  float: right;
+  margin-right: 10%; }
+
+#chepsInfo h2 {
+  font-size: 14pt; }
+
 #sortedAffinityHeader {
   float: right;
-  padding-right: 5%; }
+  padding-right: 5%;
+  margin-bottom: 2%; }
 
 #languages {
   margin-left: 10%; }
@@ -1402,7 +1467,9 @@ canvas {
       width: -moz-fit-content;
       width: fit-content;
       margin: auto;
-      text-indent: 0; }
+      text-indent: 0;
+      position: relative;
+      left: 5px; }
       .contactBox button p:before {
         content: '';
         background-repeat: no-repeat;

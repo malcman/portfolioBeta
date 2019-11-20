@@ -156,7 +156,7 @@ enableExpansions();
 // enable NDA additional info. allow time for doc to fill
 setTimeout(() => {
   addNDAListeners();
-}, 1000);
+}, 1500);
 
 // Render Menu and Navigator
 ReactDOM.render(

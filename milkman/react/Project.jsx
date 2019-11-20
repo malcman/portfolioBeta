@@ -32,8 +32,18 @@ class Project extends React.Component {
         document.body.style.overflow = 'hidden';
       } else {
         document.body.style.overflow = 'visible';
+        Project.removeHash();
       }
     });
+  }
+
+  static removeHash() {
+    // effectively removes hash target in URL if it was clicked within the project
+    // there may be a better way to do this with histry API, but this is easy
+    // seems to work well with modern browsers
+    if (window.location.hash) {
+      history.back();
+    }
   }
 
   render() {

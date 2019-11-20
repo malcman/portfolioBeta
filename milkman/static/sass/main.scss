@@ -1270,6 +1270,36 @@ $projHeight: 300px;
     .metaList {
       width: 100%;
     }
+    .subProcess {
+      margin-left: 5%;
+      list-style: none;
+      counter-reset: subProcessCounter;
+      & > li {
+        counter-increment: subProcessCounter;
+        &:before {
+          content: counter(subProcessCounter) ". ";
+          color: $midGray;
+          font-size: 150%;
+        }
+      }
+      h5 {
+        color: #434B63;
+        font-weight: 600;
+        font-style: italic;
+        font-size: 1.5em;
+        margin-top: 5%;
+        display: inline-block;
+      }
+      h6 {
+        font-size: 1.6em;
+        color: $mainDark;
+        margin-top: 5%;
+      }
+      img.wideBoi {
+        width: 100vw;
+        left: -11%;
+      }
+    }
 
     .NDAinfo {
       background-color: $NDAred;
@@ -1326,8 +1356,21 @@ $projHeight: 300px;
         margin-top: 5%;
       }
     }
+    .stickersGrid {
+      display: grid;
+      grid-template-columns: 1fr;
+      width: 100%;
+      position: relative;
+      grid-gap: 5px;
+      margin-top: 5%;
+      img {
+        width: 100%;
+        left: 0;
+      }
+    }
   }
 }
+
 #improvedDreamOnStep {
     $improvedClipPath: polygon(0% 0%, 0% 100%, 100% 98%, 100% 1%);
     color: white;
@@ -1421,7 +1464,7 @@ $projHeight: 300px;
     }
   }
 
-	// begin specific cover image adjustments
+	// begin specific cover image adjustments - expanded
 	#emberCoverIMG, #fooyaCoverIMG, #xrssCoverIMG, #oystersCoverIMG {
 		max-width: none;
 	}
@@ -1433,10 +1476,24 @@ $projHeight: 300px;
     max-width: none;
     top: 0;
   }
+  #chepsCoverIMG {
+    top: 0;
+    display: block;
+    margin: auto;
+    width: 80%;
+    height: auto;
+  }
+  #stickersCoverIMG {
+    max-width: 600px;
+  }
+  #umsiSiteCoverIMG {
+    max-width: 500px;
+    top: 0;
+  }
 	// end specific cover image adjustments
 }
 
-// begin specifc cover image adjustments
+// begin specifc cover image adjustments - normal
 #emberCoverIMG {
   max-width: 310px;
   left: 5%;
@@ -1458,19 +1515,40 @@ $projHeight: 300px;
   float: right;
 }
 #oystersCoverIMG {
-  // top: 0;
-  // max-width: 250px;
 }
 #dreamonCoverIMG {
-  // top: 0;
   max-width: 300px;
   top: -20px;
 }
+
+#chepsCoverIMG {
+  top: 0;
+  display: block;
+  margin: auto;
+  width: auto;
+  height: 100%;
+}
+
+#stickersCoverIMG {
+  top: 0;
+  max-width: 350px;
+}
+#umsiSiteCoverIMG {
+  max-width: 70%;
+  float: right;
+  margin-right: 10%;
+}
 // end specific cover image adjustments
+#chepsInfo {
+  h2 {
+    font-size: 14pt;
+  }
+}
 
 #sortedAffinityHeader {
   float: right;
   padding-right: 5%;
+  margin-bottom: 2%;
 }
 
 #languages{
@@ -1808,6 +1886,8 @@ $projHeight: 300px;
 			width: fit-content;
       margin: auto;
       text-indent: 0;
+      position: relative;
+      left: 5px;
       &:before {
       	content: '';
   			background-repeat: no-repeat;

@@ -1,0 +1,9 @@
+#!/bin/bash
+# watchReact
+# assumes correct webpack configuration
+# run from root
+
+# Stop on errors
+set -e
+
+npm run watch

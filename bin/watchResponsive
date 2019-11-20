@@ -1,0 +1,8 @@
+#!/bin/bash
+# watch responsive
+# run from root
+
+# Stop on errors
+set -e
+
+sass --watch milkman/static/sass/responsive.scss:milkman/static/css/responsive.css

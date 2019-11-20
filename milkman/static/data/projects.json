@@ -31,6 +31,14 @@
       "tags": ["Graphic Design"]
     },
     {
+      "title": "UMSI Achievement Stickers",
+      "titleShort": "stickers",
+      "coverIMG": "./static/img/proj/stickersCover.png",
+      "date": "09/30/18",
+      "docURI": "./static/data/projectDocs/stickers.html",
+      "tags": ["Graphic Design"]
+    },
+    {
       "title": "Oyster Wars - Modernism vs. Postmodernism",
       "titleShort": "oysters",
       "coverIMG": "./static/img/proj/oystersCoverSlant.png",
@@ -45,6 +53,22 @@
       "date": "12/05/18",
       "docURI": "./static/data/projectDocs/dreamon.html",
       "tags": ["Graphic Design", "Interaction Design"]
+    },
+    {
+      "title": "UMSI Beta Site Structure",
+      "titleShort": "umsiSite",
+      "coverIMG": "./static/img/proj/umsiSiteCover.png",
+      "date": "04/05/19",
+      "docURI": "./static/data/projectDocs/umsiSite.html",
+      "tags": ["Interaction Design", "UX Research"]
+    },
+    {
+      "title": "Center for Healthcare Engineering & Patient Safety",
+      "titleShort": "cheps",
+      "coverIMG": "./static/img/proj/michiganMedicineLogo.png",
+      "date": "12/05/18",
+      "docURI": "./static/data/projectDocs/cheps.html",
+      "tags": ["Graphic Design", "Interaction Design", "Web Development"]
     },
     {
       "title": "Fooya! Capstone Project",

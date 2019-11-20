@@ -1,0 +1,8 @@
+#!/bin/bash
+# watchMainStyles
+# run from root
+
+# Stop on errors
+set -e
+
+sass --watch milkman/static/sass/main.scss:milkman/static/css/main.css

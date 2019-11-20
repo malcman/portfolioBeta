@@ -58,7 +58,7 @@ class ProjInfo extends React.Component {
 
     return (
       <Flipped flipId={`${this.props.title}Info`} translate>
-        <section className="projInfo">
+        <section className="projInfo" id={`${this.props.titleShort}Info`}>
           <ClosingX closerClass="projClose" closerToggle={this.props.handleExpandToggle} />
           <div className="coverPhotoContainer">
             <img

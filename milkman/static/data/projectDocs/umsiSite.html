@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+  <div class="metaContainer">
+    <div class="metaList">
+      <h3 class="roleHeader">Roles:</h3>
+      <ul>
+        <li>User Testing Facilitator</li>
+        <li>Graphic Designer</li>
+        <li>General team member</li>
+      </ul>
+    </div>
+    <div class="metaList">
+      <h3 class="toolsHeader">Tools used:</h3>
+      <ul class="toolsList">
+        <li class="toolsListEl"><a target="_blank" href="https://www.figma.com/">Figma</a></li>
+        <li class="toolsListEl"><a target="_blank" href="https://www.optimalworkshop.com/optimalsort">OptimalSort</a></li>
+        <li class="toolsListEl"><a target="_blank" href="https://www.atlassian.com/software/jira">Jira</a></li>
+        <li class="toolsListEl"><a target="_blank" href="https://about.gitlab.com/">GitLab</a></li>
+      </ul>
+    </div>
+  </div>
+  <h3 class="resultHeader">Result (TL;DR):</h3>
+  <p class="resultText">Using agile methodologies, our team provided the University of Michigan School of Information research-backed prototypes to improve the <a href="https://beta.si.umich.edu/">new site</a> structure, which received a lot of backlash when it was first deployed.</p>
+  <h3 class="processHeader">Process</h3>
+  <ol class="processList">
+    <li class="processStep">
+      <h4>Staying Agile</h4>
+      <p>The main purpose of this project was to practice SCRUM methods. The project was done across two sprints, and every piece of work done was associated with a Jira ticket. Our task was quite open: deliver value to the client (the UMSI marketing team) within two weeks. We determined that refining the site structure would be of an appropriate scope and still have high returns.</p>
+    </li>
+
+    <li class="processStep">
+      <h4>Research</h4>
+      <p>In order to present something of value, we had to ensure that our work was rooted in reality. We developed a protocol for an open card sorting test that each of us could execute on our own, as all of us were busy students with very little common free time. We populated our cards with the existing pages in the beta site's menu, as determining which pages should be included on a site is a project all on its own, and not really an area in which our additional input would be helpful.</p>
+      <img class="bigImage" style="max-width: 500px;" src="./static/img/proj/cardSort.png" alt="cartoon card sort cards">
+      <p>Knowing that the hard part of card sorts is not performing or facilitating the test, but finding commonalities across the results, I also did some research on free-tier software that could alleviate this process. I found <a target="_blank" href="https://www.optimalworkshop.com/optimalsort">OptimalSort</a>, and recreated our test using our established protocol. After showing this to the group, we concurred that this would make analysis much easier. Additionally, this would allow members to conduct the test without carrying around a stack of index cards. It is my opinion, however, that physical cards provide a better experience, as the test participant usually feels more empowered to make changes to the cards, and additional mental processing occurs when physically touching and moving things around.</p>
+      <p>We each performed two to three tests, recruiting from one of the following groups (specified as target audiences by the marketing team):</p>
+      <ul>
+        <li>Current Students</li>
+        <li>Prospective Students</li>
+        <li>Faculty</li>
+      </ul>
+    </li>
+
+    <li class="processStep">
+      <h4>Analysis</h4>
+      <p>OptimalSort rocks. Seriously. Once your test is completed, it automatically generates a series of interactive graphs that visualize different trends in the results. of those, we found the similarity matrix and dendrograms to be the most useful.</p>
+      <h5>Card Sort Dendrogram</h5>
+      <img src="./static/data/img/umsiSite/dendrogram.png" alt="Card Sort results dendrogram" class="bigImage" style="max-width: 650px;">
+
+      <h5>Card Sort Similarity Matrix</h5>
+      <img src="./static/data/img/umsiSite/similarityMatrix.png" alt="Card Sort results similarity matrix" class="bigImage" style="max-width: 650px;">
+
+      <p>Using these graphs and the other tools provided by OptimalSort, a large majority of the groupings were pretty clear directly from the data. There will always be ambiguity, of course, and we resolved the stragglers with group discourse, centered around the groups we had already created. The groupings are visible in the prototypes.</p>
+
+    </li>
+
+    <li class="processStep">
+      <h4>Prototyping</h4>
+      <p>In the spirit of collaboration and easy sharing, we elected to use <a target="_blank" href="https://www.figma.com/">Figma</a> to create our prototypes. One of our teammates, Nisa Khan, created the first iteration of the mockups, which I then refined and linked together to become a prototype.</p><br>
+      <a target="_blank" style="color: #00274C; font-size: larger;" href="https://www.figma.com/proto/ZeShsVqpGmOrI8HJG2Rn86zz/UMSI-Beta-Site-Mobile-Nav-Redesign?node-id=14%3A59&scaling=scale-down">View the full prototype on Figma.</a>
+    </li>
+
+    <li class="processStep">
+      <h4>Write-Up</h4>
+      <p>Since the purpose of all this was to hammer home Agile Methodologies, we collaborated via GitLab and published our final report in markdown. This report and the prototype comprised the majority of our final handoff materials.
+      <a href="http://si631.pages.umsi.io/2-tropical-penguins-c/">You can view the full final report here.</a>To be honest though, it's mostly a more formal version of this page. Furthermore, some images seem to be missing now. 🙁 </p>
+      <p>Within two weeks, our group was able to conduct and analyze user tests, then translate them into interactive prototypes. The UMSI marketing team was happy to have research-backed data to inform their future development. We didn't break crazy new ground; we delivered value. Which, IMO, is often better.</p>
+    </li>
+  </ol>
+</body>
