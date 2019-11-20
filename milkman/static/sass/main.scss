@@ -150,6 +150,25 @@ button {
 	}
 }
 
+.arrowLink {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 3px;
+    height: 12px;
+    width: 12px;
+    border: 2px solid #434B63;
+    transform: rotate(45deg);
+    transition: transform 0.3s;
+    border-left: 0;
+    border-bottom: 0;
+  }
+  &:hover::after {
+    transform: rotate(45deg) translate(5px, -5px);
+  }
+}
+
 #menuEntry {
   z-index: 20;
   position: absolute;
@@ -1537,6 +1556,12 @@ $projHeight: 300px;
   max-width: 70%;
   float: right;
   margin-right: 10%;
+}
+#cvfcCoverIMG {
+  width: 50%;
+  top: 0;
+  display: block;
+  margin: auto;
 }
 // end specific cover image adjustments
 #chepsInfo {

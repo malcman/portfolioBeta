@@ -47,6 +47,14 @@
       "tags": ["Graphic Design"]
     },
     {
+      "title": "College Volunteer Facilitator Corp",
+      "titleShort": "cvfc",
+      "coverIMG": "./static/img/proj/cvfcCoverSmall.png",
+      "date": "03/30/18",
+      "docURI": "./static/data/projectDocs/cvfc.html",
+      "tags": ["Graphic Design", "Social Media"]
+    },
+    {
       "title": "DreamOn - Emotional Redesign",
       "titleShort": "dreamon",
       "coverIMG": "./static/img/proj/dreamOnCover.png",
