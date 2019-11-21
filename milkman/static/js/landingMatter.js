@@ -336,7 +336,6 @@ function makeSVGXMLRequest(panel, url, x, y, properties, spin) {
     // Process our return data
     if (xhr.status >= 200 && xhr.status < 300) {
       // Successful request
-      console.log(xhr)
       const paths = xhr.responseXML.getElementsByTagName('path');
 
       // convert each path to a set of vertices
@@ -551,18 +550,54 @@ function watchStopAndLoadPanels() {
   });
 }
 
-function watchStopAndLoad(panel) {
-  // to be used in a listener function
-  // watches one panel and enables the associated runner if it
-  // is at least halfway in the viewport.
-  let boundingElem = allCanvases[panel].render.canvas;
-  if (panel === 'develop') boundingElem = allCanvases[panel].render.canvas.parentNode;
+function handleIntersect(entries, observer) {
+  // stops panel runners when not in view
+  // https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry
+  entries.forEach((entry) => {
+    // get the panel name of this element
+    // named groups don't work in Firefox /:
+    // const panelRegex = /^(?<panel>\w+)CanvasContainer$/;
+    const panelRegex = /^(\w+)CanvasContainer$/;
+    const match = panelRegex.exec(entry.target.id);
+    // panel group is index 1
+    const panel = match[1];
 
-  if (!isHalfInViewport(boundingElem)) {
-    allCanvases[panel].runner.enabled = false;
-  } else {
-    allCanvases[panel].runner.enabled = true;
-  }
+    // toggle the runner for this panel
+    // only one threshold in use, so 0th index of thresholds array
+    if (entry.isIntersecting && entry.intersectionRatio > observer.thresholds[0]) {
+      allCanvases[panel].runner.enabled = true;
+    } else {
+      allCanvases[panel].runner.enabled = false;
+    }
+  });
+}
+
+function createObserver(threshold, element) {
+  // creates Intersection observer that watches element at the specified threshold
+  // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+  const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold,
+  };
+
+  const observer = new IntersectionObserver(handleIntersect, options);
+  observer.observe(element);
+}
+
+function watchPanelsWithObserver() {
+  // creates IntersectionObserver for each panel that stops runner if not in view
+  const observers = {};
+  const threshold = 0.35;
+
+  Object.keys(allCanvases).forEach((panel) => {
+    // get the target element to watch
+    const boundingElem = allCanvases[panel].render.canvas.parentNode;
+    // create the observer
+    const newObserver = createObserver(threshold, boundingElem);
+    observers[panel] = newObserver;
+  });
+  return observers;
 }
 
 function addMouseControl(panel) {
@@ -610,10 +645,15 @@ function addListeners(pyraComposite, bouncingBall, ballStartPoint) {
   });
 
   // only run runners for each panel when in view
-  // Object.keys(allCanvases).forEach((panel) => {});
-  window.addEventListener('scroll', () => {
-    watchStopAndLoadPanels();
-  });
+  if (IntersectionObserver) {
+    // more modern solution
+    watchPanelsWithObserver();
+  } else {
+    // fallback, not as optimal
+    window.addEventListener('scroll', () => {
+      watchStopAndLoadPanels();
+    });
+  }
 }
 
 // begin main
