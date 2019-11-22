@@ -166,7 +166,12 @@ $lightGrey: #C3CCD6;
 		&:not(.pushedDown) {
 		}
 		&.pushedDown {
-			top: 175px;
+			top: 215px;
+		}
+	}
+	#artContent {
+		.gallery.pushedDown {
+			top: 150px;
 		}
 	}
 	.proj {
@@ -195,6 +200,17 @@ $lightGrey: #C3CCD6;
 	    }
 			.stickersGrid {
 				grid-template-columns: 1fr 1fr;
+			}
+		}
+	}
+	.artPiece {
+		&.expanded {
+			&.square img {
+				height: 80vh;
+				width: auto;
+			}
+			&.wide img {
+				margin-top: 10vh;
 			}
 		}
 	}
@@ -332,21 +348,27 @@ $lightGrey: #C3CCD6;
     padding-right: 5px;
 	}
 	#filterGrid {
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(6, 1fr);
+		.FilterLabel {
+			grid-column: span 2;
+		}
+		.selectorButton:nth-last-of-type(2), .selectorButton:last-of-type {
+			grid-column: span 3;
+		}
+	}
+	#artContent {
+		#filterGrid {
+			grid-template-columns: repeat(2, 1fr);
+			.FilterLabel {
+				grid-column: span 1
+			}
+		}
 	}
 	.gallery.pushedDown {
-		top: 115px;
+		top: 165px;
 	}
 
 	.selectorButton {
-		width: 103%;
-	}
-
-	.selectorButton:nth-child(5) {
-		grid-column: 1 / 3;
-	}
-	.selectorButton:last-of-type {
-		grid-column: 3 / 5;
 		width: 103%;
 	}
 
@@ -384,6 +406,19 @@ $lightGrey: #C3CCD6;
     		// left: -6%;
     	}
     }
+	}
+	.artPiece {
+		&.expanded {
+			&.square img {
+				height: 80vh;
+				width: auto;
+			}
+			&.wide img {
+				margin-top: 5vh;
+				width: auto;
+				height: 90vh;
+			}
+		}
 	}
 	#improvedDreamOnStep {
 		$improvedClipPath: polygon(0% 0%, 0% 100%, 100% 98%, 100% 5%);

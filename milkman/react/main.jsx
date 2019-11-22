@@ -2,6 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import ProjectPage from './ProjectPage';
+import ProjectPageDynamic from './ProjectPageDynamic';
+import Project from './Project';
+import ArtPiece from './ArtPiece';
+
+// make references to the components by type
+const Components = {
+  Project,
+  ArtPiece,
+};
 
 
 function getPage() {
@@ -25,6 +34,16 @@ function getPage() {
 const projectsEntry = document.getElementById('projectsEntry');
 if (projectsEntry) {
   ReactDOM.render(<ProjectPage />, projectsEntry);
+}
+
+// Render Art Page
+const artEntry = document.getElementById('artEntry');
+if (artEntry) {
+  const artData = './static/data/art.json';
+  ReactDOM.render(<ProjectPageDynamic
+    components={Components}
+    dataFile={artData}
+  />, artEntry);
 }
 
 

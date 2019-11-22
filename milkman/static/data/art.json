@@ -1,0 +1,43 @@
+{
+  "head": {
+    "lastUpdate": "11/21/19",
+    "componentType": "ArtPiece"
+  },
+  "projects": [
+    {
+      "title": "Mount Wave",
+      "titleShort": "mtWave",
+      "imgFile": "./static/img/art/mtWave.jpg",
+      "date": "11/01/18",
+      "tags": ["Digital"]
+    },
+    {
+      "title": "Rising Lotus",
+      "titleShort": "lotus",
+      "imgFile": "./static/img/art/BigLotusSun.png",
+      "date": "09/01/19",
+      "tags": ["Digital"]
+    },
+    {
+      "title": "Forward Return",
+      "titleShort": "forwardReturn",
+      "imgFile": "./static/img/art/ForwardReturn.jpg",
+      "date": "01/30/19",
+      "tags": ["Digital"]
+    },
+    {
+      "title": "Symbiotic Entropy",
+      "titleShort": "symbiosis",
+      "imgFile": "./static/img/art/SymbioticEntropy.png",
+      "date": "10/01/19",
+      "tags": ["Digital"]
+    },
+    {
+      "title": "Surrender",
+      "titleShort": "surrender",
+      "imgFile": "./static/img/art/surrender.jpg",
+      "date": "04/01/19",
+      "tags": ["Oil"]
+    }
+  ]
+}

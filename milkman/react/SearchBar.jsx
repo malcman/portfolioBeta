@@ -27,7 +27,7 @@ class SearchBar extends React.Component {
         <input
           id="query"
           type="text"
-          placeholder="Search Project Titles"
+          placeholder="Search Titles"
           autoComplete="off"
           value={filterText}
           onChange={this.handleSearchTextChange}

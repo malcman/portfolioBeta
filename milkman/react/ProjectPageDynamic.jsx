@@ -2,6 +2,7 @@ import React from 'react';
 import FilterManager from './FilterManager';
 import Gallery from './Gallery';
 import Project from './Project';
+import ArtPiece from './ArtPiece';
 
 const classNames = require('classnames');
 
@@ -44,7 +45,7 @@ const sortFunctions = {
   },
 };
 
-class ProjectPage extends React.Component {
+class ProjectPageDynamic extends React.Component {
   constructor(props) {
     super(props);
     this.fetchProjects = this.fetchProjects.bind(this);
@@ -77,11 +78,13 @@ class ProjectPage extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchProjects('./static/data/projects.json');
+    this.fetchProjects(this.props.dataFile);
   }
 
   fetchProjects(fetchURL) {
     const categories = [];
+    const { components: Components } = this.props;
+
     fetch(fetchURL, { credentials: 'same-origin' })
       .then((response) => {
         if (!response.ok) throw Error(response.statusText);
@@ -89,9 +92,11 @@ class ProjectPage extends React.Component {
       })
       .then((data) => {
         const projects = [];
+        const pieceType = data.head.componentType;
         data.projects.forEach((proj) => {
           // add new project
-          const newProj = (<Project
+          const Piece = Components[pieceType];
+          const newProj = (<Piece
             key={proj.titleShort}
             {...proj}
           />);
@@ -220,4 +225,4 @@ class ProjectPage extends React.Component {
   }
 }
 
-export default ProjectPage;
+export default ProjectPageDynamic;
