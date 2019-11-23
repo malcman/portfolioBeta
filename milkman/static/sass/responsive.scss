@@ -126,10 +126,11 @@ $lightGrey: #C3CCD6;
 	.tabletSVG {
 		display: block;
 	}
-
+	$gridSkew: 20deg;
 	#filterGrid, #sortGrid {
 		grid-template-columns: repeat(2, 1fr);
 		width: 100%;
+		transform: skew(-$gridSkew);
 	}
 
 	#leadershipHeader {
@@ -153,6 +154,7 @@ $lightGrey: #C3CCD6;
 	.FilterLabel {
 		width: 100%;
 		grid-column: auto;
+		transform: skew($gridSkew);
 	}
 	.selectorButton:last-of-type {
 		width: 100%;
@@ -160,6 +162,7 @@ $lightGrey: #C3CCD6;
 
 	.FilterBKG{
 		width: 95%;
+		transform: skew(-$gridSkew);
 	}
 	.gallery {
 		grid-template-columns: 40vw 40vw;
@@ -408,15 +411,21 @@ $lightGrey: #C3CCD6;
     }
 	}
 	.artPiece {
+		&.square {
+			img {
+				top: -35%;
+			}
+		}
 		&.expanded {
 			&.square img {
 				height: 80vh;
 				width: auto;
+				top: 0;
 			}
 			&.wide img {
 				margin-top: 5vh;
-				width: auto;
-				height: 90vh;
+				width: 90vw;
+				// height: 90vh;
 			}
 		}
 	}

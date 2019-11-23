@@ -93,7 +93,8 @@
 
   #filterGrid, #sortGrid {
     grid-template-columns: repeat(2, 1fr);
-    width: 100%; }
+    width: 100%;
+    transform: skew(-20deg); }
 
   #leadershipHeader {
     margin-top: -20%; }
@@ -111,13 +112,15 @@
 
   .FilterLabel {
     width: 100%;
-    grid-column: auto; }
+    grid-column: auto;
+    transform: skew(20deg); }
 
   .selectorButton:last-of-type {
     width: 100%; }
 
   .FilterBKG {
-    width: 95%; }
+    width: 95%;
+    transform: skew(-20deg); }
 
   .gallery {
     grid-template-columns: 40vw 40vw; }
@@ -282,13 +285,15 @@
       .proj .projContent #dreamOnD1Grid .mobileMockupCell:last-child, .proj .projContent #dreamOnDiaryGrid .mobileMockupCell:last-child, .proj .projContent #dreamOnDreamGrid .mobileMockupCell:last-child {
         grid-column: auto; }
 
+  .artPiece.square img {
+    top: -35%; }
   .artPiece.expanded.square img {
     height: 80vh;
-    width: auto; }
+    width: auto;
+    top: 0; }
   .artPiece.expanded.wide img {
     margin-top: 5vh;
-    width: auto;
-    height: 90vh; }
+    width: 90vw; }
 
   #improvedDreamOnStep {
     left: -12%;

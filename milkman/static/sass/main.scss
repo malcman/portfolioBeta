@@ -169,6 +169,52 @@ button {
   }
 }
 
+@keyframes flipAround {
+  33% {
+    transform: rotate(120deg) scaleX(-1);
+    fill: $lightGrey;
+  }
+  66% {
+    transform: rotate(240deg) scaleX(1);
+    fill: $mainLight;
+  }
+  100% {
+    transform: rotate(360deg) scaleX(-1);
+    fill: $mainDark;
+  }
+}
+@-webkit-keyframes flipAround {
+  33% {
+    transform: rotate(120deg) scaleX(-1);
+    fill: $lightGrey;
+  }
+  66% {
+    transform: rotate(240deg) scaleX(1);
+    fill: $mainLight;
+  }
+  100% {
+    transform: rotate(360deg) scaleX(-1);
+    fill: $mainDark;
+  }
+}
+
+.LoadingSpinner {
+  display: block;
+  margin: auto;
+  svg {
+    text {
+      font-family: 'Montserrat';
+      font-size: 1.3em;
+      fill: $mainDark;
+    }
+    polygon {
+      transform-origin: center;
+      animation: flipAround 2s infinite;
+      fill: #434b63;
+    }
+  }
+}
+
 #menuEntry {
   z-index: 20;
   position: absolute;
@@ -675,6 +721,9 @@ canvas {
       position: relative;
       top: 200px;
     }
+  }
+  .projGridCell {
+    height: auto;
   }
   h1 {
     // margin-left: 10%;
@@ -1589,28 +1638,40 @@ $projHeight: 300px;
   margin: auto;
 }
 // end specific cover image adjustments
+$artHeight: 200px;
 .artPiece {
+  max-height: $artHeight;
   cursor: pointer;
   width: 100%;
   position: relative;
   box-shadow: 0px 2px 5px lighten($mainDark, 50%);
+  overflow: hidden;
   &.wide img {
-    width: 100%;
+    // width: 100%;
   }
-  &.square img {
-    width: 50%;
+  &.square {
+    height: 200px;
+    img {
+      position: relative;
+      top: -25%;
+    }
+    // width: 50%;
   }
   &.tall {
-    $tallWidth: 33%;
-    img {
-      width: $tallWidth;
-    }
+    // $tallWidth: 33%;
+    // img {
+    //   width: $tallWidth;
+    // }
   }
   img {
     display: block;
+    will-change: transform;
     margin: auto;
+    width: 100%;
   }
   &.expanded {
+    overflow: scroll;
+    max-height: none;
     position: fixed;
     left: 0;
     top: 0;
@@ -1620,6 +1681,11 @@ $projHeight: 300px;
     width: 100vw;
     cursor: default;
     box-shadow: none;
+    &.square {
+      img {
+        top: 0;
+      }
+    }
     &.wide img, &.square img {
       width: 100vw;
       margin-top: 60px;
@@ -1638,6 +1704,9 @@ $projHeight: 300px;
       background: linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0.6) 65%, rgba(0, 0, 0, 0) 100%);
       width: auto;
       border-radius: 0 22px 0 0;
+      position: fixed;
+      bottom: 0;
+      left: 0;
     }
     .artTitle {
       color: white;
@@ -1645,6 +1714,7 @@ $projHeight: 300px;
     .ClosingX {
       display: inline-block;
       cursor: pointer;
+      z-index: 21;
     }
   }
   &:hover {
@@ -1661,8 +1731,12 @@ $projHeight: 300px;
       background-color: white;
     }
   }
+  .LoadingSpinner {
+    width: 50%;
+  }
 }
 .artInfo {
+  box-sizing: border-box;
   opacity: 0;
   transition: opacity 0.35s;
   position: absolute;

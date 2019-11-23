@@ -125,6 +125,38 @@ button {
   .arrowLink:hover::after {
     transform: rotate(45deg) translate(5px, -5px); }
 
+@keyframes flipAround {
+  33% {
+    transform: rotate(120deg) scaleX(-1);
+    fill: #C3CCD6; }
+  66% {
+    transform: rotate(240deg) scaleX(1);
+    fill: #B3BBC5; }
+  100% {
+    transform: rotate(360deg) scaleX(-1);
+    fill: #434B63; } }
+@-webkit-keyframes flipAround {
+  33% {
+    transform: rotate(120deg) scaleX(-1);
+    fill: #C3CCD6; }
+  66% {
+    transform: rotate(240deg) scaleX(1);
+    fill: #B3BBC5; }
+  100% {
+    transform: rotate(360deg) scaleX(-1);
+    fill: #434B63; } }
+.LoadingSpinner {
+  display: block;
+  margin: auto; }
+  .LoadingSpinner svg text {
+    font-family: 'Montserrat';
+    font-size: 1.3em;
+    fill: #434B63; }
+  .LoadingSpinner svg polygon {
+    transform-origin: center;
+    animation: flipAround 2s infinite;
+    fill: #434b63; }
+
 #menuEntry {
   z-index: 20;
   position: absolute;
@@ -530,6 +562,8 @@ canvas {
     #artContent .gallery.pushedDown {
       position: relative;
       top: 200px; }
+  #artContent .projGridCell {
+    height: auto; }
 
 #contactContent {
   padding: 100px 0;
@@ -1240,20 +1274,25 @@ canvas {
   margin: auto; }
 
 .artPiece {
+  max-height: 200px;
   cursor: pointer;
   width: 100%;
   position: relative;
-  box-shadow: 0px 2px 5px #cacedb; }
-  .artPiece.wide img {
-    width: 100%; }
-  .artPiece.square img {
-    width: 50%; }
-  .artPiece.tall img {
-    width: 33%; }
+  box-shadow: 0px 2px 5px #cacedb;
+  overflow: hidden; }
+  .artPiece.square {
+    height: 200px; }
+    .artPiece.square img {
+      position: relative;
+      top: -25%; }
   .artPiece img {
     display: block;
-    margin: auto; }
+    will-change: transform;
+    margin: auto;
+    width: 100%; }
   .artPiece.expanded {
+    overflow: scroll;
+    max-height: none;
     position: fixed;
     left: 0;
     top: 0;
@@ -1263,6 +1302,8 @@ canvas {
     width: 100vw;
     cursor: default;
     box-shadow: none; }
+    .artPiece.expanded.square img {
+      top: 0; }
     .artPiece.expanded.wide img, .artPiece.expanded.square img {
       width: 100vw;
       margin-top: 60px; }
@@ -1277,12 +1318,16 @@ canvas {
       background: black;
       background: linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0.6) 65%, transparent 100%);
       width: auto;
-      border-radius: 0 22px 0 0; }
+      border-radius: 0 22px 0 0;
+      position: fixed;
+      bottom: 0;
+      left: 0; }
     .artPiece.expanded .artTitle {
       color: white; }
     .artPiece.expanded .ClosingX {
       display: inline-block;
-      cursor: pointer; }
+      cursor: pointer;
+      z-index: 21; }
   .artPiece:hover .artInfo {
     opacity: 1; }
   .artPiece .ClosingX {
@@ -1292,8 +1337,11 @@ canvas {
     top: 20px; }
     .artPiece .ClosingX .singleToggleLine {
       background-color: white; }
+  .artPiece .LoadingSpinner {
+    width: 50%; }
 
 .artInfo {
+  box-sizing: border-box;
   opacity: 0;
   transition: opacity 0.35s;
   position: absolute;

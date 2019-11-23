@@ -12,8 +12,8 @@
       "tags": ["Digital"]
     },
     {
-      "title": "Rising Lotus",
-      "titleShort": "lotus",
+      "title": "Rise",
+      "titleShort": "rise",
       "imgFile": "./static/img/art/BigLotusSun.png",
       "date": "09/01/19",
       "tags": ["Digital"]
@@ -30,6 +30,13 @@
       "titleShort": "symbiosis",
       "imgFile": "./static/img/art/SymbioticEntropy.png",
       "date": "10/01/19",
+      "tags": ["Digital"]
+    },
+    {
+      "title": "Shift",
+      "titleShort": "shift",
+      "imgFile": "./static/img/art/shift.png",
+      "date": "05/01/19",
       "tags": ["Digital"]
     },
     {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Flipper, Flipped } from 'react-flip-toolkit';
 import ClosingX from './ClosingX';
+import LoadingSpinner from './LoadingSpinner';
 
 const classNames = require('classnames');
 
@@ -11,9 +12,11 @@ class ArtPiece extends React.Component {
       expanded: false,
       imgClass: 'square',
       bkgColor: 'transparent',
+      loaded: false,
     };
     this.setImageClass = this.setImageClass.bind(this);
     this.toggleExpand = this.toggleExpand.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
   }
   componentDidMount() {
     this.setImageClass();
@@ -30,17 +33,25 @@ class ArtPiece extends React.Component {
       const width = img.width;
 
       // determine class
-      if (width / height >= 1.5) {
+      if (width / height >= 1.3) {
         imgClass = 'wide';
-      } else if (height / width >= 1.5) {
+      } else if (height / width >= 1.3) {
         imgClass = 'tall';
       }
       this.setState({
         imgClass,
+        loaded: true,
       });
     };
 
     img.src = this.props.imgFile;
+  }
+
+  handleKeyUp(e) {
+    // allow users to push enter on to toggle for accessibility
+    if (e.keyCode === 13 || e.which === 13) {
+      this.toggleExpand(e);
+    }
   }
 
   toggleExpand(e) {
@@ -61,15 +72,34 @@ class ArtPiece extends React.Component {
     const pieceClass = classNames('artPiece',
       this.state.imgClass,
       { expanded: this.state.expanded });
+
+    let content = <LoadingSpinner />;
+    if (this.state.loaded) {
+      content = <img src={this.props.imgFile} alt={this.props.title} />;
+    }
+
     return (
-      <Flipper flipKey={this.state.expanded} spring="gentle">
+      <Flipper flipKey={this.state.expanded}>
         <Flipped flipId={this.props.title}>
-          <div className={pieceClass} onClick={this.toggleExpand}>
+          <div
+            className={pieceClass}
+            onClick={this.toggleExpand}
+            onKeyUp={this.handleKeyUp}
+            role="menuitem"
+            tabIndex="0"
+            id={this.props.title}
+          >
             <ClosingX closerToggle={this.toggleExpand} />
-            <img src={this.props.imgFile} alt={this.props.title} />
-            <div className="artInfo">
-              <h2 className={'artTitle'}>{this.props.title}</h2>
-            </div>
+
+            <Flipped stagger delayUntil={this.props.title}>
+              {content}
+            </Flipped>
+
+            <Flipped inverseFlipId={this.props.title}>
+              <div className="artInfo">
+                <h2 className={'artTitle'}>{this.props.title}</h2>
+              </div>
+            </Flipped>
           </div>
         </Flipped>
       </Flipper>

@@ -53,7 +53,6 @@ class Project extends React.Component {
       <div className="projGridCell">
         <Flipper
           flipKey={this.state.fullScreen}
-          spring="gentle"
           className="projFlipper"
         >
           <Flipped flipId={this.props.title}>

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import ProjectPage from './ProjectPage';
 import ProjectPageDynamic from './ProjectPageDynamic';
 import Project from './Project';
 import ArtPiece from './ArtPiece';
@@ -14,6 +13,7 @@ const Components = {
 
 
 function getPage() {
+  // pull page title from document to give to menu
   const regex = /-\s*(\w+)/;
   const matches = regex.exec(document.title);
   let page;
@@ -33,7 +33,11 @@ function getPage() {
 // Render Projects Page
 const projectsEntry = document.getElementById('projectsEntry');
 if (projectsEntry) {
-  ReactDOM.render(<ProjectPage />, projectsEntry);
+  const projData = './static/data/projects.json';
+  ReactDOM.render(<ProjectPageDynamic
+    components={Components}
+    dataFile={projData}
+  />, projectsEntry);
 }
 
 // Render Art Page
