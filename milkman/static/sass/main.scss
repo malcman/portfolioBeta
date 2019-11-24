@@ -1750,6 +1750,13 @@ $artHeight: 200px;
 .artTitle {
   font-weight: 300;
 }
+#ApocaBliss:not(.expanded) {
+  height: 200px;
+  img {
+    width: auto;
+    height: 100%;
+  }
+}
 #chepsInfo {
   h2 {
     font-size: 14pt;

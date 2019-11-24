@@ -153,6 +153,8 @@
     width: auto; }
   .artPiece.expanded.wide img {
     margin-top: 10vh; }
+  .artPiece.expanded#ApocaBliss img {
+    margin-top: 30vh; }
 
   #improvedDreamOnStep {
     -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 98%, 100% 2.5%);
@@ -254,11 +256,6 @@
     #filterGrid .selectorButton:nth-last-of-type(2), #filterGrid .selectorButton:last-of-type {
       grid-column: span 3; }
 
-  #artContent #filterGrid {
-    grid-template-columns: repeat(2, 1fr); }
-    #artContent #filterGrid .FilterLabel {
-      grid-column: span 1; }
-
   .gallery.pushedDown {
     top: 165px; }
 
@@ -341,15 +338,16 @@
     width: 50vw;
     margin-left: 0;
     padding: 5% 0;
+    padding-top: 15%;
     -webkit-clip-path: polygon(0% 0%, 0 100%, 100% 100%, 80% 0%);
     clip-path: polygon(0% 0%, 0 100%, 100% 100%, 80% 0%); }
     #landingCaption h1 {
       font-size: 2.5em; }
     #landingCaption h2 {
-      font-size: 2em; }
+      font-size: 1.9em; }
     #landingCaption h1, #landingCaption h2, #landingCaption #breakThings {
       color: white;
-      margin-left: 25%; }
+      margin-left: 10%; }
     #landingCaption #breakThings {
       border: none;
       background-color: #B3BBC5;

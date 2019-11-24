@@ -29,6 +29,12 @@ function getPage() {
   return page;
 }
 
+// Render Menu and Navigator
+ReactDOM.render(
+  <App page={getPage()} />,
+  document.getElementById('menuEntry'),
+);
+
 
 // Render Projects Page
 const projectsEntry = document.getElementById('projectsEntry');
@@ -147,6 +153,23 @@ function enableExpansions() {
   });
 }
 
+function watchExpandedEls() {
+  // watches for a window resize
+  // on resize, resets margins to prevent undesirable text layering
+  window.addEventListener('resize', () => {
+    const expandeds = document.querySelectorAll('.expanded');
+    expandeds.forEach((expandedEl) => {
+      // get associated child element that does the actual expanding
+      const expandingEl = expandedEl.querySelector('.expanding');
+      // determine appropriate distance to push following elements down
+      const marginSize = expandingEl.clientHeight + 10;
+      const marginPxStr = `${marginSize}px`;
+      // apply
+      expandedEl.style.marginBottom = marginPxStr; //eslint-disable-line
+    });
+  });
+}
+
 function toggleNDADisplay(el) {
   el.classList.toggle('fullOpacity');
 }
@@ -175,17 +198,12 @@ function addNDAListeners() {
 
 // enable all non-react expandable sections
 enableExpansions();
+watchExpandedEls();
 
 // enable NDA additional info. allow time for doc to fill
 setTimeout(() => {
   addNDAListeners();
 }, 1500);
-
-// Render Menu and Navigator
-ReactDOM.render(
-  <App page={getPage()} />,
-  document.getElementById('menuEntry'),
-);
 
 // Copy contact info
 const copyables = document.querySelectorAll('.copyable');

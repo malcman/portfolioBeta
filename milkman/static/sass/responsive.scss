@@ -215,6 +215,11 @@ $lightGrey: #C3CCD6;
 			&.wide img {
 				margin-top: 10vh;
 			}
+			&#ApocaBliss {
+				img {
+					margin-top: 30vh;
+				}
+			}
 		}
 	}
 	#improvedDreamOnStep {
@@ -359,14 +364,14 @@ $lightGrey: #C3CCD6;
 			grid-column: span 3;
 		}
 	}
-	#artContent {
-		#filterGrid {
-			grid-template-columns: repeat(2, 1fr);
-			.FilterLabel {
-				grid-column: span 1
-			}
-		}
-	}
+	// #artContent {
+	// 	#filterGrid {
+	// 		grid-template-columns: repeat(6, 1fr);
+	// 		.FilterLabel {
+	// 			grid-column: span 2
+	// 		}
+	// 	}
+	// }
 	.gallery.pushedDown {
 		top: 165px;
 	}
@@ -492,17 +497,18 @@ $lightGrey: #C3CCD6;
     width: 50vw;
     margin-left: 0;
     padding: 5% 0;
+    padding-top: 15%;
     -webkit-clip-path: polygon(0% 0%, 0 100%, 100% 100%, 80% 0%);
     clip-path: polygon(0% 0%, 0 100%, 100% 100%, 80% 0%);
 		h1 {
 			font-size: 2.5em;
 		}
 		h2 {
-			font-size: 2em;
+			font-size: 1.9em;
 		}
 		h1, h2, #breakThings {
 			color: white;
-	    margin-left: 25%;
+	    margin-left: 10%;
 		}
 		#breakThings {
 			border: none;

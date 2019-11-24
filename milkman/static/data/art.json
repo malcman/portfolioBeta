@@ -12,6 +12,20 @@
       "tags": ["Digital"]
     },
     {
+      "title": "ApocaBliss",
+      "titleShort": "apocaBliss",
+      "imgFile": "./static/img/art/apocaBliss.jpg",
+      "date": "06/26/17",
+      "tags": ["Photo"]
+    },
+    {
+      "title": "Don't Confuse the Darkness for Sadness",
+      "titleShort": "dontConfuse",
+      "imgFile": "./static/img/art/dontConfuse.jpg",
+      "date": "02/01/19",
+      "tags": ["Digital"]
+    },
+    {
       "title": "Rise",
       "titleShort": "rise",
       "imgFile": "./static/img/art/BigLotusSun.png",
