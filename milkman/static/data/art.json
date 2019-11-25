@@ -21,7 +21,7 @@
     {
       "title": "Don't Confuse the Darkness for Sadness",
       "titleShort": "dontConfuse",
-      "imgFile": "./static/img/art/dontConfuse.jpg",
+      "imgFile": "./static/img/art/dontConfuse.JPG",
       "date": "02/01/19",
       "tags": ["Digital"]
     },
@@ -35,7 +35,7 @@
     {
       "title": "Forward Return",
       "titleShort": "forwardReturn",
-      "imgFile": "./static/img/art/ForwardReturn.jpg",
+      "imgFile": "./static/img/art/ForwardReturn.JPG",
       "date": "01/30/19",
       "tags": ["Digital"]
     },
