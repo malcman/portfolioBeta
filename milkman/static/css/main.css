@@ -580,7 +580,6 @@ canvas {
 #designHeader {
   z-index: 2;
   font-weight: 300;
-  font-family: Muli;
   color: #C3CCD6;
   -webkit-text-fill-color: #C3CCD6;
   position: relative;
@@ -595,7 +594,6 @@ canvas {
   transform: rotate(-90deg);
   transform-origin: bottom right;
   font-weight: 300;
-  font-family: Muli;
   color: #C3CCD6;
   -webkit-text-fill-color: #C3CCD6;
   top: 20%;
