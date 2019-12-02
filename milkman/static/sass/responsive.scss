@@ -399,15 +399,22 @@ $lightGrey: #C3CCD6;
 		.mobileMockupCell:not(:only-child) {
 			margin-right: 5px;
 			img {
-				height: auto;
-				width: 95%;
+		    height: 92%;
+		    width: auto;
 			}
 		}
 		#dreamOnD1Grid, #dreamOnDiaryGrid, #dreamOnDreamGrid {
       grid-template-columns: repeat(3, 1fr);
+      .mobileMockupCell {
+      	height: auto;
+      }
       .mobileMockupCell:last-child {
-	    		grid-column: auto;
-	    	}
+    		grid-column: auto;
+    	}
+    	img {
+		    height: auto;
+		    width: 100%;
+			}
     }
     .subProcess {
     	img.wideBoi {
@@ -681,9 +688,7 @@ $lightGrey: #C3CCD6;
 }
 
 @media only screen and (min-width: 1200px){
-	#footer-logo{
-		width: 20%;
-		left: 40%;
-		top: 15px;
+	.proj .projContent .mobileMockupCell {
+		max-height: 800px;
 	}
 }

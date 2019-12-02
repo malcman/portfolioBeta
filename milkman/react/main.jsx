@@ -158,7 +158,10 @@ function watchExpandedEls() {
   // on resize, resets margins to prevent undesirable text layering
   window.addEventListener('resize', () => {
     const expandeds = document.querySelectorAll('.expanded');
+    if (!expandeds) return;
     expandeds.forEach((expandedEl) => {
+      // proj expansion has its own logic, so do nothing
+      if (expandedEl.classList.contains('proj')) return;
       // get associated child element that does the actual expanding
       const expandingEl = expandedEl.querySelector('.expanding');
       // determine appropriate distance to push following elements down

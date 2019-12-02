@@ -1366,7 +1366,8 @@ canvas {
 #sortedAffinityHeader {
   float: right;
   padding-right: 5%;
-  margin-bottom: 2%; }
+  margin-bottom: 2%;
+  margin-left: 10%; }
 
 #languages {
   margin-left: 10%; }
