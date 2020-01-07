@@ -39,7 +39,7 @@ class Project extends React.Component {
 
   static removeHash() {
     // effectively removes hash target in URL if it was clicked within the project
-    // there may be a better way to do this with histry API, but this is easy
+    // there may be a better way to do this with history API, but this is easy
     // seems to work well with modern browsers
     if (window.location.hash) {
       history.back();

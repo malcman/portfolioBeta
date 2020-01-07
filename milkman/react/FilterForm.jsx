@@ -2,6 +2,8 @@ import React from 'react';
 import FilterButton from './FilterButton';
 
 function checkListSort(a, b) {
+  // sort function used to help keep form elements in consistent
+  // places between renders (weird safari bug)
   if (a.props.catNoWhitespace < b.props.catNoWhitespace) return -1;
   else if (a.props.catNoWhitespace > b.props.catNoWhitespace) return 1;
   return 0;

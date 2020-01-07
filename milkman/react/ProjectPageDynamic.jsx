@@ -92,6 +92,8 @@ class ProjectPageDynamic extends React.Component {
       })
       .then((data) => {
         const projects = [];
+        // 'Piece' is dynamically defined component type (in data file),
+        // allowing for parent component reuse
         const pieceType = data.head.componentType;
         data.projects.forEach((proj) => {
           // add new project

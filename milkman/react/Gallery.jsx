@@ -11,6 +11,7 @@ class Gallery extends React.Component {
     this.matchesSearchText = this.matchesSearchText.bind(this);
   }
   static similarity(s1, s2) {
+    // returns percent similarity between two strings (s1 & s2) as float
     let longer = s1;
     let shorter = s2;
     if (s1.length < s2.length) {
@@ -100,7 +101,7 @@ class Gallery extends React.Component {
       titles.push(piece.props.titleShort);
     });
     // allows for filters to affect one Flipper component,
-    // as it includes lenth in the flipKey
+    // as it includes length in the flipKey
     titles.push(pieceLength);
     return titles.join(' ');
   }
